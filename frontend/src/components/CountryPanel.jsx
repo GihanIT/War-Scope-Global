@@ -4,11 +4,43 @@ import {
   ResponsiveContainer, Cell,
 } from 'recharts';
 
+// ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
+const Icons = {
+  Personnel: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+  ),
+  Shield: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  ),
+  Target: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+  ),
+  Plane: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21.5 4c0 0-2 .5-3.5 1.5L14.5 9 6.3 7.2C5.8 7 5.4 7.2 5.2 7.6L4 10l6 4-4 4-2.8-.9L2 14l3.5 3.5c.4.4.4 1 0 1.4L4.1 20.3c-.4.4-1 .4-1.4 0L1.3 18.9c-.4-.4-.4-1 0-1.4l3.5-3.5 1.1-1.2.9 2.8-4-4-2.4 1.2c-.4.2-.6.6-.5 1.1l1.8 8.2z"/></svg>
+  ),
+  Fighter: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg>
+  ),
+  Helicopter: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+  ),
+  Anchor: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
+  ),
+  Dollar: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+  ),
+  Nuclear: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .11 1.89l1.8 2.6a4.8 4.8 0 0 0 .8-1.5z"/><path d="M15 19.4a1.65 1.65 0 0 0 1.89.11l2.6 1.8a4.8 4.8 0 0 0-1.5.8z"/><path d="M12 21a1.65 1.65 0 0 0-1.65-1.65H8.5a4.8 4.8 0 0 0 0 3h1.85A1.65 1.65 0 0 0 12 21z"/><path d="M4.6 15a1.65 1.65 0 0 1-.11 1.89l-1.8 2.6a4.8 4.8 0 0 1-.8-1.5z"/><path d="M9 19.4a1.65 1.65 0 0 1-1.89.11l-2.6 1.8a4.8 4.8 0 0 1 1.5.8z"/><path d="M12 3a1.65 1.65 0 0 1 1.65 1.65h1.85a4.8 4.8 0 0 1 0-3h-1.85A1.65 1.65 0 0 1 12 3z"/><path d="M15 4.6a1.65 1.65 0 0 1-1.89-.11l-2.6-1.8a4.8 4.8 0 0 1 1.5-.8z"/><path d="M19.4 9a1.65 1.65 0 0 1-.11-1.89l1.8-2.6a4.8 4.8 0 0 1 .8 1.5z"/><path d="M4.6 9a1.65 1.65 0 0 0 .11-1.89l-1.8-2.6a4.8 4.8 0 0 0-.8 1.5z"/><path d="M9 4.6a1.65 1.65 0 0 0 1.89-.11l2.6-1.8a4.8 4.8 0 0 0-1.5-.8z"/></svg>
+  ),
+};
+
 // ─── CSS variables injected once ─────────────────────────────────────────────
 const CSS_VARS = `
   :root {
-    --bg-panel:      #0f1117;
-    --border:        #1e2433;
+    --bg-panel:      rgba(10, 12, 20, 0.75);
+    --border:        rgba(0, 212, 255, 0.15);
+    --border-dim:    rgba(30, 36, 51, 0.5);
     --accent:        #00d4ff;
     --danger:        #ff3b3b;
     --nuclear:       #ffaa00;
@@ -16,8 +48,8 @@ const CSS_VARS = `
     --text-secondary:#8892a4;
   }
   @keyframes skeleton-pulse {
-    0%, 100% { opacity: 0.4; }
-    50%       { opacity: 0.8; }
+    0%, 100% { opacity: 0.3; }
+    50%      { opacity: 0.6; }
   }
   @keyframes slide-in {
     from { transform: translateX(100%); }
@@ -28,20 +60,23 @@ const CSS_VARS = `
     to   { opacity: 1; transform: translateY(0);   }
   }
   .cp-skeleton {
-    background: var(--border);
+    background: var(--border-dim);
     border-radius: 4px;
     animation: skeleton-pulse 1.4s ease-in-out infinite;
   }
   .cp-panel {
-    animation: slide-in 300ms ease forwards;
+    animation: slide-in 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
   }
   .cp-section {
     animation: fade-in 350ms ease both;
   }
-  .cp-news-link:hover { color: var(--accent) !important; }
-  .cp-close-btn:hover { color: var(--text-primary) !important; background: rgba(255,59,59,0.12) !important; }
-  .cp-retry-btn:hover { background: rgba(0,212,255,0.15) !important; }
-  /* Scrollbar */
+  .cp-news-link:hover { color: var(--accent) !important; text-shadow: 0 0 8px rgba(0,212,255,0.4); }
+  .cp-close-btn:hover { color: var(--text-primary) !important; background: rgba(255,59,59,0.15) !important; border-color: var(--danger) !important; }
+  .cp-retry-btn:hover { background: rgba(0,212,255,0.15) !important; box-shadow: 0 0 12px rgba(0,212,255,0.2); }
+  
+  /* Tactical Scrollbar */
   .cp-scroll::-webkit-scrollbar       { width: 4px; }
   .cp-scroll::-webkit-scrollbar-track { background: transparent; }
   .cp-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
@@ -105,23 +140,25 @@ function SkeletonPanel() {
   );
 }
 
-function StatRow({ emoji, label, value, valueStyle }) {
+function StatRow({ icon: Icon, label, value, valueStyle }) {
   return (
     <div style={{
       display:        'flex',
       alignItems:     'center',
       justifyContent: 'space-between',
-      padding:        '9px 0',
-      borderBottom:   '1px solid rgba(30,36,51,0.6)',
+      padding:        '10px 0',
+      borderBottom:   '1px solid var(--border-dim)',
     }}>
-      <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontSize: 14, width: 20, textAlign: 'center' }}>{emoji}</span>
-        <span style={{ fontSize: 12, color: 'var(--text-secondary)', fontFamily: 'monospace', letterSpacing: '0.04em' }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <span style={{ color: 'var(--accent)', display: 'flex', alignItems: 'center', opacity: 0.8 }}>
+          <Icon />
+        </span>
+        <span style={{ fontSize: 13, color: 'var(--text-secondary)', fontFamily: 'monospace', letterSpacing: '0.05em' }}>
           {label}
         </span>
       </span>
       <span style={{
-        fontSize:    13,
+        fontSize:    14,
         fontFamily:  'monospace',
         fontWeight:  600,
         color:       'var(--text-primary)',
@@ -136,40 +173,46 @@ function StatRow({ emoji, label, value, valueStyle }) {
 function SectionHeader({ children, delay = 0 }) {
   return (
     <div style={{
-      fontSize:      10,
+      fontSize:      11,
       fontFamily:    'monospace',
-      letterSpacing: '0.18em',
+      letterSpacing: '0.15em',
       textTransform: 'uppercase',
       color:         'var(--accent)',
-      opacity:       0.8,
-      marginBottom:  12,
-      marginTop:     24,
+      opacity:       0.9,
+      marginBottom:  16,
+      marginTop:     28,
       paddingBottom: 6,
-      borderBottom:  '1px solid rgba(0,212,255,0.15)',
+      borderBottom:  '1px solid var(--border)',
       animationDelay: `${delay}ms`,
+      display:       'flex',
+      alignItems:    'center',
+      gap:           8,
     }}
       className="cp-section"
     >
+      <div style={{ width: 4, height: 4, background: 'var(--accent)', borderRadius: '50%', boxShadow: '0 0 6px var(--accent)' }} />
       {children}
     </div>
   );
 }
 
-// Custom tooltip for Recharts
 function CompareTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
   return (
     <div style={{
-      background:   'rgba(10,12,20,0.97)',
-      border:       '1px solid var(--border)',
+      background:   'rgba(5, 7, 12, 0.95)',
+      border:       '1px solid var(--accent)',
       borderRadius: 4,
       padding:      '8px 12px',
       fontSize:     11,
       fontFamily:   'monospace',
+      boxShadow:    '0 4px 12px rgba(0,0,0,0.5)',
     }}>
-      <div style={{ color: 'var(--text-secondary)', marginBottom: 4 }}>{label}</div>
+      <div style={{ color: 'var(--text-secondary)', marginBottom: 6, borderBottom: '1px solid rgba(0,212,255,0.2)', paddingBottom: 4 }}>
+        {label}
+      </div>
       {payload.map((p) => (
-        <div key={p.name} style={{ color: p.color }}>
+        <div key={p.name} style={{ color: p.color, margin: '2px 0' }}>
           {p.name}: {Number(p.value).toLocaleString()}
         </div>
       ))}
@@ -188,7 +231,6 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
   const [retryKey,   setRetryKey]   = useState(0);
   const styleInjected = useRef(false);
 
-  // Inject CSS once into document head
   if (!styleInjected.current) {
     const el = document.getElementById('cp-styles');
     if (!el) {
@@ -216,7 +258,6 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
       if (conflictData.status === 'fulfilled') setConflicts(conflictData.value ?? []);
       if (newsData.status === 'fulfilled')     setNews(newsData.value?.articles ?? []);
 
-      // If the primary data (military) failed, surface an error
       if (milData.status === 'rejected') throw milData.reason;
 
     } catch (err) {
@@ -228,7 +269,6 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
 
   useEffect(() => { load(); }, [load]);
 
-  // Close on Escape
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose?.(); };
     window.addEventListener('keydown', onKey);
@@ -237,38 +277,15 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
 
   const s  = military?.stats       ?? {};
   const avg = military?.worldAverages ?? {};
-
   const activeConflicts = conflicts.filter((c) => c.is_active);
 
-  // Chart data
   const chartData = [
-    {
-      name:    'Personnel',
-      country: Math.round((s.active_personnel ?? 0) / 1000),
-      avg:     Math.round((avg.active_personnel ?? 0) / 1000),
-      unit:    'K',
-    },
-    {
-      name:    'Tanks',
-      country: s.tanks ?? 0,
-      avg:     avg.tanks ?? 0,
-      unit:    '',
-    },
-    {
-      name:    'Aircraft',
-      country: s.total_military_aircraft ?? 0,
-      avg:     avg.total_military_aircraft ?? 0,
-      unit:    '',
-    },
-    {
-      name:    'Naval',
-      country: s.total_naval_fleet ?? 0,
-      avg:     avg.total_naval_fleet ?? 0,
-      unit:    '',
-    },
+    { name: 'Personnel', country: Math.round((s.active_personnel ?? 0) / 1000), avg: Math.round((avg.active_personnel ?? 0) / 1000) },
+    { name: 'Tanks',     country: s.tanks ?? 0, avg: avg.tanks ?? 0 },
+    { name: 'Aircraft',  country: s.total_military_aircraft ?? 0, avg: avg.total_military_aircraft ?? 0 },
+    { name: 'Naval',     country: s.total_naval_fleet ?? 0, avg: avg.total_naval_fleet ?? 0 },
   ];
 
-  // ── Panel shell ─────────────────────────────────────────────────────────────
   const panelStyle = {
     position:        'fixed',
     top:             0,
@@ -280,76 +297,74 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
     display:         'flex',
     flexDirection:   'column',
     zIndex:          1000,
-    boxShadow:       '-8px 0 40px rgba(0,0,0,0.6)',
-    fontFamily:      "'IBM Plex Sans', system-ui, sans-serif",
+    boxShadow:       '-10px 0 40px rgba(0,0,0,0.8)',
+    fontFamily:      "'Barlow', system-ui, sans-serif",
   };
 
   return (
     <div className="cp-panel" style={panelStyle}>
-
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div style={{
-        padding:        '18px 18px 14px',
+        padding:        '20px 18px 16px',
         borderBottom:   '1px solid var(--border)',
-        background:     'rgba(255,255,255,0.02)',
+        background:     'rgba(0, 212, 255, 0.03)',
         flexShrink:     0,
       }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            {/* Flag */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             {iso2 && (
               <img
                 src={`https://flagcdn.com/w80/${iso2.toLowerCase()}.png`}
                 alt={countryName}
                 style={{
-                  width:        48,
-                  height:       32,
+                  width:        52,
+                  height:       36,
                   objectFit:    'cover',
-                  borderRadius: 3,
-                  border:       '1px solid var(--border)',
+                  borderRadius: 4,
+                  border:       '1px solid rgba(255,255,255,0.1)',
                   flexShrink:   0,
+                  boxShadow:    '0 2px 10px rgba(0,0,0,0.5)',
                 }}
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
             )}
             <div>
               <div style={{
-                fontSize:    20,
+                fontSize:    24,
                 fontWeight:  700,
                 color:       'var(--text-primary)',
-                lineHeight:  1.2,
-                letterSpacing: '-0.01em',
+                lineHeight:  1.1,
+                letterSpacing: '0.02em',
               }}>
                 {countryName}
               </div>
               {military?.country?.iso3 && (
                 <div style={{
-                  fontSize:    10,
+                  fontSize:    11,
                   fontFamily:  'monospace',
-                  color:       'var(--text-secondary)',
-                  letterSpacing: '0.1em',
-                  marginTop:   2,
+                  color:       'var(--accent)',
+                  letterSpacing: '0.12em',
+                  marginTop:   4,
                 }}>
-                  {military.country.iso3}
+                  ISO-3: {military.country.iso3}
                 </div>
               )}
             </div>
           </div>
 
-          {/* Rank badge + close */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             {s.id != null && military?.country && (
               <div style={{
-                fontSize:     10,
+                fontSize:     11,
                 fontFamily:   'monospace',
                 color:        'var(--accent)',
-                border:       '1px solid var(--accent)',
-                borderRadius: 3,
-                padding:      '3px 7px',
-                letterSpacing: '0.06em',
+                background:   'rgba(0, 212, 255, 0.1)',
+                border:       '1px solid var(--border)',
+                borderRadius: 4,
+                padding:      '4px 8px',
+                letterSpacing: '0.08em',
                 whiteSpace:   'nowrap',
               }}>
-                {/* rank comes from countries table; we'll show iso3 as fallback */}
                 GFP #{military.country.rank ?? '—'}
               </div>
             )}
@@ -357,19 +372,18 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
               className="cp-close-btn"
               onClick={onClose}
               style={{
-                background:   'transparent',
-                border:       '1px solid var(--border)',
+                background:   'rgba(255,255,255,0.05)',
+                border:       '1px solid var(--border-dim)',
                 color:        'var(--text-secondary)',
                 cursor:       'pointer',
                 borderRadius: 4,
-                width:        28,
-                height:       28,
+                width:        30,
+                height:       30,
                 display:      'flex',
                 alignItems:   'center',
                 justifyContent: 'center',
-                fontSize:     16,
-                lineHeight:   1,
-                transition:   'all 160ms',
+                fontSize:     18,
+                transition:   'all 200ms ease',
                 flexShrink:   0,
               }}
               aria-label="Close panel"
@@ -382,145 +396,155 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
 
       {/* ── Scrollable body ─────────────────────────────────────────────── */}
       <div className="cp-scroll" style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
-
         {loading ? (
           <SkeletonPanel />
         ) : error ? (
-          <div style={{ padding: 24, textAlign: 'center' }}>
-            <div style={{ color: 'var(--danger)', fontSize: 13, marginBottom: 16 }}>
-              ⚠ {error}
+          <div style={{ padding: 30, textAlign: 'center' }}>
+            <div style={{ color: 'var(--danger)', fontSize: 13, marginBottom: 20, fontFamily: 'monospace' }}>
+              [ ERR: DATA_RETRIEVAL_FAILED ]<br/>{error}
             </div>
             <button
               className="cp-retry-btn"
               onClick={() => setRetryKey((k) => k + 1)}
               style={{
-                background:   'transparent',
+                background:   'rgba(0,212,255,0.05)',
                 border:       '1px solid var(--accent)',
                 color:        'var(--accent)',
                 cursor:       'pointer',
                 borderRadius: 4,
-                padding:      '7px 18px',
+                padding:      '8px 20px',
                 fontSize:     12,
                 fontFamily:   'monospace',
-                letterSpacing: '0.06em',
-                transition:   'background 160ms',
+                letterSpacing: '0.1em',
+                transition:   'all 200ms ease',
               }}
             >
-              ↺ RETRY
+              REINITIALIZE LINK
             </button>
           </div>
         ) : (
-          <div style={{ padding: '4px 18px 24px' }}>
+          <div style={{ padding: '0 18px 30px' }}>
 
             {/* ── Military stats ─────────────────────────────────────── */}
             <SectionHeader delay={0}>Military Strength</SectionHeader>
 
-            <StatRow emoji="👥" label="Active Personnel"   value={fmt(s.active_personnel)} />
-            <StatRow emoji="🪖" label="Reserve Personnel"  value={fmt(s.reserve_personnel)} />
-            <StatRow emoji="🚗" label="Tanks"              value={fmt(s.tanks)} />
-            <StatRow emoji="✈️"  label="Total Aircraft"    value={fmt(s.total_military_aircraft)} />
-            <StatRow emoji="⚔️"  label="Fighter Aircraft"  value={fmt(s.fighter_aircraft)} />
-            <StatRow emoji="🚁" label="Attack Helicopters" value={fmt(s.attack_helicopters)} />
-            <StatRow emoji="🚢" label="Naval Fleet"        value={fmt(s.total_naval_fleet)} />
+            <StatRow icon={Icons.Personnel} label="Active Personnel"   value={fmt(s.active_personnel)} />
+            <StatRow icon={Icons.Shield}    label="Reserve Personnel"  value={fmt(s.reserve_personnel)} />
+            <StatRow icon={Icons.Target}    label="Armored Vehicles"   value={fmt(s.tanks)} />
+            <StatRow icon={Icons.Plane}     label="Total Aircraft"     value={fmt(s.total_military_aircraft)} />
+            <StatRow icon={Icons.Fighter}   label="Fighter Aircraft"   value={fmt(s.fighter_aircraft)} />
+            <StatRow icon={Icons.Helicopter}label="Attack Helicopters" value={fmt(s.attack_helicopters)} />
+            <StatRow icon={Icons.Anchor}    label="Naval Fleet"        value={fmt(s.total_naval_fleet)} />
             <StatRow
-              emoji="💰"
+              icon={Icons.Dollar}
               label="Defense Budget"
               value={formatBudget(s.defense_budget_usd)}
               valueStyle={{ color: 'var(--accent)' }}
             />
             <StatRow
-              emoji="☢️"
-              label="Nuclear Weapons"
+              icon={Icons.Nuclear}
+              label="Nuclear Warheads"
               value={
                 (s.nuclear_weapons ?? 0) > 0
-                  ? `⚠ ${Number(s.nuclear_weapons).toLocaleString()}`
-                  : 'None'
+                  ? `DETECTED: ${Number(s.nuclear_weapons).toLocaleString()}`
+                  : 'NONE DETECTED'
               }
               valueStyle={{
                 color: (s.nuclear_weapons ?? 0) > 0
                   ? 'var(--nuclear)'
                   : 'var(--text-secondary)',
+                textShadow: (s.nuclear_weapons ?? 0) > 0 ? '0 0 8px rgba(255,170,0,0.5)' : 'none'
               }}
             />
 
             {/* ── Comparison chart ───────────────────────────────────── */}
-            <SectionHeader delay={60}>vs. World Average</SectionHeader>
+            <SectionHeader delay={60}>Global Comparison</SectionHeader>
 
-            <ResponsiveContainer width="100%" height={160}>
-              <BarChart
-                data={chartData}
-                layout="vertical"
-                margin={{ top: 0, right: 8, left: 0, bottom: 0 }}
-                barCategoryGap="28%"
-              >
-                <XAxis
-                  type="number"
-                  tick={{ fill: '#8892a4', fontSize: 9, fontFamily: 'monospace' }}
-                  axisLine={{ stroke: '#1e2433' }}
-                  tickLine={false}
-                />
-                <YAxis
-                  type="category"
-                  dataKey="name"
-                  width={62}
-                  tick={{ fill: '#8892a4', fontSize: 9, fontFamily: 'monospace' }}
-                  axisLine={false}
-                  tickLine={false}
-                />
-                <Tooltip content={<CompareTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
-                <Bar dataKey="country" name={countryName} radius={[0, 2, 2, 0]}>
-                  {chartData.map((_, i) => (
-                    <Cell key={i} fill="var(--accent)" fillOpacity={0.85} />
-                  ))}
-                </Bar>
-                <Bar dataKey="avg" name="World Avg" radius={[0, 2, 2, 0]}>
-                  {chartData.map((_, i) => (
-                    <Cell key={i} fill="#2a3555" />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
+            <div style={{ background: 'rgba(0,0,0,0.2)', padding: '16px 8px 8px', borderRadius: 6, border: '1px solid var(--border-dim)' }}>
+              <ResponsiveContainer width="100%" height={180}>
+                <BarChart
+                  data={chartData}
+                  layout="vertical"
+                  margin={{ top: 0, right: 16, left: 0, bottom: 0 }}
+                  barCategoryGap="25%"
+                >
+                  <XAxis
+                    type="number"
+                    tick={{ fill: 'var(--text-secondary)', fontSize: 10, fontFamily: 'monospace' }}
+                    axisLine={{ stroke: 'var(--border-dim)' }}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    type="category"
+                    dataKey="name"
+                    width={70}
+                    tick={{ fill: 'var(--text-secondary)', fontSize: 10, fontFamily: 'monospace' }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <Tooltip content={<CompareTooltip />} cursor={{ fill: 'rgba(0,212,255,0.05)' }} />
+                  <Bar dataKey="country" name={countryName} radius={[0, 4, 4, 0]}>
+                    {chartData.map((_, i) => (
+                      <Cell key={i} fill="var(--accent)" fillOpacity={0.9} />
+                    ))}
+                  </Bar>
+                  <Bar dataKey="avg" name="World Avg" radius={[0, 4, 4, 0]}>
+                    {chartData.map((_, i) => (
+                      <Cell key={i} fill="rgba(255,255,255,0.15)" />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
 
             {/* ── Active conflicts ───────────────────────────────────── */}
             <SectionHeader delay={100}>Active Conflicts</SectionHeader>
 
             {activeConflicts.length === 0 ? (
               <div style={{
-                fontSize:  12,
+                fontSize:  11,
+                fontFamily: 'monospace',
                 color:     'var(--text-secondary)',
-                fontStyle: 'italic',
-                padding:   '4px 0 8px',
+                background: 'rgba(255,255,255,0.02)',
+                border: '1px dashed var(--border-dim)',
+                padding:   '12px',
+                borderRadius: 4,
+                textAlign: 'center'
               }}>
-                No active conflicts recorded
+                [ STATUS: CLEAR ] NO ACTIVE ZONES
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {activeConflicts.slice(0, 8).map((c) => (
                   <div key={c.id} style={{
                     display:    'flex',
                     alignItems: 'flex-start',
-                    gap:        10,
-                    padding:    '8px 10px',
-                    background: 'rgba(255,59,59,0.05)',
-                    border:     '1px solid rgba(255,59,59,0.15)',
-                    borderRadius: 4,
+                    gap:        12,
+                    padding:    '12px',
+                    background: 'linear-gradient(90deg, rgba(255,59,59,0.1) 0%, rgba(255,59,59,0.02) 100%)',
+                    borderLeft: '2px solid var(--danger)',
+                    borderTop:  '1px solid rgba(255,59,59,0.1)',
+                    borderRight:'1px solid rgba(255,59,59,0.1)',
+                    borderBottom:'1px solid rgba(255,59,59,0.1)',
+                    borderRadius: '0 4px 4px 0',
                   }}>
                     <div style={{
-                      width:        7,
-                      height:       7,
+                      width:        8,
+                      height:       8,
                       borderRadius: '50%',
                       background:   'var(--danger)',
-                      marginTop:    4,
+                      marginTop:    5,
                       flexShrink:   0,
-                      boxShadow:    '0 0 6px var(--danger)',
+                      boxShadow:    '0 0 8px var(--danger)',
+                      animation:    'skeleton-pulse 2s infinite'
                     }} />
                     <div style={{ minWidth: 0 }}>
                       <div style={{
-                        fontSize:     12,
+                        fontSize:     13,
                         fontWeight:   600,
-                        color:        'var(--text-primary)',
+                        color:        '#ff8080',
                         lineHeight:   1.3,
-                        marginBottom: 2,
+                        marginBottom: 4,
                       }}>
                         {c.conflict_name ?? c.location}
                       </div>
@@ -529,12 +553,12 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
                         fontFamily: 'monospace',
                         color:     'var(--text-secondary)',
                         display:   'flex',
-                        gap:       8,
+                        gap:       12,
                       }}>
-                        {c.start_year && <span>Since {c.start_year}</span>}
+                        {c.start_year && <span>SINCE: {c.start_year}</span>}
                         {c.intensity_level && (
-                          <span style={{ color: 'var(--danger)', opacity: 0.8 }}>
-                            INT-{c.intensity_level}
+                          <span style={{ color: 'var(--danger)', opacity: 0.9 }}>
+                            INT-LEVEL: {c.intensity_level}
                           </span>
                         )}
                       </div>
@@ -548,15 +572,27 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
             <SectionHeader delay={140}>Latest Intelligence</SectionHeader>
 
             {news.length === 0 ? (
-              <div style={{ fontSize: 12, color: 'var(--text-secondary)', fontStyle: 'italic' }}>
-                No recent intelligence available
+              <div style={{
+                fontSize:  11,
+                fontFamily: 'monospace',
+                color:     'var(--text-secondary)',
+                background: 'rgba(255,255,255,0.02)',
+                border: '1px dashed var(--border-dim)',
+                padding:   '12px',
+                borderRadius: 4,
+                textAlign: 'center'
+              }}>
+                [ NO SIGNAL DETECTED ]
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {news.slice(0, 5).map((article, i) => (
                   <div key={i} style={{
-                    padding:      '10px 0',
-                    borderBottom: '1px solid rgba(30,36,51,0.5)',
+                    padding:      '12px',
+                    background:   'rgba(0,0,0,0.2)',
+                    border:       '1px solid var(--border-dim)',
+                    borderRadius: 4,
+                    transition:   'border-color 200ms ease',
                   }}>
                     <a
                       href={article.url}
@@ -564,21 +600,20 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
                       rel="noopener noreferrer"
                       className="cp-news-link"
                       style={{
-                        fontSize:       12,
+                        fontSize:       13,
                         fontWeight:     500,
                         color:          'var(--text-primary)',
                         textDecoration: 'none',
                         lineHeight:     1.4,
                         display:        'block',
-                        marginBottom:   5,
-                        transition:     'color 150ms',
+                        marginBottom:   8,
                       }}
                     >
                       {article.title}
                     </a>
                     <div style={{
                       display:    'flex',
-                      gap:        8,
+                      gap:        12,
                       fontSize:   10,
                       fontFamily: 'monospace',
                       color:      'var(--text-secondary)',
@@ -586,17 +621,17 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
                       {article.source && (
                         <span style={{
                           color:        'var(--accent)',
-                          opacity:      0.7,
-                          maxWidth:     120,
+                          opacity:      0.8,
+                          maxWidth:     140,
                           overflow:     'hidden',
                           textOverflow: 'ellipsis',
                           whiteSpace:   'nowrap',
                         }}>
-                          {article.source}
+                          SRC: {article.source}
                         </span>
                       )}
                       {article.seendate && (
-                        <span>{fmtDate(article.seendate)}</span>
+                        <span>| LOG: {fmtDate(article.seendate).toUpperCase()}</span>
                       )}
                     </div>
                   </div>
@@ -606,20 +641,22 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
 
             {/* ── Ad placeholder ──────────────────────────────────── */}
             <div style={{
-              width:          '300px',
+              width:          '100%',
               height:         '250px',
-              border:         '1px dashed #1e2433',
+              background:     'rgba(0, 212, 255, 0.02)',
+              border:         '1px dashed var(--border)',
               display:        'flex',
               alignItems:     'center',
               justifyContent: 'center',
-              color:          '#8892a4',
-              fontSize:       '12px',
-              margin:         '16px auto',
+              color:          'var(--accent)',
+              opacity:        0.5,
+              fontSize:       '11px',
+              marginTop:      '24px',
               borderRadius:   4,
               fontFamily:     'monospace',
-              letterSpacing:  '0.06em',
+              letterSpacing:  '0.1em',
             }}>
-              Ad 300×250
+              [ SECURE COMM CHANNEL ]
             </div>
 
           </div>

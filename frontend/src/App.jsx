@@ -5,9 +5,10 @@ import BlogPost from './blog/BlogPost.jsx';
 import Compare  from './pages/Compare.jsx';
 import NotFound from './pages/NotFound.jsx';
 
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         <Route path="/"          element={<Home />} />
         <Route path="/blog"      element={<Blog />} />

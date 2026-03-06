@@ -21,7 +21,7 @@ const normaliseArticle = (article) => ({
 
 // ─────────────────────────────────────────────
 // GET /api/news/:country
-// Fetch from GDELT, cache 5 min, return clean list
+// Fetch from GDELT, English military news only
 // ─────────────────────────────────────────────
 const getNewsByCountry = async (req, res, next) => {
   try {
@@ -41,8 +41,12 @@ const getNewsByCountry = async (req, res, next) => {
     }
 
     // ── GDELT fetch ────────────────────────────
-    const query = encodeURIComponent(`${country} military war`);
-    const gdeltUrl = `${GDELT_BASE}?query=${query}&mode=artlist&maxrecords=${maxrecords}&format=json`;
+    // sourcelang:eng  → English sources only
+    // OR keywords     → restrict to military / conflict / war topics
+    // sort=DateDesc   → newest articles first
+    const queryStr = `"${country}" (military OR army OR war OR conflict OR troops OR weapons OR defense OR NATO) sourcelang:eng`;
+    const query    = encodeURIComponent(queryStr);
+    const gdeltUrl = `${GDELT_BASE}?query=${query}&mode=artlist&maxrecords=${maxrecords}&format=json&sort=DateDesc`;
 
     let gdeltData;
     try {
@@ -65,7 +69,10 @@ const getNewsByCountry = async (req, res, next) => {
       return res.status(502).json({ error: 'Unexpected response format from GDELT' });
     }
 
-    const articles = gdeltData.articles.map(normaliseArticle);
+    // Secondary filter: drop any non-English articles that slipped through
+    const articles = gdeltData.articles
+      .filter(a => !a.language || a.language.toLowerCase() === 'english')
+      .map(normaliseArticle);
 
     // Store in cache then respond
     cache.set(cacheKey, articles);

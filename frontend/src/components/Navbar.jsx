@@ -1,102 +1,153 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+// ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
+const Icons = {
+  Globe: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+  ),
+  Blog: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+  ),
+  Compare: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+  ),
+  Radar: () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="12" x2="12" y2="2"/></svg>
+  )
+};
+
 // ─── Styles injected once ─────────────────────────────────────────────────────
 const NAVBAR_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Barlow:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
   .ws-nav-link {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     padding: 6px 2px;
-    font-family: 'Barlow', system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: #8892a4;
     text-decoration: none;
-    border-bottom: 2px solid transparent;
-    transition: color 150ms ease, border-color 150ms ease;
+    transition: color 200ms ease, text-shadow 200ms ease;
     white-space: nowrap;
     cursor: pointer;
   }
-  .ws-nav-link:hover {
-    color: #e8eaf0;
+  
+  .ws-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #00d4ff;
+    transform: scaleX(0);
+    transition: transform 200ms ease;
+    box-shadow: 0 0 8px #00d4ff;
   }
-  .ws-nav-link.active {
+
+  .ws-nav-link:hover {
     color: #00d4ff;
-    border-bottom-color: #00d4ff;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+  }
+  
+  .ws-nav-link.active {
+    color: #e8eaf0;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  
+  .ws-nav-link.active::after {
+    transform: scaleX(1);
   }
 
   .ws-search-input {
-    background: #0a0a0f;
-    border: 1px solid #1e2433;
-    color: #e8eaf0;
-    border-radius: 6px;
-    padding: 7px 12px 7px 34px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+    border-radius: 4px;
+    padding: 8px 12px 8px 34px;
     font-size: 13px;
-    font-family: 'Barlow', system-ui, sans-serif;
-    width: 200px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+    width: 220px;
     outline: none;
-    transition: border-color 180ms ease, box-shadow 180ms ease, width 250ms ease;
+    transition: border-color 200ms ease, box-shadow 200ms ease, width 250ms ease, background 200ms ease;
   }
   .ws-search-input::placeholder { color: #4a5568; }
   .ws-search-input:focus {
+    background: rgba(0, 212, 255, 0.05);
     border-color: #00d4ff;
-    box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
-    width: 240px;
+    box-shadow: 0 0 12px rgba(0,212,255,0.2);
+    width: 260px;
+    color: #e8eaf0;
   }
 
   .ws-hamburger {
     background: transparent;
-    border: 1px solid #1e2433;
-    color: #e8eaf0;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 4px;
     width: 36px;
     height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    transition: background 150ms, border-color 150ms;
+    font-size: 20px;
+    transition: all 200ms ease;
     flex-shrink: 0;
   }
   .ws-hamburger:hover {
-    background: rgba(0,212,255,0.07);
-    border-color: rgba(0,212,255,0.3);
+    background: rgba(0,212,255,0.1);
+    border-color: #00d4ff;
+    box-shadow: 0 0 10px rgba(0,212,255,0.2);
   }
 
   @keyframes ws-dropdown-in {
     from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  
   .ws-mobile-menu {
     animation: ws-dropdown-in 200ms ease forwards;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
   .ws-mobile-link {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 13px 20px;
-    font-family: 'Barlow', system-ui, sans-serif;
-    font-size: 15px;
-    font-weight: 400;
+    gap: 12px;
+    padding: 14px 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: #8892a4;
     text-decoration: none;
-    border-bottom: 1px solid #1e2433;
-    transition: color 150ms, background 150ms;
+    border-bottom: 1px solid rgba(30, 36, 51, 0.5);
+    transition: all 150ms ease;
     cursor: pointer;
   }
   .ws-mobile-link:last-child { border-bottom: none; }
-  .ws-mobile-link:hover  { color: #e8eaf0; background: rgba(255,255,255,0.03); }
-  .ws-mobile-link.active { color: #00d4ff; background: rgba(0,212,255,0.05); }
+  .ws-mobile-link:hover  { color: #00d4ff; background: rgba(0, 212, 255, 0.05); padding-left: 28px; }
+  .ws-mobile-link.active { color: #e8eaf0; background: rgba(0, 212, 255, 0.08); border-left: 3px solid #00d4ff; }
+
+  @keyframes pulse-live {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(255,59,59,0.4); }
+    50% { opacity: 0.6; box-shadow: 0 0 2px rgba(255,59,59,0.1); }
+  }
 
   @media (max-width: 768px) {
     .ws-nav-center, .ws-nav-right { display: none !important; }
-    .ws-hamburger-wrap             { display: flex !important; }
+    .ws-hamburger-wrap            { display: flex !important; }
   }
   @media (min-width: 769px) {
     .ws-hamburger-wrap { display: none !important; }
@@ -113,9 +164,9 @@ function injectStyle(id, css) {
 
 // ─── Nav links config ─────────────────────────────────────────────────────────
 const NAV_LINKS = [
-  { label: '🌍 Globe',   to: '/' },
-  { label: '📰 Blog',    to: '/blog' },
-  { label: '⚖️ Compare', to: '/compare' },
+  { label: 'GLOBE',   to: '/',        Icon: Icons.Globe },
+  { label: 'INTEL',   to: '/blog',    Icon: Icons.Blog },
+  { label: 'COMPARE', to: '/compare', Icon: Icons.Compare },
 ];
 
 // ─── Search component ─────────────────────────────────────────────────────────
@@ -131,21 +182,21 @@ function SearchInput({ onSubmit }) {
 
   return (
     <div style={{ position: 'relative', flexShrink: 0 }}>
-      {/* Search icon */}
       <svg
         width="14" height="14"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#4a5568"
+        stroke="#00d4ff"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
         style={{
           position:      'absolute',
-          left:          11,
+          left:          12,
           top:           '50%',
           transform:     'translateY(-50%)',
           pointerEvents: 'none',
+          opacity:       0.7,
         }}
       >
         <circle cx="11" cy="11" r="8" />
@@ -154,7 +205,7 @@ function SearchInput({ onSubmit }) {
       <input
         className="ws-search-input"
         type="text"
-        placeholder="Search country..."
+        placeholder="> TRACE_TARGET..."
         value={val}
         onChange={(e) => setVal(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -165,12 +216,13 @@ function SearchInput({ onSubmit }) {
 }
 
 // ─── Desktop nav link ─────────────────────────────────────────────────────────
-function NavLink({ to, label, exact }) {
+function NavLink({ to, label, exact, Icon }) {
   const { pathname } = useLocation();
   const isActive = exact ? pathname === to : pathname.startsWith(to);
 
   return (
     <Link to={to} className={`ws-nav-link${isActive ? ' active' : ''}`}>
+      <span style={{ opacity: isActive ? 1 : 0.7 }}><Icon /></span>
       {label}
     </Link>
   );
@@ -180,16 +232,14 @@ function NavLink({ to, label, exact }) {
 export default function Navbar() {
   injectStyle('ws-navbar-css', NAVBAR_CSS);
 
-  const navigate                  = useNavigate();
-  const { pathname }              = useLocation();
+  const navigate          = useNavigate();
+  const { pathname }      = useLocation();
   const [menuOpen, setMenuOpen]   = useState(false);
-  const menuRef                   = useRef(null);
-  const hamburgerRef              = useRef(null);
+  const menuRef           = useRef(null);
+  const hamburgerRef      = useRef(null);
 
-  // Close mobile menu on route change
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
-  // Close on outside click
   const handleOutside = useCallback((e) => {
     if (
       menuRef.current      && !menuRef.current.contains(e.target) &&
@@ -205,7 +255,6 @@ export default function Navbar() {
     return ()  => document.removeEventListener('mousedown', handleOutside);
   }, [menuOpen, handleOutside]);
 
-  // Close on Escape
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
     window.addEventListener('keydown', onKey);
@@ -225,17 +274,17 @@ export default function Navbar() {
         zIndex:         100,
         width:          '100%',
         height:         60,
-        background:     '#0f1117',
-        borderBottom:   '1px solid #1e2433',
+        background:     'rgba(5, 5, 8, 0.85)',
+        borderBottom:   '1px solid rgba(0, 212, 255, 0.15)',
         display:        'flex',
         alignItems:     'center',
         justifyContent: 'space-between',
-        padding:        '0 20px',
+        padding:        '0 24px',
         flexShrink:     0,
         boxSizing:      'border-box',
-        // Subtle glass micro-texture
-        backdropFilter: 'blur(8px)',
-        boxShadow:      '0 1px 0 rgba(0,212,255,0.04)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        boxShadow:      '0 4px 20px rgba(0,0,0,0.5)',
       }}>
 
         {/* ── Left: wordmark ──────────────────────────────────────────── */}
@@ -245,31 +294,35 @@ export default function Navbar() {
             textDecoration: 'none',
             display:        'flex',
             alignItems:     'center',
-            gap:            8,
+            gap:            12,
             flexShrink:     0,
           }}
         >
+          <Icons.Radar />
           <span style={{
             fontFamily:    "'IBM Plex Mono', monospace",
-            fontWeight:    500,
-            fontSize:      20,
-            color:         '#00d4ff',
-            letterSpacing: '-0.02em',
+            fontWeight:    600,
+            fontSize:      18,
+            color:         '#e8eaf0',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
             lineHeight:    1,
+            textShadow:    '0 0 10px rgba(0,212,255,0.4)',
           }}>
-            ⚔️ WarScope
+            WarScope
           </span>
           <span style={{
-            background:    'rgba(255,59,59,0.15)',
-            border:        '1px solid rgba(255,59,59,0.3)',
+            background:    'rgba(255,59,59,0.1)',
+            border:        '1px solid rgba(255,59,59,0.4)',
             borderRadius:  3,
-            padding:       '1px 5px',
+            padding:       '2px 6px',
             fontFamily:    "'IBM Plex Mono', monospace",
-            fontSize:      8,
-            color:         '#ff3b3b',
-            letterSpacing: '0.12em',
+            fontSize:      10,
+            color:         '#ff8080',
+            letterSpacing: '0.15em',
             textTransform: 'uppercase',
             marginTop:     1,
+            animation:     'pulse-live 2s infinite',
           }}>
             LIVE
           </span>
@@ -281,31 +334,30 @@ export default function Navbar() {
           style={{
             display:    'flex',
             alignItems: 'center',
-            gap:        32,
+            gap:        40,
             position:   'absolute',
             left:       '50%',
             transform:  'translateX(-50%)',
+            height:     '100%',
           }}
         >
-          {NAV_LINKS.map(({ label, to }) => (
+          {NAV_LINKS.map(({ label, to, Icon }) => (
             <NavLink
               key={to}
               to={to}
               label={label}
+              Icon={Icon}
               exact={to === '/'}
             />
           ))}
         </div>
 
         {/* ── Right: search + mobile hamburger ─────────────────────────── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-
-          {/* Desktop search */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
           <div className="ws-nav-right" style={{ display: 'flex', alignItems: 'center' }}>
             <SearchInput onSubmit={handleSearch} />
           </div>
 
-          {/* Hamburger */}
           <div className="ws-hamburger-wrap" style={{ alignItems: 'center' }}>
             <button
               ref={hamburgerRef}
@@ -314,7 +366,12 @@ export default function Navbar() {
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? '✕' : '☰'}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {menuOpen 
+                  ? <> <line x1="18" y1="6" x2="6" y2="18" /> <line x1="6" y1="6" x2="18" y2="18" /> </>
+                  : <> <line x1="4" y1="12" x2="20" y2="12" /> <line x1="4" y1="6" x2="20" y2="6" /> <line x1="4" y1="18" x2="20" y2="18" /> </>
+                }
+              </svg>
             </button>
           </div>
         </div>
@@ -331,12 +388,12 @@ export default function Navbar() {
             left:        0,
             right:       0,
             zIndex:      99,
-            background:  '#0f1117',
-            borderBottom:'1px solid #1e2433',
-            boxShadow:   '0 8px 32px rgba(0,0,0,0.5)',
+            background:  'rgba(5, 5, 8, 0.95)',
+            borderBottom:'1px solid rgba(0, 212, 255, 0.2)',
+            boxShadow:   '0 12px 40px rgba(0,0,0,0.8)',
           }}
         >
-          {NAV_LINKS.map(({ label, to }) => {
+          {NAV_LINKS.map(({ label, to, Icon }) => {
             const isActive = to === '/'
               ? pathname === '/'
               : pathname.startsWith(to);
@@ -346,31 +403,33 @@ export default function Navbar() {
                 to={to}
                 className={`ws-mobile-link${isActive ? ' active' : ''}`}
               >
+                <span style={{ opacity: isActive ? 1 : 0.6 }}><Icon /></span>
                 {label}
               </Link>
             );
           })}
 
-          {/* Mobile search */}
           <div style={{
-            padding:      '12px 20px 16px',
-            borderTop:    '1px solid #1e2433',
+            padding:      '16px 24px 20px',
+            borderTop:    '1px solid rgba(30, 36, 51, 0.5)',
+            background:   'rgba(0,0,0,0.2)',
           }}>
             <div style={{ position: 'relative' }}>
               <svg
                 width="14" height="14"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#4a5568"
+                stroke="#00d4ff"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 style={{
                   position:      'absolute',
-                  left:          11,
+                  left:          12,
                   top:           '50%',
                   transform:     'translateY(-50%)',
                   pointerEvents: 'none',
+                  opacity:       0.7,
                 }}
               >
                 <circle cx="11" cy="11" r="8" />
@@ -380,7 +439,7 @@ export default function Navbar() {
                 className="ws-search-input"
                 style={{ width: '100%' }}
                 type="text"
-                placeholder="Search country..."
+                placeholder="> TRACE_TARGET..."
                 aria-label="Search country"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && e.target.value.trim()) {

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import GlobeView    from '../globe/GlobeView.jsx';
 import CountryPanel from '../components/CountryPanel.jsx';
 import Navbar       from '../components/Navbar.jsx';
+import AdBanner     from '../components/AdBanner.jsx';
 
 // ─── CSS injected once ────────────────────────────────────────────────────────
 const HOME_CSS = `
@@ -11,8 +12,8 @@ const HOME_CSS = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:          #0a0a0f;
-    --bg-panel:    #0f1117;
+    --bg:          #050508;
+    --bg-panel:    rgba(15, 17, 23, 0.85);
     --border:      #1e2433;
     --accent:      #00d4ff;
     --accent-dim:  rgba(0,212,255,0.12);
@@ -20,13 +21,77 @@ const HOME_CSS = `
     --nuclear:     #ffaa00;
     --text-1:      #e8eaf0;
     --text-2:      #8892a4;
+    --grid-color:  rgba(0, 212, 255, 0.04);
   }
 
   html, body, #root {
-    height: 100%;
-    background: var(--bg);
+    min-height: 100vh;
+    background-color: var(--bg);
     color: var(--text-1);
     font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 16px;
+    /* Removed overflow: hidden so other pages can scroll normally */
+  }
+
+  /* ── TACTICAL BACKGROUND EFFECTS ────────────────────────────────────────── */
+  
+  /* 1. Coordinate Grid Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* 2. Radial Vignette (Darkens edges to focus on globe) */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(5,5,8,0.85) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* 3. Holographic Scanline */
+  #root::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 212, 255, 0.02) 51%, transparent 51%);
+    background-size: 100% 6px;
+    z-index: 2;
+    pointer-events: none;
+    animation: scanline-scroll 10s linear infinite;
+  }
+
+  @keyframes scanline-scroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 100vh; }
+  }
+
+  /* ── Global font-size scale-up ────────────────────────────────────────────── */
+
+  .cp-skeleton { border-radius: 4px; }
+
+  [style*="font-family: monospace"],
+  [style*="fontFamily: monospace"],
+  [style*="IBM Plex Mono"] {
+    font-size: max(var(--mono-size, 13px), 13px);
+  }
+
+  :root {
+    --fs-xs:   12px;
+    --fs-sm:   14px;
+    --fs-md:   15px;
+    --fs-lg:   17px;
+    --fs-xl:   20px;
   }
 
   @keyframes home-fade-in {
@@ -37,16 +102,13 @@ const HOME_CSS = `
     0%,100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.18); }
     50%      { box-shadow: 0 0 0 8px rgba(0,212,255,0); }
   }
-  @keyframes scanline {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-  }
 
   .home-panel-slide {
     animation: home-fade-in 300ms ease both;
+    backdrop-filter: blur(12px);
   }
 
-  /* Mobile: panel slides up from bottom */
+  /* Mobile */
   @media (max-width: 768px) {
     .country-panel-mobile {
       position: fixed !important;
@@ -99,6 +161,53 @@ async function fetchConflictsForCountry(iso3) {
   return r.json();
 }
 
+function shapeGlobalArcs(conflicts, countryMap) {
+  const arcs   = [];
+  let skipNoA1 = 0, skipNoMap = 0, skipNoCoords = 0;
+
+  conflicts.forEach(c => {
+    if (!c.actor1_iso3) { skipNoA1++; return; }
+
+    const a1 = countryMap[c.actor1_iso3];
+    if (!a1) { skipNoMap++; return; }
+
+    const startLat = parseFloat(a1.latitude);
+    const startLng = parseFloat(a1.longitude);
+    if (isNaN(startLat) || isNaN(startLng)) { skipNoCoords++; return; }
+
+    let endLat, endLng, arcType;
+
+    if (c.actor2_iso3 && c.actor2_iso3 !== c.actor1_iso3) {
+      const a2 = countryMap[c.actor2_iso3];
+      if (!a2) { skipNoMap++; return; }
+      endLat  = parseFloat(a2.latitude);
+      endLng  = parseFloat(a2.longitude);
+      arcType = 'state-vs-state';
+    } else if (c.latitude != null && c.longitude != null) {
+      endLat  = parseFloat(c.latitude);
+      endLng  = parseFloat(c.longitude);
+      arcType = 'state-vs-nonstate';
+    } else {
+      skipNoCoords++; return;
+    }
+
+    if (isNaN(endLat) || isNaN(endLng)) { skipNoCoords++; return; }
+
+    arcs.push({
+      startLat,
+      startLng,
+      endLat,
+      endLng,
+      intensity_level: c.intensity_level ?? 1,
+      conflict_name:   c.location ?? 'Unknown',
+      is_active:       c.is_active ?? false,
+      arc_type:        arcType,
+    });
+  });
+
+  return arcs;
+}
+
 async function fetchCountryLatLng(iso3) {
   const r = await fetch(`${API}/api/countries/${iso3}`);
   if (!r.ok) return null;
@@ -133,8 +242,8 @@ function Ticker() {
   return (
     <div style={{
       fontFamily:    "'IBM Plex Mono', monospace",
-      fontSize:      10,
-      letterSpacing: '0.14em',
+      fontSize:      13,
+      letterSpacing: '0.1em',
       color:         visible ? 'var(--accent)' : 'transparent',
       transition:    'color 280ms ease',
       display:       'flex',
@@ -142,6 +251,7 @@ function Ticker() {
       gap:           10,
       overflow:      'hidden',
       whiteSpace:    'nowrap',
+      zIndex:        10,
     }}>
       <span style={{
         display:      'inline-block',
@@ -154,39 +264,6 @@ function Ticker() {
         animation:    'overlay-pulse 2s infinite',
       }} />
       {TICKER_ITEMS[idx]}
-    </div>
-  );
-}
-
-// ─── Top ad banner ────────────────────────────────────────────────────────────
-function AdBanner() {
-  return (
-    <div
-      id="ad-top-banner"
-      style={{
-        height:         '90px',
-        background:     '#0f1117',
-        borderBottom:   '1px solid #1e2433',
-        display:        'flex',
-        alignItems:     'center',
-        justifyContent: 'center',
-        color:          '#8892a4',
-        fontSize:       '12px',
-        flexShrink:     0,
-        fontFamily:     "'IBM Plex Mono', monospace",
-        letterSpacing:  '0.06em',
-        position:       'relative',
-        overflow:       'hidden',
-      }}
-    >
-      {/* scanline effect on ad container */}
-      <div style={{
-        position:   'absolute',
-        inset:      0,
-        background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,212,255,0.015) 3px, rgba(0,212,255,0.015) 4px)',
-        pointerEvents: 'none',
-      }} />
-      Ad 728×90
     </div>
   );
 }
@@ -206,8 +283,8 @@ function GlobeOverlay({ visible, isMobile }) {
       opacity:       visible ? 1 : 0,
     }}>
       <div style={{
-        background:    'rgba(0,0,0,0.45)',
-        backdropFilter: 'blur(6px)',
+        background:    'rgba(5,5,8,0.6)',
+        backdropFilter: 'blur(8px)',
         border:        '1px solid rgba(0,212,255,0.2)',
         borderRadius:  8,
         padding:       '14px 22px',
@@ -216,6 +293,7 @@ function GlobeOverlay({ visible, isMobile }) {
         alignItems:    'center',
         gap:           8,
         animation:     visible ? 'overlay-pulse 3s ease infinite' : 'none',
+        boxShadow:     '0 4px 24px rgba(0,0,0,0.5)',
       }}>
         <span style={{ fontSize: 28, lineHeight: 1 }}>🌍</span>
         <span style={{
@@ -228,9 +306,9 @@ function GlobeOverlay({ visible, isMobile }) {
         </span>
         <span style={{
           color:         'var(--text-2)',
-          fontSize:      10,
+          fontSize:      12,
           fontFamily:    "'IBM Plex Mono', monospace",
-          letterSpacing: '0.12em',
+          letterSpacing: '0.1em',
           textTransform: 'uppercase',
         }}>
           {isMobile ? 'WARSCOPE INTEL' : '9 nuclear states · 171 countries · live arcs'}
@@ -250,15 +328,17 @@ function StatsStrip({ conflictCount, isActive }) {
       transform:      'translateX(-50%)',
       display:        'flex',
       gap:            24,
-      background:     'rgba(10,12,20,0.72)',
-      backdropFilter: 'blur(8px)',
+      background:     'rgba(5,5,8,0.72)',
+      backdropFilter: 'blur(12px)',
       border:         '1px solid var(--border)',
+      borderTop:      '1px solid rgba(0,212,255,0.15)',
       borderRadius:   6,
       padding:        '8px 20px',
       pointerEvents:  'none',
       zIndex:         5,
-      opacity:        isActive ? 0 : 0.85,
+      opacity:        isActive ? 0 : 0.9,
       transition:     'opacity 400ms ease',
+      boxShadow:      '0 8px 32px rgba(0,0,0,0.5)',
     }}>
       {[
         { label: 'COUNTRIES',  value: '171' },
@@ -269,16 +349,17 @@ function StatsStrip({ conflictCount, isActive }) {
         <div key={label} style={{ textAlign: 'center' }}>
           <div style={{
             fontFamily:    "'IBM Plex Mono', monospace",
-            fontSize:      14,
+            fontSize:      17,
             fontWeight:    600,
             color:         label === 'STATUS' ? 'var(--danger)' : 'var(--accent)',
+            textShadow:    `0 0 8px ${label === 'STATUS' ? 'rgba(255,59,59,0.5)' : 'rgba(0,212,255,0.3)'}`,
           }}>
             {value}
           </div>
           <div style={{
             fontFamily:    "'IBM Plex Mono', monospace",
-            fontSize:      8,
-            letterSpacing: '0.14em',
+            fontSize:      11,
+            letterSpacing: '0.1em',
             color:         'var(--text-2)',
             marginTop:     2,
           }}>
@@ -304,22 +385,48 @@ export default function Home() {
   const [totalConflicts,  setTotalConflicts]  = useState(0);
   const [isMobile,        setIsMobile]        = useState(window.innerWidth <= 768);
 
-  // ── Responsive detection ──────────────────────────────────────────────────
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // ── Fetch total conflict count for stats strip ────────────────────────────
+  const globalArcsRef = useRef([]);
+
   useEffect(() => {
-    fetch(`${API}/api/conflicts?active=true&limit=1000`)
-      .then(r => r.ok ? r.json() : [])
-      .then(data => setTotalConflicts(Array.isArray(data) ? data.length : 0))
-      .catch(() => {});
+    const load = async () => {
+      try {
+        const [cRes, cfRes] = await Promise.all([
+          fetch(`${API}/api/countries`),
+          fetch(`${API}/api/conflicts?active=true&limit=1000`),
+        ]);
+
+        if (!cRes.ok)  throw new Error(`countries ${cRes.status}`);
+        if (!cfRes.ok) throw new Error(`conflicts ${cfRes.status}`);
+
+        const [countries, conflicts] = await Promise.all([
+          cRes.json(),
+          cfRes.json(),
+        ]);
+
+        const countryMap = {};
+        (Array.isArray(countries) ? countries : []).forEach(c => {
+          if (c.iso3) countryMap[c.iso3] = c;
+        });
+
+        const all = Array.isArray(conflicts) ? conflicts : [];
+        setTotalConflicts(all.length);
+
+        const arcs = shapeGlobalArcs(all, countryMap);
+        globalArcsRef.current = arcs;
+        setConflictArcs(arcs);
+      } catch (err) {
+        console.error('[arcs] load failed:', err);
+      }
+    };
+    load();
   }, []);
 
-  // ── Country click handler ─────────────────────────────────────────────────
   const handleCountryClick = useCallback(async (iso3, iso2, name, lat, lng) => {
     if (!iso3 || iso3 === '-99') return;
 
@@ -327,15 +434,12 @@ export default function Home() {
     setShowPanel(true);
     setShowOverlay(false);
 
-    // Update URL param
     setSearchParams({ countries: iso3 }, { replace: true });
 
-    // Fly camera to country
     if (globeRef.current && lat != null && lng != null) {
       globeRef.current.pointOfView({ lat, lng, altitude: 2.2 }, 900);
     }
 
-    // Fetch arcs for this country
     try {
       const data = await fetchConflictsForCountry(iso3);
       setConflictArcs(shapeArcs(Array.isArray(data) ? data : []));
@@ -344,35 +448,27 @@ export default function Home() {
     }
   }, [setSearchParams]);
 
-  // ── Handle close ──────────────────────────────────────────────────────────
   const handleClose = useCallback(() => {
     setShowPanel(false);
     setSelectedCountry(null);
-    setConflictArcs([]);
+    setConflictArcs(globalArcsRef.current);
     setSearchParams({}, { replace: true });
   }, [setSearchParams]);
 
-  // ── URL param: ?countries=CHN,RUS ────────────────────────────────────────
   useEffect(() => {
     const param = searchParams.get('countries');
     if (!param) return;
 
-    const iso3List = param
-      .split(',')
-      .map(s => s.trim().toUpperCase())
-      .filter(Boolean);
-
+    const iso3List = param.split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
     if (!iso3List.length) return;
 
     const primary = iso3List[0];
 
-    // Fetch primary country and auto-open panel
     fetchCountryLatLng(primary).then(geo => {
       if (!geo) return;
       handleCountryClick(primary, null, geo.name, geo.lat, geo.lng);
     }).catch(() => {});
 
-    // If 2+ countries: draw a manual arc between them
     if (iso3List.length >= 2) {
       Promise.all(iso3List.map(fetchCountryLatLng))
         .then(geos => {
@@ -395,11 +491,8 @@ export default function Home() {
         .catch(() => {});
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // run once on mount only
+  }, []);
 
-  // ── Layout math ──────────────────────────────────────────────────────────
-  // The main content area fills whatever's left after navbar + ad
-  // We use dvh-safe heights via calc() with CSS.
   const mainStyle = {
     flex:      1,
     display:   'flex',
@@ -407,13 +500,14 @@ export default function Home() {
     overflow:  'hidden',
     position:  'relative',
     minHeight: 0,
+    zIndex:    5, // Keep above the background layers
   };
 
   const globeWrapStyle = {
     flex:     1,
     position: 'relative',
     minWidth: 0,
-    background: '#0a0a0f',
+    background: 'transparent', // Crucial to let the grid show through!
   };
 
   return (
@@ -421,21 +515,21 @@ export default function Home() {
       display:       'flex',
       flexDirection: 'column',
       height:        '100dvh',
-      background:    '#0a0a0f',
+      background:    'transparent', // Let CSS backgrounds handle it
       overflow:      'hidden',
     }}>
 
       {/* ── Navbar ───────────────────────────────────────────────────── */}
-      <Navbar />
-
-      {/* ── Top AdSense banner ───────────────────────────────────────── */}
-      <AdBanner />
+      <div style={{ zIndex: 10, position: 'relative' }}>
+        <Navbar />
+      </div>
 
       {/* ── Ticker bar ───────────────────────────────────────────────── */}
       <div style={{
         height:        32,
-        background:    '#0a0c14',
-        borderBottom:  '1px solid var(--border)',
+        background:    'rgba(5, 5, 8, 0.8)',
+        backdropFilter: 'blur(8px)',
+        borderBottom:  '1px solid rgba(0,212,255,0.15)',
         display:       'flex',
         alignItems:    'center',
         padding:       '0 16px',
@@ -443,13 +537,16 @@ export default function Home() {
         flexShrink:    0,
         gap:           16,
         overflow:      'hidden',
+        zIndex:        10,
+        position:      'relative',
+        boxShadow:     '0 4px 12px rgba(0,0,0,0.3)',
       }}>
         <Ticker />
         <div style={{
           fontFamily:    "'IBM Plex Mono', monospace",
-          fontSize:      9,
+          fontSize:      12,
           color:         'var(--text-2)',
-          letterSpacing: '0.1em',
+          letterSpacing: '0.08em',
           whiteSpace:    'nowrap',
           flexShrink:    0,
         }}>
@@ -470,74 +567,76 @@ export default function Home() {
             autoRotate={!showPanel}
           />
 
-          {/* Globe hint overlay */}
           <GlobeOverlay visible={showOverlay} isMobile={isMobile} />
 
-          {/* Bottom stats strip */}
           <StatsStrip conflictCount={totalConflicts} isActive={showPanel} />
 
-          {/* Selected country label badge */}
           {selectedCountry && (
             <div style={{
               position:    'absolute',
-              top:         12,
-              left:        12,
-              background:  'rgba(10,12,20,0.82)',
-              backdropFilter: 'blur(6px)',
-              border:      '1px solid rgba(0,212,255,0.3)',
-              borderRadius: 5,
-              padding:     '6px 12px',
+              top:         16,
+              left:        16,
+              background:  'rgba(5,5,8,0.85)',
+              backdropFilter: 'blur(12px)',
+              border:      '1px solid rgba(0,212,255,0.4)',
+              borderRadius: 6,
+              padding:     '8px 14px',
               display:     'flex',
               alignItems:  'center',
-              gap:         8,
+              gap:         10,
               animation:   'home-fade-in 250ms ease both',
               zIndex:      6,
               pointerEvents: 'none',
+              boxShadow:   '0 4px 16px rgba(0,0,0,0.4), 0 0 10px rgba(0,212,255,0.1)',
             }}>
               <div style={{
-                width:        6,
-                height:       6,
+                width:        8,
+                height:       8,
                 borderRadius: '50%',
                 background:   'var(--accent)',
-                boxShadow:    '0 0 8px var(--accent)',
+                boxShadow:    '0 0 10px var(--accent)',
               }} />
               <span style={{
                 fontFamily:    "'IBM Plex Mono', monospace",
-                fontSize:      11,
-                color:         'var(--accent)',
+                fontSize:      14,
+                fontWeight:    600,
+                color:         'var(--text-1)',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
               }}>
-                {selectedCountry.iso3} · {selectedCountry.name}
+                {selectedCountry.iso3} <span style={{ color: 'var(--text-2)', fontWeight: 400 }}>|</span> {selectedCountry.name}
               </span>
             </div>
           )}
 
-          {/* Arc count badge when arcs are showing */}
           {conflictArcs.length > 0 && (
             <div style={{
               position:    'absolute',
-              top:         12,
-              right:       showPanel && !isMobile ? 396 : 12,
-              background:  'rgba(255,59,59,0.12)',
-              border:      '1px solid rgba(255,59,59,0.3)',
-              borderRadius: 5,
-              padding:     '5px 10px',
+              top:         16,
+              right:       showPanel && !isMobile ? 396 : 16,
+              background:  'rgba(255,59,59,0.15)',
+              backdropFilter: 'blur(8px)',
+              border:      '1px solid rgba(255,59,59,0.4)',
+              borderRadius: 6,
+              padding:     '8px 14px',
               fontFamily:  "'IBM Plex Mono', monospace",
-              fontSize:    10,
-              color:       'var(--danger)',
+              fontSize:    13,
+              fontWeight:  600,
+              color:       '#ff8080',
               letterSpacing: '0.1em',
               animation:   'home-fade-in 300ms ease both',
               transition:  'right 300ms ease',
               zIndex:      6,
               pointerEvents: 'none',
+              boxShadow:   '0 4px 16px rgba(0,0,0,0.4), 0 0 10px rgba(255,59,59,0.2)',
             }}>
-              ⬤ {conflictArcs.filter(a => a.is_active).length} ACTIVE ARCS
+              <span style={{ color: 'var(--danger)', marginRight: 6, animation: 'overlay-pulse 2s infinite' }}>⬤</span>
+              {conflictArcs.filter(a => a.is_active).length} ACTIVE
             </div>
           )}
         </div>
 
-        {/* Country Panel — desktop sidebar, mobile bottom sheet */}
+        {/* Country Panel */}
         {showPanel && selectedCountry && (
           <div
             className={`home-panel-slide ${isMobile ? 'country-panel-mobile' : ''}`}
@@ -546,6 +645,9 @@ export default function Home() {
               flexShrink: 0,
               position:   'relative',
               overflow:   'hidden',
+              background: 'var(--bg-panel)',
+              borderLeft: '1px solid rgba(0,212,255,0.15)',
+              boxShadow:  '-10px 0 30px rgba(0,0,0,0.5)',
             }}
           >
             <CountryPanel

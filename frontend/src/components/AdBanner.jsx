@@ -8,6 +8,12 @@ const SIZE_MAP = {
   '320x50':  { width: '100%',  height: '50px'  },
 };
 
+// ─── Feature flags ────────────────────────────────────────────────────────────
+// VITE_SHOW_ADS=false  → ads completely hidden (no space taken)
+// VITE_SHOW_ADS=true   → show placeholder in dev, real AdSense in production
+const SHOW_ADS = import.meta.env.VITE_SHOW_ADS === 'true';
+const IS_DEV   = import.meta.env.DEV === true;
+
 // ─── Dev placeholder ──────────────────────────────────────────────────────────
 function AdPlaceholder({ size, id, dimensions }) {
   return (
@@ -27,13 +33,12 @@ function AdPlaceholder({ size, id, dimensions }) {
         overflow:       'hidden',
       }}
     >
-      {/* Subtle grid texture */}
       <div style={{
-        position:        'absolute',
-        inset:           0,
-        background:      'repeating-linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px)',
-        backgroundSize:  '20px 20px',
-        pointerEvents:   'none',
+        position:       'absolute',
+        inset:          0,
+        background:     'repeating-linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px)',
+        backgroundSize: '20px 20px',
+        pointerEvents:  'none',
       }} />
       <span style={{
         fontFamily:    "'IBM Plex Mono', monospace",
@@ -80,8 +85,10 @@ function AdSenseUnit({ id }) {
 
 // ─── AdBanner ─────────────────────────────────────────────────────────────────
 export default function AdBanner({ id, size = '728x90', style: extraStyle = {} }) {
+  // When ads are disabled, render nothing — no space, no border, no layout shift
+  if (!SHOW_ADS) return null;
+
   const dimensions = SIZE_MAP[size] ?? SIZE_MAP['728x90'];
-  const isDev      = import.meta.env.DEV === true;
 
   return (
     <div style={{
@@ -91,7 +98,7 @@ export default function AdBanner({ id, size = '728x90', style: extraStyle = {} }
       width:    dimensions.width,
       ...extraStyle,
     }}>
-      {isDev
+      {IS_DEV
         ? <AdPlaceholder id={id} size={size} dimensions={dimensions} />
         : <AdSenseUnit   id={id} />
       }

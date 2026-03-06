@@ -4,10 +4,12 @@ import {
   useCallback,
   useImperativeHandle,
   forwardRef,
+  useState,
+  useMemo
 } from 'react';
+import Globe from 'react-globe.gl';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-
 const GEOJSON_URL =
   'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson';
 
@@ -23,322 +25,293 @@ const NUCLEAR_STATES = [
   { iso3: 'ISR', lat: 31.05,  lng:  34.85 },
 ];
 
-// Pulsing amber: alternate between two radii for glow effect
-const NUCLEAR_PULSE_RADII = [0.5, 0.65];
+const NUCLEAR_PULSE = [0.45, 0.65];
 
-const COLORS = {
-  background:      '#0a0a0f',
-  countryFill:     '#1a2035',
-  countryStroke:   '#2a3555',
-  hoverFill:       'rgba(0,212,255,0.15)',
-  selectedFill:    'rgba(0,212,255,0.30)',
-  arcActive:       '#ff3b3b',
-  arcHistorical:   '#ff3b3b44',
-  nuclear:         '#ffaa00',
-  nuclearGlow:     'rgba(255,170,0,0.35)',
-  atmosphere:      'rgba(0,150,255,0.15)',
+// ─── Upgraded Tactical Color Palette ──────────────────────────────────────────
+const C = {
+  bg:          'rgba(0,0,0,0)', // Deeper space background
+  fill:        'rgba(26,32,53,0.4)', // More translucent to let satellite map show
+  stroke:      'rgba(0,212,255,0.2)', // Cyan tactical borders
+  hover:       'rgba(0,212,255,0.3)',
+  selected:    'rgba(0,212,255,0.5)',
+  arcActive:   '#ff3b3b',
+  arcOld:      'rgba(255,59,59,0.1)',
+  nuclear:     '#ffaa00',
+  atmosphere:  '#00d4ff', // Cyan atmosphere glow
 };
 
-const ROTATE_SPEED   = 0.12;   // deg/frame
-const RESUME_DELAY   = 3000;   // ms after last interaction
-
-// ─── Component ────────────────────────────────────────────────────────────────
-
+// ─── GlobeView ────────────────────────────────────────────────────────────────
 const GlobeView = forwardRef(function GlobeView(
   {
     onCountryClick,
-    conflictArcs   = [],
+    conflictArcs       = [],
     highlightCountries = [],
-    autoRotate     = true,
+    autoRotate         = true,
   },
   ref
 ) {
-  const mountRef      = useRef(null);
-  const globeRef      = useRef(null);
+  const globeEl       = useRef(null);
+  const wrapRef       = useRef(null);
   const hoveredRef    = useRef(null);
   const selectedRef   = useRef(null);
   const rotatingRef   = useRef(autoRotate);
   const resumeTimer   = useRef(null);
   const rafRef        = useRef(null);
   const pulseTimer    = useRef(null);
-  const pulseIndexRef = useRef(0);
+  const pulseIdx      = useRef(0);
 
-  // Expose globe instance to parent via ref
+  const [countries, setCountries] = useState([]);
+  const [size,      setSize]      = useState({ w: window.innerWidth, h: window.innerHeight });
+  const [pulseR,    setPulseR]    = useState(NUCLEAR_PULSE[0]);
+
   useImperativeHandle(ref, () => ({
-    pointOfView: (...args) => globeRef.current?.pointOfView(...args),
-    getInstance: ()       => globeRef.current,
+    pointOfView: (...args) => globeEl.current?.pointOfView(...args),
+    getInstance: ()       => globeEl.current,
   }));
 
-  // ── Country colour resolver ─────────────────────────────────────────────────
-  const getCountryColor = useCallback((feature) => {
-    const iso3 = feature?.properties?.ISO_A3;
-    if (iso3 && iso3 === selectedRef.current)  return COLORS.selectedFill;
-    if (iso3 && iso3 === hoveredRef.current)   return COLORS.hoverFill;
-    if (highlightCountries.includes(iso3))     return COLORS.hoverFill;
-    return COLORS.countryFill;
-  }, [highlightCountries]);
+  useEffect(() => {
+    fetch(GEOJSON_URL)
+      .then(r => r.json())
+      .then(d => setCountries(d.features))
+      .catch(console.error);
+  }, []);
 
-  // ── Interaction helpers ─────────────────────────────────────────────────────
+  useEffect(() => {
+    const measure = () => {
+      if (!wrapRef.current) return;
+      const { offsetWidth: w, offsetHeight: h } = wrapRef.current;
+      if (w > 0 && h > 0) setSize({ w, h });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (wrapRef.current) ro.observe(wrapRef.current);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
+
+  useEffect(() => {
+    rotatingRef.current = autoRotate;
+    const tick = () => {
+      if (rotatingRef.current && globeEl.current) {
+        const pov = globeEl.current.pointOfView();
+        globeEl.current.pointOfView({ ...pov, lng: pov.lng - 0.08 }); // Slightly slower, more cinematic spin
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [autoRotate]);
+
+  useEffect(() => {
+    pulseTimer.current = setInterval(() => {
+      pulseIdx.current = (pulseIdx.current + 1) % 2;
+      setPulseR(NUCLEAR_PULSE[pulseIdx.current]);
+    }, 900);
+    return () => clearInterval(pulseTimer.current);
+  }, []);
+
   const stopRotation = useCallback(() => {
     rotatingRef.current = false;
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    clearTimeout(resumeTimer.current);
     if (autoRotate) {
       resumeTimer.current = setTimeout(() => {
         rotatingRef.current = true;
-      }, RESUME_DELAY);
+      }, 4000);
     }
   }, [autoRotate]);
 
-  // ── Arc colour / style helpers ──────────────────────────────────────────────
-  const arcColor = (arc) =>
-    arc.is_active ? COLORS.arcActive : COLORS.arcHistorical;
+  const getColor = useCallback((feat) => {
+    const iso3 = feat?.properties?.ISO_A3;
+    if (iso3 && iso3 === selectedRef.current)  return C.selected;
+    if (iso3 && iso3 === hoveredRef.current)   return C.hover;
+    if (highlightCountries.includes(iso3))     return C.hover;
+    return C.fill;
+  }, [highlightCountries]);
 
-  const arcAltitude = (arc) => (arc.is_active ? 0.3 : 0.2);
+  const handleHover = useCallback((feat) => {
+    hoveredRef.current = feat?.properties?.ISO_A3 ?? null;
+    if (wrapRef.current) {
+      wrapRef.current.style.cursor = feat ? 'pointer' : 'default';
+    }
+  }, []);
 
-  const arcStroke = (arc) =>
-    arc.is_active
-      ? (arc.intensity_level ?? 1) * 0.5 + 0.5
-      : 0.3;
+  const handleClick = useCallback((feat) => {
+    if (!feat) return;
+    stopRotation();
+    const { ISO_A3, ISO_A2, NAME, LABEL_X, LABEL_Y } = feat.properties;
+    selectedRef.current = ISO_A3;
+    onCountryClick?.(
+      ISO_A3 ?? null,
+      ISO_A2 ?? null,
+      NAME   ?? null,
+      LABEL_Y != null ? parseFloat(LABEL_Y) : null,
+      LABEL_X != null ? parseFloat(LABEL_X) : null,
+    );
+  }, [onCountryClick, stopRotation]);
 
-  const arcDashLength = (arc) => (arc.is_active ? 0.02 : undefined);
-  const arcGapLength  = (arc) => (arc.is_active ? 0.01 : undefined);
+  // ── 1. Shooting Star Gradients ───────────────────────────────────────────────
+  const arcColor = useCallback((arc) => {
+    if (!arc.is_active) return C.arcOld;
+    // Two elements create a directional gradient: [Start Color, End Color]
+    return arc.arc_type === 'state-vs-state' 
+      ? ['rgba(255,59,59,0.05)', '#ff3b3b'] 
+      : ['rgba(255,170,0,0.05)', '#ffaa00'];
+  }, []);
 
-  // ── Main init ───────────────────────────────────────────────────────────────
-  useEffect(() => {
-    let destroyed = false;
+  const arcAlt     = useCallback((arc) =>  arc.is_active ? 0.35 : 0.15, []); // Higher arcs for visibility
+  const arcStroke  = useCallback((arc) => {
+    if (!arc.is_active) return 0.2;
+    const base = (arc.intensity_level ?? 1) * 0.6 + 0.4;
+    return arc.arc_type === 'state-vs-state' ? base + 0.5 : base; // Thicker lines
+  }, []);
+  
+  // ── 2. Comet Dashes ──────────────────────────────────────────────────────────
+  const arcDash    = useCallback((arc) =>  arc.is_active ? 0.4 : 0, []); // Longer trail
+  const arcGap     = useCallback((arc) =>  arc.is_active ? 0.1 : 0, []); 
+  const arcAnimate = useCallback((arc) => {
+    if (!arc.is_active) return 0;
+    return arc.arc_type === 'state-vs-state' ? 2000 : 3500;
+  }, []);
 
-    const init = async () => {
-      // Dynamic import so Vite/webpack can split the heavy bundle
-      const GlobeGL   = (await import('globe.gl')).default;
-      const geoResp   = await fetch(GEOJSON_URL);
-      const geoJSON   = await geoResp.json();
-
-      if (destroyed || !mountRef.current) return;
-
-      const el = mountRef.current;
-
-      // ── Instantiate ───────────────────────────────────────────────────────
-      const globe = GlobeGL()(el)
-        // sizing
-        .width(el.clientWidth)
-        .height(el.clientHeight)
-
-        // appearance
-        .backgroundColor(COLORS.background)
-        .showAtmosphere(true)
-        .atmosphereColor(COLORS.atmosphere)
-        .atmosphereAltitude(0.12)
-        .showGraticules(false)
-
-        // ── Polygons (countries) ────────────────────────────────────────────
-        .polygonsData(geoJSON.features)
-        .polygonAltitude(0.006)
-        .polygonCapColor(getCountryColor)
-        .polygonSideColor(() => 'rgba(30,45,80,0.6)')
-        .polygonStrokeColor(() => COLORS.countryStroke)
-        .polygonLabel((feat) => `
-          <div style="
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            background: rgba(10,10,20,0.92);
-            border: 1px solid rgba(0,212,255,0.3);
-            padding: 6px 10px;
-            border-radius: 3px;
-            color: #cdd6f4;
-            letter-spacing: 0.08em;
-            pointer-events: none;
-          ">
-            ${feat.properties.NAME ?? feat.properties.ISO_A3 ?? ''}
-          </div>
-        `)
-        .onPolygonHover((feat) => {
-          hoveredRef.current = feat?.properties?.ISO_A3 ?? null;
-          el.style.cursor    = feat ? 'pointer' : 'default';
-          globe.polygonCapColor(getCountryColor);
-        })
-        .onPolygonClick((feat) => {
-          if (!feat) return;
-          stopRotation();
-          const { ISO_A3, ISO_A2, NAME, LABEL_X, LABEL_Y } = feat.properties;
-          selectedRef.current = ISO_A3;
-          globe.polygonCapColor(getCountryColor);
-          if (onCountryClick) {
-            onCountryClick(
-              ISO_A3 ?? null,
-              ISO_A2 ?? null,
-              NAME   ?? null,
-              LABEL_Y != null ? parseFloat(LABEL_Y) : null,
-              LABEL_X != null ? parseFloat(LABEL_X) : null
-            );
-          }
-        })
-
-        // ── Arcs (conflicts) ────────────────────────────────────────────────
-        .arcsData(conflictArcs)
-        .arcStartLat((d) => d.startLat)
-        .arcStartLng((d) => d.startLng)
-        .arcEndLat((d)   => d.endLat)
-        .arcEndLng((d)   => d.endLng)
-        .arcColor(arcColor)
-        .arcAltitude(arcAltitude)
-        .arcStroke(arcStroke)
-        .arcDashLength(arcDashLength)
-        .arcDashGap(arcGapLength)
-        .arcDashAnimateTime((arc) => (arc.is_active ? 2000 : 0))
-        .arcLabel((arc) => arc.conflict_name
-          ? `<div style="
-              font-family: 'JetBrains Mono', monospace;
-              font-size: 10px;
-              background: rgba(10,10,20,0.92);
-              border: 1px solid rgba(255,59,59,0.4);
-              padding: 5px 9px;
-              border-radius: 3px;
-              color: #ff8080;
-              letter-spacing: 0.06em;
-            ">${arc.conflict_name}</div>`
-          : ''
-        )
-
-        // ── Nuclear markers ─────────────────────────────────────────────────
-        .pointsData(NUCLEAR_STATES)
-        .pointLat((d)    => d.lat)
-        .pointLng((d)    => d.lng)
-        .pointColor(()   => COLORS.nuclear)
-        .pointAltitude(() => 0.01)
-        .pointRadius(() => NUCLEAR_PULSE_RADII[0])
-        .pointsMerge(false)
-        .pointLabel((d)  => `
-          <div style="
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            background: rgba(10,10,20,0.92);
-            border: 1px solid rgba(255,170,0,0.5);
-            padding: 5px 9px;
-            border-radius: 3px;
-            color: #ffaa00;
-            letter-spacing: 0.06em;
-          ">⚛ ${d.iso3} · Nuclear</div>
-        `);
-
-      globeRef.current = globe;
-
-      // ── Stars ─────────────────────────────────────────────────────────────
-      // globe.gl exposes the Three.js scene — add star particles directly
-      try {
-        const THREE = (await import('three')).default ?? (await import('three'));
-        const scene = globe.scene();
-        if (scene) {
-          const starGeo = new THREE.BufferGeometry();
-          const starCount = 6000;
-          const positions = new Float32Array(starCount * 3);
-          for (let i = 0; i < starCount * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 2000;
-          }
-          starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-          const starMat = new THREE.PointsMaterial({
-            color: 0xffffff,
-            size:  0.7,
-            transparent: true,
-            opacity: 0.8,
-            sizeAttenuation: true,
-          });
-          scene.add(new THREE.Points(starGeo, starMat));
-        }
-      } catch (_) {
-        // Stars are cosmetic — silently skip if THREE unavailable
-      }
-
-      // ── Nuclear pulse animation ───────────────────────────────────────────
-      pulseTimer.current = setInterval(() => {
-        pulseIndexRef.current = (pulseIndexRef.current + 1) % 2;
-        const r = NUCLEAR_PULSE_RADII[pulseIndexRef.current];
-        globe.pointRadius(() => r);
-      }, 800);
-
-      // ── Auto-rotate loop ──────────────────────────────────────────────────
-      const tick = () => {
-        if (rotatingRef.current && globeRef.current) {
-          const pov = globe.pointOfView();
-          globe.pointOfView({ ...pov, lng: pov.lng - ROTATE_SPEED });
-        }
-        rafRef.current = requestAnimationFrame(tick);
-      };
-      rafRef.current = requestAnimationFrame(tick);
-
-      // ── Interaction: stop rotation on mousedown / touchstart ─────────────
-      el.addEventListener('mousedown',  stopRotation, { passive: true });
-      el.addEventListener('touchstart', stopRotation, { passive: true });
-      el.addEventListener('wheel',      stopRotation, { passive: true });
-    };
-
-    init().catch(console.error);
-
-    // ── Resize handler ──────────────────────────────────────────────────────
-    const onResize = () => {
-      if (globeRef.current && mountRef.current) {
-        globeRef.current
-          .width(mountRef.current.clientWidth)
-          .height(mountRef.current.clientHeight);
-      }
-    };
-    window.addEventListener('resize', onResize);
-
-    return () => {
-      destroyed = true;
-      cancelAnimationFrame(rafRef.current);
-      clearTimeout(resumeTimer.current);
-      clearInterval(pulseTimer.current);
-      window.removeEventListener('resize', onResize);
-      if (mountRef.current) {
-        mountRef.current.removeEventListener('mousedown',  stopRotation);
-        mountRef.current.removeEventListener('touchstart', stopRotation);
-        mountRef.current.removeEventListener('wheel',      stopRotation);
-      }
-      // globe.gl doesn't expose a .destroy() — clearing the DOM node is enough
-      if (globeRef.current) {
-        try { globeRef.current.pauseAnimation?.(); } catch (_) {}
-        globeRef.current = null;
-      }
-    };
-  }, []); // intentionally empty — globe is init-once
-
-  // ── Sync: arcs ─────────────────────────────────────────────────────────────
-  useEffect(() => {
-    if (!globeRef.current) return;
-    globeRef.current.arcsData(conflictArcs);
+  // ── 3. Radar Target Rings for Impact Zones ───────────────────────────────────
+  // We extract the exact destinations of active conflicts to spawn rings
+  const targetRings = useMemo(() => {
+    return conflictArcs
+      .filter(a => a.is_active && a.endLat != null && a.endLng != null)
+      .map(a => ({
+        lat: a.endLat,
+        lng: a.endLng,
+        color: a.arc_type === 'state-vs-state' ? '#ff3b3b' : '#ffaa00',
+        maxR: a.arc_type === 'state-vs-state' ? 4 : 2, // Bigger rings for state vs state
+        propSpeed: a.arc_type === 'state-vs-state' ? 2 : 1
+      }));
   }, [conflictArcs]);
 
-  // ── Sync: highlight countries ───────────────────────────────────────────────
-  useEffect(() => {
-    if (!globeRef.current) return;
-    globeRef.current.polygonCapColor(getCountryColor);
-  }, [highlightCountries, getCountryColor]);
+  const polyLabel = useCallback((feat) =>
+    `<div style="font-family:monospace;font-size:12px;background:rgba(5,5,8,0.95);
+     border:1px solid rgba(0,212,255,0.4);padding:6px 12px;border-radius:4px;
+     color:#e8eaf0;letter-spacing:0.1em;pointer-events:none;box-shadow: 0 0 10px rgba(0,212,255,0.2)">
+     ${feat.properties.NAME ?? feat.properties.ISO_A3 ?? ''}</div>`, []);
 
-  // ── Sync: autoRotate prop ───────────────────────────────────────────────────
-  useEffect(() => {
-    rotatingRef.current = autoRotate;
-  }, [autoRotate]);
+  const arcLabel = useCallback((arc) => {
+    if (!arc.conflict_name) return '';
+    const borderColor = arc.arc_type === 'state-vs-state'
+      ? 'rgba(255,59,59,0.7)' : 'rgba(255,170,0,0.7)';
+    const textColor = arc.arc_type === 'state-vs-state' ? '#ff8080' : '#ffcc80';
+    return `<div style="font-family:monospace;font-size:11px;
+      background:rgba(10,10,20,0.95);border:1px solid ${borderColor};
+      padding:6px 10px;border-radius:4px;color:${textColor};letter-spacing:0.05em;
+      max-width:200px;line-height:1.4;box-shadow: 0 0 10px ${borderColor}">
+      <strong>${arc.conflict_name}</strong>
+      ${arc.arc_type === 'state-vs-state' ? '<br><span style="opacity:0.7;font-size:10px">State vs State</span>' : ''}
+    </div>`;
+  }, []);
+
+  const pointLabel = useCallback((d) =>
+    `<div style="font-family:monospace;font-size:11px;background:rgba(10,10,20,0.95);
+     border:1px solid rgba(255,170,0,0.6);padding:6px 10px;border-radius:4px;
+     color:#ffaa00;letter-spacing:0.08em;box-shadow: 0 0 10px rgba(255,170,0,0.3)">
+     ⚛ ${d.iso3} · Nuclear</div>`, []);
+
+  const ready = countries.length > 0 && size.w > 0 && size.h > 0;
 
   return (
     <div
-      ref={mountRef}
-      style={{
-        width:    '100%',
-        height:   '100%',
-        overflow: 'hidden',
-        background: COLORS.background,
-        // Subtle scan-line overlay for the military-intel aesthetic
-        backgroundImage: `
-          repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(0,212,255,0.012) 2px,
-            rgba(0,212,255,0.012) 4px
-          )
-        `,
-      }}
-    />
+      ref={wrapRef}
+      style={{ position: 'relative', width: '100%', height: '100%', background: C.bg, overflow: 'hidden' }}
+      onMouseDown={stopRotation}
+      onTouchStart={stopRotation}
+      onWheel={stopRotation}
+    >
+      {!ready && (
+        <div style={{
+          position: 'absolute', inset: 0,
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          gap: 16, zIndex: 5, pointerEvents: 'none',
+        }}>
+          <div style={{
+            width: 44, height: 44,
+            border: '2px solid rgba(0,212,255,0.1)',
+            borderTop: '2px solid #00d4ff',
+            borderRadius: '50%',
+            animation: 'globe-spin 0.9s linear infinite',
+            boxShadow: '0 0 15px rgba(0,212,255,0.3)'
+          }} />
+          <span style={{ fontFamily: 'monospace', fontSize: 12, color: '#00d4ff', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            Initializing Intel
+          </span>
+          <style>{`@keyframes globe-spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      )}
+
+      {ready && (
+        <Globe
+          ref={globeEl}
+          width={size.w}
+          height={size.h}
+          
+          // ── Texture Base ──────────────────────────────────────────────
+          backgroundColor={C.bg}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+          bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+
+          // ── Atmosphere ───────────────────────────────────────────────
+          showAtmosphere
+          atmosphereColor={C.atmosphere}
+          atmosphereAltitude={0.18} // Thicker, more prominent glow
+          
+          showGraticules={false}
+          
+          // ── Country Overlays ─────────────────────────────────────────
+          polygonsData={countries}
+          polygonAltitude={0.006} // Floats just above the satellite texture
+          polygonCapColor={getColor}
+          polygonSideColor={() => 'rgba(0,0,0,0)'} // Hide sides to keep it flat & tactical
+          polygonStrokeColor={() => C.stroke}
+          polygonLabel={polyLabel}
+          onPolygonHover={handleHover}
+          onPolygonClick={handleClick}
+          
+          // ── Arcs ─────────────────────────────────────────────────────
+          arcsData={conflictArcs}
+          arcStartLat={d => d.startLat}
+          arcStartLng={d => d.startLng}
+          arcEndLat={d   => d.endLat}
+          arcEndLng={d   => d.endLng}
+          arcColor={arcColor}
+          arcAltitude={arcAlt}
+          arcStroke={arcStroke}
+          arcDashLength={arcDash}
+          arcDashGap={arcGap}
+          arcDashInitialGap={() => Math.random()} // Randomize start times so they don't sync
+          arcDashAnimateTime={arcAnimate}
+          arcLabel={arcLabel}
+
+          // ── Impact Rings ─────────────────────────────────────────────
+          ringsData={targetRings}
+          ringLat={d => d.lat}
+          ringLng={d => d.lng}
+          ringColor={d => d.color}
+          ringMaxRadius={d => d.maxR}
+          ringPropagationSpeed={d => d.propSpeed}
+          ringRepeatPeriod={800} // Pulse fast
+
+          // ── Nuclear Markers ──────────────────────────────────────────
+          pointsData={NUCLEAR_STATES}
+          pointLat={d    => d.lat}
+          pointLng={d    => d.lng}
+          pointColor={() => C.nuclear}
+          pointAltitude={() => 0.01}
+          pointRadius={() => pulseR}
+          pointsMerge={false}
+          pointLabel={pointLabel}
+        />
+      )}
+    </div>
   );
 });
 
