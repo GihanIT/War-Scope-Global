@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: warscope_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: warscope
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ../backend/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: ../docker/Dockerfile.backend
+    container_name: warscope_api
+    depends_on:
+      - db
+    env_file:
+      - ../backend/.env
+    ports:
+      - '3001:3001'
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    container_name: warscope_frontend
+    ports:
+      - '5173:80'
+
+volumes:
+  pgdata:

@@ -1,0 +1,21 @@
+{
+  "name": "warscope-backend",
+  "version": "2.0.0",
+  "description": "WarScope military intelligence API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev":   "nodemon server.js"
+  },
+  "dependencies": {
+    "axios":      "^1.6.7",
+    "cors":       "^2.8.5",
+    "dotenv":     "^16.4.5",
+    "express":    "^4.18.3",
+    "node-cache": "^5.1.2",
+    "pg":         "^8.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

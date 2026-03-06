@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Russo-Ukrainian War",
+    "description": "Full-scale Russian invasion of Ukraine that began in February 2022, following years of conflict in eastern Ukraine since 2014.",
+    "status": "active",
+    "intensity": "critical",
+    "start_date": "2022-02-24",
+    "latitude": 49.0,
+    "longitude": 32.0,
+    "region": "Eastern Europe",
+    "casualties_estimate": 500000,
+    "displaced_persons": 8000000,
+    "tags": ["russia", "ukraine", "nato", "war", "europe"]
+  },
+  {
+    "name": "Gaza Conflict",
+    "description": "Escalating conflict between Israel and Hamas-led Palestinian forces in the Gaza Strip.",
+    "status": "active",
+    "intensity": "critical",
+    "start_date": "2023-10-07",
+    "latitude": 31.5,
+    "longitude": 34.5,
+    "region": "Middle East",
+    "casualties_estimate": 45000,
+    "displaced_persons": 1900000,
+    "tags": ["israel", "palestine", "hamas", "middle-east"]
+  },
+  {
+    "name": "Sudan Civil War",
+    "description": "Armed conflict between the Sudanese Armed Forces and the Rapid Support Forces.",
+    "status": "active",
+    "intensity": "high",
+    "start_date": "2023-04-15",
+    "latitude": 15.5,
+    "longitude": 32.5,
+    "region": "Africa",
+    "casualties_estimate": 15000,
+    "displaced_persons": 7000000,
+    "tags": ["sudan", "africa", "civil-war"]
+  },
+  {
+    "name": "Myanmar Civil War",
+    "description": "Ongoing armed conflict following the 2021 military coup against the democratic government.",
+    "status": "active",
+    "intensity": "high",
+    "start_date": "2021-02-01",
+    "latitude": 19.7,
+    "longitude": 96.0,
+    "region": "Southeast Asia",
+    "casualties_estimate": 50000,
+    "displaced_persons": 2000000,
+    "tags": ["myanmar", "asia", "coup", "civil-war"]
+  }
+]
