@@ -164,7 +164,7 @@ function FeaturedCard({ post }) {
               height:     '100%',
               objectFit:  'cover',
               display:    'block',
-              filter:     hovered ? 'brightness(0.55) saturate(0.8)' : 'brightness(0.35) saturate(0.6)',
+              // The filter line has been removed to eliminate the dark vintage look
               transform:  hovered ? 'scale(1.02)' : 'scale(1)',
               transition: 'all 500ms ease',
             }}
@@ -176,6 +176,7 @@ function FeaturedCard({ post }) {
             backgroundSize: '32px 32px',
           }} />
         )}
+
 
         {/* Tactical Scanline Overlay */}
         <div style={{

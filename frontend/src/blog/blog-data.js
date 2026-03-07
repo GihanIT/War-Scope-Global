@@ -17,7 +17,7 @@ export const posts = [
     date: "2025-02-15",
     readTime: "8 min",
     author: "WarScope Intelligence",
-    coverImage: "/blog/china-vs-russia-military-power-2025.jpg",
+    coverImage: "https://www.brookings.edu/wp-content/uploads/2025/03/2024-10-23T175659Z_102415898_RC2HQAA9KGML_RTRMADP_3_RUSSIA-BRICS-resized.jpg?quality=75&w=1500",
     excerpt:
       "China and Russia represent two of the world's most formidable military forces, each with distinct strengths and strategic doctrines. This analysis breaks down their capabilities across land, air, sea, and nuclear dimensions.",
     tags: ["china", "russia", "military comparison", "nuclear weapons", "defense budget"],
@@ -107,7 +107,7 @@ Explore this data live on the WarScope interactive globe.
     date: "2025-01-20",
     readTime: "10 min",
     author: "WarScope Intelligence",
-    coverImage: "/blog/most-powerful-militaries-2025.jpg",
+    coverImage: "https://pixabay.com/get/g36016c18cda128a0760c1cb85c3d8342826df539598cd073f2e221a295156ad163b39e649e0c8b3ab6d09aa3851274a0ee611711da9a1921348808ccff03400672021ef13ce410d48a69a9aa90c39e49_640.jpg",
     excerpt:
       "Military power is measured across dozens of variables — from troop numbers and equipment to logistics, technology, and nuclear capability. Here are the 10 most powerful militaries in the world as of 2025.",
     tags: ["military ranking", "world military", "defense power", "global security", "armed forces"],
@@ -197,7 +197,7 @@ Explore this data live on the WarScope interactive globe.
     date: "2025-01-10",
     readTime: "7 min",
     author: "WarScope Intelligence",
-    coverImage: "/blog/nuclear-weapons-by-country-2025.jpg",
+    coverImage: "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/nuclear-weapons--top-nuclear-countries--nuclear-expenditure--nuclear-weapon-cost--weapon-spending--g-213909644-16x9_0.png?VersionId=B09f3mnAjnIYkaDi73dObHDDLZ5ANQ.4",
     excerpt:
       "Nine countries are confirmed or believed to possess nuclear weapons in 2025, holding a combined arsenal of over 12,000 warheads. Understanding who has them, how many, and the strategic logic behind each arsenal is critical to understanding global security.",
     tags: ["nuclear weapons", "nuclear arsenal", "nuclear deterrence", "WMD", "global security"],
@@ -280,7 +280,7 @@ Explore this data live on the WarScope interactive globe.
     date: "2025-02-01",
     readTime: "9 min",
     author: "WarScope Intelligence",
-    coverImage: "/blog/usa-vs-china-military-comparison-2025.jpg",
+    coverImage: "https://toda.org/assets/images/global-outlook/2025/386-cover.jpg",
     excerpt:
       "The United States and China represent the defining military rivalry of the 21st century. As China's military modernization accelerates, the gap between these two superpowers is narrowing in specific domains while the US retains decisive advantages in others.",
     tags: ["usa military", "china military", "US China rivalry", "superpower comparison", "Indo-Pacific"],
@@ -369,7 +369,7 @@ Explore this data live on the WarScope interactive globe.
     date: "2025-02-20",
     readTime: "8 min",
     author: "WarScope Intelligence",
-    coverImage: "/blog/india-vs-pakistan-military-2025.jpg",
+    coverImage: "https://bmkltsly13vb.compat.objectstorage.ap-singapore-1.oraclecloud.com/cdn.sg.dailymirror.lk/assets/uploads/image_92f52d432d.jpg",
     excerpt:
       "India and Pakistan have fought four major wars since independence in 1947 and remain in a state of persistent strategic rivalry. Both are nuclear-armed states, making their ongoing tensions among the most consequential in the world.",
     tags: ["india military", "pakistan military", "south asia", "nuclear rivalry", "kashmir"],
@@ -451,7 +451,7 @@ Explore this data live on the WarScope interactive globe.
     date: "2025-03-01",
     readTime: "9 min",
     author: "WarScope Intelligence",
-    coverImage: "/blog/nato-military-power-2025.jpg",
+    coverImage: "https://images.squarespace-cdn.com/content/v1/5497331ae4b0148a6141bd47/1555183204182-AUN18HF4K4MUM2V4W0ZD/NATO9.jpg?format=1500w",
     excerpt:
       "NATO is the world's most powerful military alliance, combining the armed forces of 32 nations under a collective defense framework. As geopolitical tensions rise, understanding NATO's aggregate military capability has never been more important.",
     tags: ["NATO", "military alliance", "collective defense", "european security", "transatlantic"],

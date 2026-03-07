@@ -122,14 +122,13 @@ const POST_CSS = `
   }
   
   .wp-prose ul, .wp-prose ol {
-    color: #8892a4;
-    font-size: 16px;
+    color: #cdd4e0;      /* Match paragraph brightness */
+    font-size: 17px;     /* Match paragraph size */
     line-height: 1.8;
     padding-left: 20px;
     margin-bottom: 24px;
     font-family: 'Barlow', system-ui, sans-serif;
   }
-  
   .wp-prose li          { margin-bottom: 8px; }
   .wp-prose li::marker  { color: #00d4ff; }
   .wp-prose li strong   { color: #e8eaf0; }
@@ -166,7 +165,7 @@ const POST_CSS = `
     padding: 20px;
     overflow-x: auto;
     margin-bottom: 24px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    /* Removed: box-shadow: inset 0 0 20px rgba(0,0,0,0.5); */
   }
   .wp-prose pre code { background: transparent; border: none; padding: 0; font-size: 13px; color: #00ff88; }
   
@@ -190,7 +189,7 @@ const POST_CSS = `
     text-transform: uppercase;
   }
   .wp-prose td {
-    color: #8892a4;
+    color: #cdd4e0;      /* Brightened to match body text */
     padding: 12px 16px;
     border: 1px solid rgba(30, 36, 51, 0.5);
     vertical-align: top;
@@ -286,14 +285,14 @@ const POST_CSS = `
 
   .wp-progress {
     position: fixed;
-    top: 60px;
+    bottom: 0;         /* Changed from top: 60px */
     left: 0;
-    height: 3px;
+    height: 4px;       /* Slightly thicker for better bottom visibility */
     background: linear-gradient(90deg, #00d4ff, #00ff88);
-    z-index: 200;
+    z-index: 9999;     /* Ensure it sits above all other elements */
     transition: width 100ms ease-out;
     pointer-events: none;
-    box-shadow: 0 0 10px #00d4ff;
+    box-shadow: 0 -2px 10px rgba(0, 212, 255, 0.4); /* Flipped shadow upwards */
   }
 
   @keyframes wp-fade-up {
@@ -606,7 +605,7 @@ export default function BlogPost() {
                     <img
                       src={post.coverImage}
                       alt={post.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.7) saturate(0.8)' }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                       onError={e => { e.target.parentElement.style.display = 'none'; }}
                     />
                     <div style={{
