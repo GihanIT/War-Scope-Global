@@ -6,6 +6,8 @@ const cors    = require('cors');
 const countriesRouter = require('./routes/countries');
 const conflictsRouter = require('./routes/conflicts');
 const newsRouter      = require('./routes/news');
+const incidentsRouter = require('./routes/incidents');
+
 
 const app  = express();
 const PORT = parseInt(process.env.PORT || '3001', 10);
@@ -51,6 +53,8 @@ app.get('/health', (_req, res) => {
 app.use('/api/countries', countriesRouter);
 app.use('/api/conflicts', conflictsRouter);
 app.use('/api/news',      newsRouter);
+app.use('/api/incidents', incidentsRouter);  
+
 
 // ─────────────────────────────────────────────
 // 404 — unknown route

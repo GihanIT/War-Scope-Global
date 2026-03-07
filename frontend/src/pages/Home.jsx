@@ -7,6 +7,7 @@ import AdBanner     from '../components/AdBanner.jsx';
 import AlliancePanel from '../components/AlliancePanel.jsx';
 import { ALLIANCES } from '../data/alliance-data.js';
 
+
 // ─── CSS injected once ────────────────────────────────────────────────────────
 const HOME_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;600;700&display=swap');
@@ -51,7 +52,6 @@ const HOME_CSS = `
     content: "";
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at center, transparent 30%, rgba(5,5,8,0.85) 100%);
     z-index: 1;
     pointer-events: none;
   }

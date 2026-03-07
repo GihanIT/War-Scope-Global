@@ -3,6 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { NUCLEAR_COUNTRIES, NUCLEAR_SUMMARY } from '../data/nuclear-data.js';
 import Navbar from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import Footer from '../components/Footer.jsx';
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+// Maps ISO-3 codes to ISO-2 codes for the FlagCDN image API
+const getIso2 = (iso3) => {
+  const map = { USA: 'us', RUS: 'ru', CHN: 'cn', FRA: 'fr', GBR: 'gb', PAK: 'pk', IND: 'in', PRK: 'kp', ISR: 'il' };
+  return map[iso3] || 'us';
+};
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
 const Icons = {
@@ -12,7 +20,7 @@ const Icons = {
   Warning: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
   ChevronDown: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>,
   ChevronUp: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>,
-  ChevronRight: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>, // Fixed: Added missing icon
+  ChevronRight: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
 };
 
 // ─── CSS ──────────────────────────────────────────────────────────────────────
@@ -33,8 +41,8 @@ const CSS = `
     position: fixed;
     inset: 0;
     background-image: 
-      linear-gradient(rgba(255, 59, 59, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 59, 59, 0.03) 1px, transparent 1px);
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: 40px 40px;
     background-position: center center;
     z-index: 0;
@@ -119,7 +127,7 @@ const CSS = `
   }
   .nuc-country-btn:hover { background: rgba(255,59,59,0.05); }
   .nuc-country-btn.active { background: rgba(255,59,59,0.1); border-left-color: #ff3b3b; box-shadow: inset 0 0 20px rgba(255,59,59,0.05); }
-  .nuc-country-flag { font-size: 26px; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+  .nuc-country-flag { flex-shrink: 0; display: flex; align-items: center; }
   .nuc-country-info { flex: 1; min-width: 0; }
   .nuc-country-name { font-size: 16px; font-weight: 600; color: #e8eaf0; letter-spacing: 0.02em; }
   .nuc-country-count {
@@ -140,7 +148,7 @@ const CSS = `
     margin-bottom: 32px; backdrop-filter: blur(12px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
-  .nuc-ch-flag { font-size: 64px; flex-shrink: 0; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); }
+  .nuc-ch-flag { flex-shrink: 0; line-height: 1; display: flex; align-items: center; }
   .nuc-ch-main { flex: 1; }
   .nuc-ch-name {
     font-family: 'Barlow Condensed', sans-serif; font-size: 42px;
@@ -325,7 +333,7 @@ const CSS = `
   }
   .nuc-compare-card:hover { border-color: rgba(255,59,59,0.5); background: rgba(255,59,59,0.05); box-shadow: 0 8px 24px rgba(0,0,0,0.4); transform: translateY(-4px); }
   .nuc-cc-top { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-  .nuc-cc-flag { font-size: 36px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+  .nuc-cc-flag { display: flex; align-items: center; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
   .nuc-cc-name { font-size: 18px; font-weight: 600; color: #e8eaf0; }
   .nuc-cc-total { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #ff8080; margin-top: 4px; }
   .nuc-cc-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
@@ -671,7 +679,9 @@ export default function Nuclear() {
               {[...NUCLEAR_COUNTRIES].sort((a,b) => b.warheads.total - a.warheads.total).map(c => (
                 <div key={c.iso3} className="nuc-compare-card" onClick={() => { setActiveCountry(c); setView('detail'); }}>
                   <div className="nuc-cc-top">
-                    <span className="nuc-cc-flag">{c.flag}</span>
+                    <span className="nuc-cc-flag">
+                      <img src={`https://flagcdn.com/w80/${getIso2(c.iso3)}.png`} alt={c.name} style={{ width: 42, height: 28, objectFit: 'cover', borderRadius: 4, border: '1px solid rgba(255,255,255,0.15)' }} />
+                    </span>
                     <div>
                       <div className="nuc-cc-name">{c.name}</div>
                       <div className="nuc-cc-total">{c.warheads.total.toLocaleString()} WARHEADS</div>
@@ -713,7 +723,9 @@ export default function Nuclear() {
                   className={`nuc-country-btn ${activeCountry.iso3 === c.iso3 ? 'active' : ''}`}
                   onClick={() => setActiveCountry(c)}
                 >
-                  <span className="nuc-country-flag">{c.flag}</span>
+                  <span className="nuc-country-flag">
+                    <img src={`https://flagcdn.com/w40/${getIso2(c.iso3)}.png`} alt={c.name} style={{ width: 32, height: 22, objectFit: 'cover', borderRadius: 3, border: '1px solid rgba(255,255,255,0.15)' }} />
+                  </span>
                   <div className="nuc-country-info">
                     <div className="nuc-country-name">{c.name}</div>
                     <div className="nuc-country-count">{c.warheads.total.toLocaleString()} WARHEADS</div>
@@ -730,7 +742,9 @@ export default function Nuclear() {
 
               {/* Country header */}
               <div className="nuc-country-header">
-                <div className="nuc-ch-flag">{activeCountry.flag}</div>
+                <div className="nuc-ch-flag">
+                  <img src={`https://flagcdn.com/w160/${getIso2(activeCountry.iso3)}.png`} alt={activeCountry.name} style={{ width: 80, height: 56, objectFit: 'cover', borderRadius: 6, border: '1px solid rgba(255,255,255,0.2)' }} />
+                </div>
                 <div className="nuc-ch-main">
                   <div className="nuc-ch-name">{activeCountry.name.toUpperCase()}</div>
                   <div className="nuc-ch-doctrine">"{activeCountry.doctrine}"</div>
@@ -797,6 +811,8 @@ export default function Nuclear() {
           [ SOURCE LOG ] FAS Nuclear Notebook 2024 · SIPRI Yearbook 2024 · Bulletin of Atomic Scientists · Arms Control Association · IISS Military Balance 2024 · Declassified START treaty data
         </div>
       </div>
+        <Footer />
+
     </div>
   );
 }

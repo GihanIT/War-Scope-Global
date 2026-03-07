@@ -6,6 +6,8 @@ import Navbar       from '../components/Navbar.jsx';
 import AdBanner     from '../components/AdBanner.jsx';
 import BlogCard     from '../blog/BlogCard.jsx';
 import BLOG_POSTS, { CATEGORIES } from '../data/blog-data.js';
+import Footer from '../components/Footer.jsx';
+
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
 const Icons = {
@@ -598,6 +600,7 @@ export default function Blog() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

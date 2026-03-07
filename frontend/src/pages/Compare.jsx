@@ -4,6 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Navbar   from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import Footer from '../components/Footer.jsx';
+
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
 const Icons = {
@@ -803,6 +805,8 @@ export default function Compare() {
           )}
         </div>
       </div>
+        <Footer />
     </div>
+    
   );
 }

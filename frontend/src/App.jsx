@@ -6,6 +6,18 @@ import Compare  from './pages/Compare.jsx';
 import Nuclear  from './pages/Nuclear.jsx';
 import NotFound from './pages/NotFound.jsx';
 import Sanctions from './pages/Sanctions.jsx';
+import Timeline from './pages/Timeline.jsx';
+import IncidentFeed from './pages/IncidentFeed.jsx';
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
+import Terms        from './pages/Terms.jsx';
+import Disclaimer   from './pages/Disclaimer.jsx';
+import About        from './pages/About.jsx';
+import DataSources  from './pages/DataSources.jsx';
+import Methodology  from './pages/Methodology.jsx';
+import CookiePolicy from './pages/CookiePolicy.jsx';
+import Contact      from './pages/Contact.jsx';
+
+
 
 
 export default function App() {
@@ -18,6 +30,16 @@ export default function App() {
         <Route path="/compare"   element={<Compare />} />
         <Route path="/nuclear"    element={<Nuclear />} />
         <Route path="/sanctions" element={<Sanctions />} />
+        <Route path="/timeline" element={<Timeline />} />
+        <Route path="/incidents" element={<IncidentFeed />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms"          element={<Terms />} />
+        <Route path="/disclaimer"     element={<Disclaimer />} />
+        <Route path="/about"          element={<About />} />
+        <Route path="/data-sources"   element={<DataSources />} />
+        <Route path="/methodology"    element={<Methodology />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
+        <Route path="/contact"       element={<Contact />} />
         <Route path="*"          element={<NotFound />} />
       </Routes>
     </BrowserRouter>
