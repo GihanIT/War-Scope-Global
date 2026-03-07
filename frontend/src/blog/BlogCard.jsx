@@ -85,7 +85,8 @@ export default function BlogCard({ post, style = {} }) {
               display:    'block',
               transition: 'transform 500ms ease, filter 500ms ease',
               transform:  hovered ? 'scale(1.04)' : 'scale(1)',
-              filter:     hovered ? 'brightness(0.6) saturate(0.9)' : 'brightness(0.4) saturate(0.7)',
+              filter:     'none', /* explicitly forces 100% brightness at all times */
+              /*filter:     hovered ? 'brightness(0.6) saturate(0.9)' : 'brightness(0.4) saturate(0.7)',*/
             }}
           />
         ) : (

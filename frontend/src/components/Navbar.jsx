@@ -12,9 +12,16 @@ const Icons = {
   Compare: () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
   ),
+  // ── NEW: Nuclear hazard icon ───────────────────────────────────────────────
+  Nuclear: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 9V3"/><path d="m15.6 10.5 5.2-3"/><path d="m8.4 13.5-5.2 3"/><path d="M12 15v6"/><path d="m15.6 13.5 5.2 3"/><path d="m8.4 10.5-5.2-3"/></svg>
+  ),
   Radar: () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="12" x2="12" y2="2"/></svg>
-  )
+  ),
+  Sanctions: () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+)
 };
 
 // ─── Styles injected once ─────────────────────────────────────────────────────
@@ -64,6 +71,20 @@ const NAVBAR_CSS = `
   
   .ws-nav-link.active::after {
     transform: scaleX(1);
+  }
+
+  /* Nuclear link glows red when active */
+  .ws-nav-link.nuclear-link:hover {
+    color: #ff8080;
+    text-shadow: 0 0 8px rgba(255,59,59,0.4);
+  }
+  .ws-nav-link.nuclear-link::after {
+    background: #ff3b3b;
+    box-shadow: 0 0 8px #ff3b3b;
+  }
+  .ws-nav-link.nuclear-link.active {
+    color: #ff8080;
+    text-shadow: 0 0 8px rgba(255,59,59,0.4);
   }
 
   .ws-search-input {
@@ -139,6 +160,8 @@ const NAVBAR_CSS = `
   .ws-mobile-link:last-child { border-bottom: none; }
   .ws-mobile-link:hover  { color: #00d4ff; background: rgba(0, 212, 255, 0.05); padding-left: 28px; }
   .ws-mobile-link.active { color: #e8eaf0; background: rgba(0, 212, 255, 0.08); border-left: 3px solid #00d4ff; }
+  .ws-mobile-link.nuclear-mobile:hover  { color: #ff8080; background: rgba(255,59,59,0.05); }
+  .ws-mobile-link.nuclear-mobile.active { color: #ff8080; background: rgba(255,59,59,0.08); border-left-color: #ff3b3b; }
 
   @keyframes pulse-live {
     0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(255,59,59,0.4); }
@@ -162,11 +185,13 @@ function injectStyle(id, css) {
   document.head.appendChild(el);
 }
 
-// ─── Nav links config ─────────────────────────────────────────────────────────
+// ─── Nav links config — NUCLEAR added ────────────────────────────────────────
 const NAV_LINKS = [
   { label: 'GLOBE',   to: '/',        Icon: Icons.Globe },
   { label: 'INTEL',   to: '/blog',    Icon: Icons.Blog },
   { label: 'COMPARE', to: '/compare', Icon: Icons.Compare },
+  { label: 'NUCLEAR', to: '/nuclear', Icon: Icons.Nuclear, red: true },
+  { label: 'SANCTIONS', to: '/sanctions', Icon: Icons.Sanctions },
 ];
 
 // ─── Search component ─────────────────────────────────────────────────────────
@@ -183,21 +208,9 @@ function SearchInput({ onSubmit }) {
   return (
     <div style={{ position: 'relative', flexShrink: 0 }}>
       <svg
-        width="14" height="14"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#00d4ff"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{
-          position:      'absolute',
-          left:          12,
-          top:           '50%',
-          transform:     'translateY(-50%)',
-          pointerEvents: 'none',
-          opacity:       0.7,
-        }}
+        width="14" height="14" viewBox="0 0 24 24" fill="none"
+        stroke="#00d4ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+        style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', opacity: 0.7 }}
       >
         <circle cx="11" cy="11" r="8" />
         <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -216,13 +229,16 @@ function SearchInput({ onSubmit }) {
 }
 
 // ─── Desktop nav link ─────────────────────────────────────────────────────────
-function NavLink({ to, label, exact, Icon }) {
+function NavLink({ to, label, exact, Icon, red }) {
   const { pathname } = useLocation();
   const isActive = exact ? pathname === to : pathname.startsWith(to);
+  const extraClass = red ? ' nuclear-link' : '';
 
   return (
-    <Link to={to} className={`ws-nav-link${isActive ? ' active' : ''}`}>
-      <span style={{ opacity: isActive ? 1 : 0.7 }}><Icon /></span>
+    <Link to={to} className={`ws-nav-link${extraClass}${isActive ? ' active' : ''}`}>
+      <span style={{ opacity: isActive ? 1 : 0.7, color: red && isActive ? '#ff8080' : 'inherit' }}>
+        <Icon />
+      </span>
       {label}
     </Link>
   );
@@ -232,11 +248,11 @@ function NavLink({ to, label, exact, Icon }) {
 export default function Navbar() {
   injectStyle('ws-navbar-css', NAVBAR_CSS);
 
-  const navigate          = useNavigate();
-  const { pathname }      = useLocation();
-  const [menuOpen, setMenuOpen]   = useState(false);
-  const menuRef           = useRef(null);
-  const hamburgerRef      = useRef(null);
+  const navigate     = useNavigate();
+  const { pathname } = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef      = useRef(null);
+  const hamburgerRef = useRef(null);
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
@@ -244,15 +260,13 @@ export default function Navbar() {
     if (
       menuRef.current      && !menuRef.current.contains(e.target) &&
       hamburgerRef.current && !hamburgerRef.current.contains(e.target)
-    ) {
-      setMenuOpen(false);
-    }
+    ) setMenuOpen(false);
   }, []);
 
   useEffect(() => {
     if (menuOpen) document.addEventListener('mousedown', handleOutside);
     else          document.removeEventListener('mousedown', handleOutside);
-    return ()  => document.removeEventListener('mousedown', handleOutside);
+    return () =>  document.removeEventListener('mousedown', handleOutside);
   }, [menuOpen, handleOutside]);
 
   useEffect(() => {
@@ -269,107 +283,58 @@ export default function Navbar() {
     <>
       {/* ── Main bar ──────────────────────────────────────────────────── */}
       <nav style={{
-        position:       'sticky',
-        top:            0,
-        zIndex:         100,
-        width:          '100%',
-        height:         60,
-        background:     'rgba(5, 5, 8, 0.85)',
-        borderBottom:   '1px solid rgba(0, 212, 255, 0.15)',
-        display:        'flex',
-        alignItems:     'center',
-        justifyContent: 'space-between',
-        padding:        '0 24px',
-        flexShrink:     0,
-        boxSizing:      'border-box',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        boxShadow:      '0 4px 20px rgba(0,0,0,0.5)',
+        position: 'sticky', top: 0, zIndex: 100, width: '100%', height: 60,
+        background: 'rgba(5, 5, 8, 0.85)',
+        borderBottom: '1px solid rgba(0, 212, 255, 0.15)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '0 24px', flexShrink: 0, boxSizing: 'border-box',
+        backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
       }}>
 
-        {/* ── Left: wordmark ──────────────────────────────────────────── */}
-        <Link
-          to="/"
-          style={{
-            textDecoration: 'none',
-            display:        'flex',
-            alignItems:     'center',
-            gap:            12,
-            flexShrink:     0,
-          }}
-        >
+        {/* Left: wordmark */}
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
           <Icons.Radar />
           <span style={{
-            fontFamily:    "'IBM Plex Mono', monospace",
-            fontWeight:    600,
-            fontSize:      18,
-            color:         '#e8eaf0',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            lineHeight:    1,
-            textShadow:    '0 0 10px rgba(0,212,255,0.4)',
-          }}>
-            WarScope
-          </span>
+            fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, fontSize: 18,
+            color: '#e8eaf0', letterSpacing: '0.08em', textTransform: 'uppercase',
+            lineHeight: 1, textShadow: '0 0 10px rgba(0,212,255,0.4)',
+          }}>WarScope</span>
           <span style={{
-            background:    'rgba(255,59,59,0.1)',
-            border:        '1px solid rgba(255,59,59,0.4)',
-            borderRadius:  3,
-            padding:       '2px 6px',
-            fontFamily:    "'IBM Plex Mono', monospace",
-            fontSize:      10,
-            color:         '#ff8080',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            marginTop:     1,
-            animation:     'pulse-live 2s infinite',
-          }}>
-            LIVE
-          </span>
+            background: 'rgba(255,59,59,0.1)', border: '1px solid rgba(255,59,59,0.4)',
+            borderRadius: 3, padding: '2px 6px',
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
+            color: '#ff8080', letterSpacing: '0.15em', textTransform: 'uppercase',
+            marginTop: 1, animation: 'pulse-live 2s infinite',
+          }}>LIVE</span>
         </Link>
 
-        {/* ── Center: desktop links ────────────────────────────────────── */}
-        <div
-          className="ws-nav-center"
-          style={{
-            display:    'flex',
-            alignItems: 'center',
-            gap:        40,
-            position:   'absolute',
-            left:       '50%',
-            transform:  'translateX(-50%)',
-            height:     '100%',
-          }}
-        >
-          {NAV_LINKS.map(({ label, to, Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              label={label}
-              Icon={Icon}
-              exact={to === '/'}
-            />
+        {/* Center: desktop links */}
+        <div className="ws-nav-center" style={{
+          display: 'flex', alignItems: 'center', gap: 40,
+          position: 'absolute', left: '50%', transform: 'translateX(-50%)', height: '100%',
+        }}>
+          {NAV_LINKS.map(({ label, to, Icon, red }) => (
+            <NavLink key={to} to={to} label={label} Icon={Icon} exact={to === '/'} red={red} />
           ))}
         </div>
 
-        {/* ── Right: search + mobile hamburger ─────────────────────────── */}
+        {/* Right: search + hamburger */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
           <div className="ws-nav-right" style={{ display: 'flex', alignItems: 'center' }}>
             <SearchInput onSubmit={handleSearch} />
           </div>
-
           <div className="ws-hamburger-wrap" style={{ alignItems: 'center' }}>
             <button
-              ref={hamburgerRef}
-              className="ws-hamburger"
+              ref={hamburgerRef} className="ws-hamburger"
               onClick={() => setMenuOpen(o => !o)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                {menuOpen 
-                  ? <> <line x1="18" y1="6" x2="6" y2="18" /> <line x1="6" y1="6" x2="18" y2="18" /> </>
-                  : <> <line x1="4" y1="12" x2="20" y2="12" /> <line x1="4" y1="6" x2="20" y2="6" /> <line x1="4" y1="18" x2="20" y2="18" /> </>
+                {menuOpen
+                  ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>
+                  : <><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></>
                 }
               </svg>
             </button>
@@ -377,31 +342,20 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ── Mobile dropdown ──────────────────────────────────────────── */}
+      {/* ── Mobile dropdown ───────────────────────────────────────────── */}
       {menuOpen && (
-        <div
-          ref={menuRef}
-          className="ws-mobile-menu"
-          style={{
-            position:    'fixed',
-            top:         60,
-            left:        0,
-            right:       0,
-            zIndex:      99,
-            background:  'rgba(5, 5, 8, 0.95)',
-            borderBottom:'1px solid rgba(0, 212, 255, 0.2)',
-            boxShadow:   '0 12px 40px rgba(0,0,0,0.8)',
-          }}
-        >
-          {NAV_LINKS.map(({ label, to, Icon }) => {
-            const isActive = to === '/'
-              ? pathname === '/'
-              : pathname.startsWith(to);
+        <div ref={menuRef} className="ws-mobile-menu" style={{
+          position: 'fixed', top: 60, left: 0, right: 0, zIndex: 99,
+          background: 'rgba(5, 5, 8, 0.95)',
+          borderBottom: '1px solid rgba(0, 212, 255, 0.2)',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.8)',
+        }}>
+          {NAV_LINKS.map(({ label, to, Icon, red }) => {
+            const isActive = to === '/' ? pathname === '/' : pathname.startsWith(to);
             return (
               <Link
-                key={to}
-                to={to}
-                className={`ws-mobile-link${isActive ? ' active' : ''}`}
+                key={to} to={to}
+                className={`ws-mobile-link${red ? ' nuclear-mobile' : ''}${isActive ? ' active' : ''}`}
               >
                 <span style={{ opacity: isActive ? 1 : 0.6 }}><Icon /></span>
                 {label}
@@ -409,38 +363,16 @@ export default function Navbar() {
             );
           })}
 
-          <div style={{
-            padding:      '16px 24px 20px',
-            borderTop:    '1px solid rgba(30, 36, 51, 0.5)',
-            background:   'rgba(0,0,0,0.2)',
-          }}>
+          <div style={{ padding: '16px 24px 20px', borderTop: '1px solid rgba(30, 36, 51, 0.5)', background: 'rgba(0,0,0,0.2)' }}>
             <div style={{ position: 'relative' }}>
-              <svg
-                width="14" height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#00d4ff"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{
-                  position:      'absolute',
-                  left:          12,
-                  top:           '50%',
-                  transform:     'translateY(-50%)',
-                  pointerEvents: 'none',
-                  opacity:       0.7,
-                }}
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', opacity: 0.7 }}>
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
               <input
-                className="ws-search-input"
-                style={{ width: '100%' }}
-                type="text"
-                placeholder="> TRACE_TARGET..."
-                aria-label="Search country"
+                className="ws-search-input" style={{ width: '100%' }}
+                type="text" placeholder="> TRACE_TARGET..." aria-label="Search country"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && e.target.value.trim()) {
                     handleSearch(e.target.value.trim());

@@ -5,7 +5,7 @@ import { Link }     from 'react-router-dom';
 import Navbar       from '../components/Navbar.jsx';
 import AdBanner     from '../components/AdBanner.jsx';
 import BlogCard     from '../blog/BlogCard.jsx';
-import BLOG_POSTS, { CATEGORIES } from '../blog/blog-data.js';
+import BLOG_POSTS, { CATEGORIES } from '../data/blog-data.js';
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
 const Icons = {
@@ -191,7 +191,7 @@ function FeaturedCard({ post }) {
         <div style={{
           position:   'absolute',
           inset:      0,
-          background: 'linear-gradient(to top, rgba(5,5,8,0.95) 10%, rgba(5,5,8,0.6) 50%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(5,5,8,0.85) 0%, transparent 35%)',
           display:    'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',

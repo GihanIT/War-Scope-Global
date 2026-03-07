@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet }      from 'react-helmet';
 import ReactMarkdown   from 'react-markdown';
-import { getPost, getRelated } from './blog-data.js';
+import { getPost, getRelated } from '../data/blog-data.js';
 import Navbar          from '../components/Navbar.jsx';
 import AdBanner        from '../components/AdBanner.jsx';
 import BlogCard        from './BlogCard.jsx';
