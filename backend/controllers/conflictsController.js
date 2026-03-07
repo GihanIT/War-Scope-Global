@@ -1,3 +1,4 @@
+// backend/controllers/conflictController.js
 const pool = require('../db/connection');
 
 // ─────────────────────────────────────────────
@@ -99,13 +100,14 @@ const getConflictsByIso3 = async (req, res, next) => {
         cf.description,
         cf.source,
 
-        -- Actor 1 coordinates
+        -- ── FIXED FALLBACK LOGIC ──
+        -- Actor 1 coordinates (fallback to conflict location)
         COALESCE(c1.latitude,  cf.latitude)  AS start_lat,
         COALESCE(c1.longitude, cf.longitude) AS start_lng,
 
-        -- Actor 2 coordinates (fall back to conflict point if no match)
-        COALESCE(c2.latitude,  cf.latitude)  AS end_lat,
-        COALESCE(c2.longitude, cf.longitude) AS end_lng,
+        -- Actor 2 coordinates (fallback to conflict location, then to country 1 center)
+        COALESCE(c2.latitude,  cf.latitude, c1.latitude)  AS end_lat,
+        COALESCE(c2.longitude, cf.longitude, c1.longitude) AS end_lng,
 
         -- Friendly country names
         c1.name AS actor1_country_name,

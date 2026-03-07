@@ -3,11 +3,14 @@ const {
   getAllConflicts,
   getConflictsByIso3,
 } = require('../controllers/conflictsController');
+const { getLiveConflicts } = require('../controllers/gdeltController');
 
 const router = Router();
 
+// GET /api/conflicts/live  ← GDELT real-time feed (must be before /:iso3)
+router.get('/live', getLiveConflicts);
+
 // GET /api/conflicts
-// Optional query params: ?active=true&region=Europe&source=ucdp&limit=100
 router.get('/', getAllConflicts);
 
 // GET /api/conflicts/:iso3

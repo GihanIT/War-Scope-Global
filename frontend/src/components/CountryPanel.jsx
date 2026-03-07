@@ -222,7 +222,7 @@ function CompareTooltip({ active, payload, label }) {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
+export default function CountryPanel({ iso3, iso2, countryName, onClose, showHistorical }) {
   const [military,   setMilitary]   = useState(null);
   const [conflicts,  setConflicts]  = useState([]);
   const [news,       setNews]       = useState([]);
@@ -277,7 +277,12 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
 
   const s  = military?.stats       ?? {};
   const avg = military?.worldAverages ?? {};
-  const activeConflicts = conflicts.filter((c) => c.is_active);
+  
+  // ── NEW SYNCED FILTER ──
+  // If we are in historical mode, show all conflicts. Otherwise, filter active only.
+  const visibleConflicts = showHistorical 
+    ? conflicts 
+    : conflicts.filter((c) => c.is_active);
 
   const chartData = [
     { name: 'Personnel', country: Math.round((s.active_personnel ?? 0) / 1000), avg: Math.round((avg.active_personnel ?? 0) / 1000) },
@@ -498,9 +503,11 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
             </div>
 
             {/* ── Active conflicts ───────────────────────────────────── */}
-            <SectionHeader delay={100}>Active Conflicts</SectionHeader>
+            <SectionHeader delay={100}>
+               {showHistorical ? 'Historical Conflicts' : 'Active Conflicts'}
+            </SectionHeader>
 
-            {activeConflicts.length === 0 ? (
+            {visibleConflicts.length === 0 ? (
               <div style={{
                 fontSize:  11,
                 fontFamily: 'monospace',
@@ -511,11 +518,11 @@ export default function CountryPanel({ iso3, iso2, countryName, onClose }) {
                 borderRadius: 4,
                 textAlign: 'center'
               }}>
-                [ STATUS: CLEAR ] NO ACTIVE ZONES
+                [ STATUS: CLEAR ] {showHistorical ? 'NO RECORDED CONFLICTS' : 'NO ACTIVE ZONES'}
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {activeConflicts.slice(0, 8).map((c) => (
+                {visibleConflicts.slice(0, 8).map((c) => (
                   <div key={c.id} style={{
                     display:    'flex',
                     alignItems: 'flex-start',

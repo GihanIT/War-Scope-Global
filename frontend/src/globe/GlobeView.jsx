@@ -25,19 +25,17 @@ const NUCLEAR_STATES = [
   { iso3: 'ISR', lat: 31.05,  lng:  34.85 },
 ];
 
-const NUCLEAR_PULSE = [0.45, 0.65];
-
 // ─── Upgraded Tactical Color Palette ──────────────────────────────────────────
 const C = {
-  bg:          'rgba(0,0,0,0)', // Deeper space background
-  fill:        'rgba(26,32,53,0.4)', // More translucent to let satellite map show
+  bg:          'rgba(0,0,0,0)',       // Deeper space background
+  fill:        'rgba(26,32,53,0.4)',  // Translucent to let satellite map show
   stroke:      'rgba(0,212,255,0.2)', // Cyan tactical borders
-  hover:       'rgba(0,212,255,0.3)',
+  hover:       'rgba(0,212,255,0.4)', // Brighter cyan for hover via WebGL
   selected:    'rgba(0,212,255,0.5)',
   arcActive:   '#ff3b3b',
   arcOld:      'rgba(255,59,59,0.1)',
   nuclear:     '#ffaa00',
-  atmosphere:  '#00d4ff', // Cyan atmosphere glow
+  atmosphere:  '#00d4ff',             // Cyan atmosphere glow
 };
 
 // ─── GlobeView ────────────────────────────────────────────────────────────────
@@ -50,25 +48,20 @@ const GlobeView = forwardRef(function GlobeView(
   },
   ref
 ) {
-  const globeEl       = useRef(null);
-  const wrapRef       = useRef(null);
-  const hoveredRef    = useRef(null);
-  const selectedRef   = useRef(null);
-  const rotatingRef   = useRef(autoRotate);
-  const resumeTimer   = useRef(null);
-  const rafRef        = useRef(null);
-  const pulseTimer    = useRef(null);
-  const pulseIdx      = useRef(0);
+  const globeEl     = useRef(null);
+  const wrapRef     = useRef(null);
+  const selectedRef = useRef(null);
+  const resumeTimer = useRef(null);
 
   const [countries, setCountries] = useState([]);
   const [size,      setSize]      = useState({ w: window.innerWidth, h: window.innerHeight });
-  const [pulseR,    setPulseR]    = useState(NUCLEAR_PULSE[0]);
 
   useImperativeHandle(ref, () => ({
     pointOfView: (...args) => globeEl.current?.pointOfView(...args),
     getInstance: ()       => globeEl.current,
   }));
 
+  // Fetch GeoJSON map data
   useEffect(() => {
     fetch(GEOJSON_URL)
       .then(r => r.json())
@@ -76,6 +69,7 @@ const GlobeView = forwardRef(function GlobeView(
       .catch(console.error);
   }, []);
 
+  // Handle responsive resizing
   useEffect(() => {
     const measure = () => {
       if (!wrapRef.current) return;
@@ -92,51 +86,35 @@ const GlobeView = forwardRef(function GlobeView(
     };
   }, []);
 
+  // ── OPTIMIZATION 1: Native WebGL Auto-Rotation ──
   useEffect(() => {
-    rotatingRef.current = autoRotate;
-    const tick = () => {
-      if (rotatingRef.current && globeEl.current) {
-        const pov = globeEl.current.pointOfView();
-        globeEl.current.pointOfView({ ...pov, lng: pov.lng - 0.08 }); // Slightly slower, more cinematic spin
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+    if (globeEl.current) {
+      const controls = globeEl.current.controls();
+      controls.autoRotate = autoRotate;
+      controls.autoRotateSpeed = 0.6; // Smooth, cinematic speed natively on the GPU
+    }
   }, [autoRotate]);
 
-  useEffect(() => {
-    pulseTimer.current = setInterval(() => {
-      pulseIdx.current = (pulseIdx.current + 1) % 2;
-      setPulseR(NUCLEAR_PULSE[pulseIdx.current]);
-    }, 900);
-    return () => clearInterval(pulseTimer.current);
-  }, []);
-
   const stopRotation = useCallback(() => {
-    rotatingRef.current = false;
+    if (!globeEl.current) return;
+    const controls = globeEl.current.controls();
+    controls.autoRotate = false;
+    
     clearTimeout(resumeTimer.current);
     if (autoRotate) {
       resumeTimer.current = setTimeout(() => {
-        rotatingRef.current = true;
+        controls.autoRotate = true;
       }, 4000);
     }
   }, [autoRotate]);
 
-  const getColor = useCallback((feat) => {
+  // ── OPTIMIZATION 2: Removed hover tracking from React State ──
+  const getCapColor = useCallback((feat) => {
     const iso3 = feat?.properties?.ISO_A3;
     if (iso3 && iso3 === selectedRef.current)  return C.selected;
-    if (iso3 && iso3 === hoveredRef.current)   return C.hover;
-    if (highlightCountries.includes(iso3))     return C.hover;
+    if (highlightCountries.includes(iso3))     return C.selected;
     return C.fill;
   }, [highlightCountries]);
-
-  const handleHover = useCallback((feat) => {
-    hoveredRef.current = feat?.properties?.ISO_A3 ?? null;
-    if (wrapRef.current) {
-      wrapRef.current.style.cursor = feat ? 'pointer' : 'default';
-    }
-  }, []);
 
   const handleClick = useCallback((feat) => {
     if (!feat) return;
@@ -155,29 +133,27 @@ const GlobeView = forwardRef(function GlobeView(
   // ── 1. Shooting Star Gradients ───────────────────────────────────────────────
   const arcColor = useCallback((arc) => {
     if (!arc.is_active) return C.arcOld;
-    // Two elements create a directional gradient: [Start Color, End Color]
     return arc.arc_type === 'state-vs-state' 
       ? ['rgba(255,59,59,0.05)', '#ff3b3b'] 
       : ['rgba(255,170,0,0.05)', '#ffaa00'];
   }, []);
 
-  const arcAlt     = useCallback((arc) =>  arc.is_active ? 0.35 : 0.15, []); // Higher arcs for visibility
+  const arcAlt     = useCallback((arc) =>  arc.is_active ? 0.35 : 0.15, []); 
   const arcStroke  = useCallback((arc) => {
     if (!arc.is_active) return 0.2;
     const base = (arc.intensity_level ?? 1) * 0.6 + 0.4;
-    return arc.arc_type === 'state-vs-state' ? base + 0.5 : base; // Thicker lines
+    return arc.arc_type === 'state-vs-state' ? base + 0.5 : base; 
   }, []);
   
   // ── 2. Comet Dashes ──────────────────────────────────────────────────────────
-  const arcDash    = useCallback((arc) =>  arc.is_active ? 0.4 : 0, []); // Longer trail
+  const arcDash    = useCallback((arc) =>  arc.is_active ? 0.4 : 0, []); 
   const arcGap     = useCallback((arc) =>  arc.is_active ? 0.1 : 0, []); 
   const arcAnimate = useCallback((arc) => {
-    if (!arc.is_active) return 0;
+    if (!arc.is_active) return 0; // Kills CPU animation logic for massive historical datasets
     return arc.arc_type === 'state-vs-state' ? 2000 : 3500;
   }, []);
 
   // ── 3. Radar Target Rings for Impact Zones ───────────────────────────────────
-  // We extract the exact destinations of active conflicts to spawn rings
   const targetRings = useMemo(() => {
     return conflictArcs
       .filter(a => a.is_active && a.endLat != null && a.endLng != null)
@@ -185,7 +161,7 @@ const GlobeView = forwardRef(function GlobeView(
         lat: a.endLat,
         lng: a.endLng,
         color: a.arc_type === 'state-vs-state' ? '#ff3b3b' : '#ffaa00',
-        maxR: a.arc_type === 'state-vs-state' ? 4 : 2, // Bigger rings for state vs state
+        maxR: a.arc_type === 'state-vs-state' ? 4 : 2, 
         propSpeed: a.arc_type === 'state-vs-state' ? 2 : 1
       }));
   }, [conflictArcs]);
@@ -262,18 +238,18 @@ const GlobeView = forwardRef(function GlobeView(
           // ── Atmosphere ───────────────────────────────────────────────
           showAtmosphere
           atmosphereColor={C.atmosphere}
-          atmosphereAltitude={0.18} // Thicker, more prominent glow
+          atmosphereAltitude={0.18} 
           
           showGraticules={false}
           
           // ── Country Overlays ─────────────────────────────────────────
           polygonsData={countries}
-          polygonAltitude={0.006} // Floats just above the satellite texture
-          polygonCapColor={getColor}
-          polygonSideColor={() => 'rgba(0,0,0,0)'} // Hide sides to keep it flat & tactical
+          polygonAltitude={0.006} 
+          polygonCapColor={getCapColor}
+          polygonSideColor={() => 'rgba(0,0,0,0)'} 
           polygonStrokeColor={() => C.stroke}
+          polygonHoverColor={() => C.hover} // WebGL native hover state (Zero CPU lag)
           polygonLabel={polyLabel}
-          onPolygonHover={handleHover}
           onPolygonClick={handleClick}
           
           // ── Arcs ─────────────────────────────────────────────────────
@@ -287,8 +263,9 @@ const GlobeView = forwardRef(function GlobeView(
           arcStroke={arcStroke}
           arcDashLength={arcDash}
           arcDashGap={arcGap}
-          arcDashInitialGap={() => Math.random()} // Randomize start times so they don't sync
+          arcDashInitialGap={() => Math.random()} 
           arcDashAnimateTime={arcAnimate}
+          arcsTransitionDuration={0} // Instantly load large historical datasets without calculating transition morphs
           arcLabel={arcLabel}
 
           // ── Impact Rings ─────────────────────────────────────────────
@@ -298,15 +275,16 @@ const GlobeView = forwardRef(function GlobeView(
           ringColor={d => d.color}
           ringMaxRadius={d => d.maxR}
           ringPropagationSpeed={d => d.propSpeed}
-          ringRepeatPeriod={800} // Pulse fast
+          ringRepeatPeriod={800} 
 
           // ── Nuclear Markers ──────────────────────────────────────────
+          // Replaced CPU interval logic with a static tactical radius
           pointsData={NUCLEAR_STATES}
           pointLat={d    => d.lat}
           pointLng={d    => d.lng}
           pointColor={() => C.nuclear}
           pointAltitude={() => 0.01}
-          pointRadius={() => pulseR}
+          pointRadius={() => 0.55} 
           pointsMerge={false}
           pointLabel={pointLabel}
         />
