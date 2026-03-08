@@ -16,6 +16,7 @@ const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
 
 :root {
+  /* TACTICAL AMBER THEME */
   --ud-bg:      #0a0b0d;
   --ud-panel:   rgba(18, 20, 23, 0.85);
   --ud-border:  rgba(255, 170, 0, 0.2);
@@ -25,60 +26,101 @@ const CSS = `
   --ud-dim:     #565d66;
 }
 
-.ud-page-wrapper { min-height: 100dvh; background: var(--ud-bg); color: var(--ud-text); font-family: 'Barlow', sans-serif; position: relative; overflow-x: hidden; }
-.ud-page-wrapper::before { content: ""; position: fixed; inset: 0; background-image: linear-gradient(rgba(255, 170, 0, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 170, 0, 0.02) 1px, transparent 1px); background-size: 40px 40px; background-position: center center; z-index: 0; pointer-events: none; }
+.ud-page-wrapper { 
+  min-height: 100dvh; 
+  background: var(--ud-bg); 
+  color: var(--ud-text); 
+  font-family: 'Barlow', sans-serif; 
+  position: relative; 
+  overflow-x: hidden; 
+}
+
+/* Tactical Grid */
+.ud-page-wrapper::before { 
+  content: ""; position: fixed; inset: 0; 
+  background-image: linear-gradient(rgba(255, 170, 0, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 170, 0, 0.02) 1px, transparent 1px); 
+  background-size: 40px 40px; background-position: center center; 
+  z-index: 0; pointer-events: none; 
+}
 .ud-content-layer { position: relative; z-index: 1; }
 
-/* Hero */
-.ud-hero { position: relative; padding: 48px 40px 56px; border-bottom: 1px solid var(--ud-border); display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+/* ── Hero ── */
+.ud-hero { 
+  position: relative; padding: 48px 40px 56px; border-bottom: 1px solid var(--ud-border); 
+  display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.5); 
+  min-height: 400px; justify-content: flex-end;
+}
 .ud-hero-bg { position: absolute; inset: 0; z-index: 0; }
-.ud-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.8) hue-rotate(30deg) saturate(1.5) brightness(0.3); }
-.ud-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,11,13,0.95) 0%, rgba(10,11,13,0.6) 100%); z-index: 1; }
+.ud-hero-bg img { 
+  width: 100%; height: 100%; object-fit: cover; 
+  filter: sepia(0.6) hue-rotate(15deg) saturate(1.8) brightness(0.35); 
+}
+.ud-hero-overlay { 
+  position: absolute; inset: 0; 
+  background: linear-gradient(to right, rgba(10,11,13,0.95) 0%, rgba(10,11,13,0.8) 40%, rgba(10,11,13,0.2) 100%); 
+  z-index: 1; 
+}
 
 .ud-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; width: 100%; }
-.ud-back { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; color: var(--ud-accent); text-decoration: none; text-transform: uppercase; margin-bottom: 40px; transition: all 200ms ease; background: rgba(255,170,0,0.1); padding: 6px 12px; border-radius: 4px; border: 1px solid rgba(255,170,0,0.3); }
+
+.ud-back { 
+  display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; 
+  font-size: 11px; font-weight: 600; letter-spacing: 0.15em; color: var(--ud-accent); 
+  text-decoration: none; text-transform: uppercase; margin-bottom: 40px; transition: all 200ms ease; 
+  background: rgba(255,170,0,0.08); padding: 8px 16px; border-radius: 4px; border: 1px solid rgba(255,170,0,0.3); 
+}
 .ud-back:hover { background: rgba(255,170,0,0.2); box-shadow: 0 0 12px rgba(255,170,0,0.2); color: #fff; }
 
 .ud-meta-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
-.ud-country-badge { display: flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: var(--ud-text); text-transform: uppercase; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
-.ud-badge { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 4px; border: 1px solid; letter-spacing: 0.1em; text-transform: uppercase; }
+.ud-country-badge { display: flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: var(--ud-text); text-transform: uppercase; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px); }
+.ud-badge { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 4px; border: 1px solid; letter-spacing: 0.1em; text-transform: uppercase; backdrop-filter: blur(4px); }
 
 .ud-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(48px, 6vw, 88px); letter-spacing: -0.01em; line-height: 1; color: #fff; margin-bottom: 12px; text-shadow: 0 4px 16px rgba(0,0,0,0.8); text-transform: uppercase; }
-.ud-motto { font-size: 20px; color: var(--ud-muted); font-style: italic; font-weight: 500; letter-spacing: 0.02em; }
+.ud-motto { font-size: 20px; color: #c8ced6; font-style: italic; font-weight: 500; letter-spacing: 0.02em; border-left: 3px solid var(--ud-accent); padding-left: 16px; }
 
-/* Body */
+/* ── Body ── */
 .ud-body { max-width: 1400px; margin: 0 auto; padding: 48px 40px 80px; }
 .ud-layout { display: grid; grid-template-columns: 1fr 400px; gap: 64px; align-items: start; }
 
 /* Sections */
 .ud-section { margin-bottom: 48px; }
-.ud-section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; color: var(--ud-text); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: 0.02em; }
+.ud-section-title { 
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; 
+  color: var(--ud-text); margin-bottom: 20px; padding-bottom: 12px; 
+  border-bottom: 1px solid rgba(255,170,0,0.15); display: flex; align-items: center; gap: 12px; 
+  text-transform: uppercase; letter-spacing: 0.02em; 
+}
 .ud-section-title span { color: var(--ud-accent); display: flex; }
-.ud-p { font-size: 16px; color: #cdd6f4; line-height: 1.8; background: rgba(0,0,0,0.3); padding: 24px; border-left: 4px solid var(--b-color); border-radius: 4px; }
+.ud-p { font-size: 16px; color: #cdd6f4; line-height: 1.8; background: var(--ud-panel); padding: 24px; border-left: 4px solid var(--b-color); border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); }
 
 /* Orbat / Chain of command */
-.ud-orbat-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 24px; }
-.ud-orbat-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--ud-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
-.ud-orbat-link { display: inline-flex; align-items: center; gap: 10px; padding: 16px 20px; background: rgba(255,170,0,0.05); border: 1px solid rgba(255,170,0,0.2); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: #e8eaf0; text-decoration: none; transition: all 200ms ease; }
-.ud-orbat-link:hover { background: rgba(255,170,0,0.15); border-color: #ffaa00; transform: translateX(4px); box-shadow: 0 4px 12px rgba(255,170,0,0.1); }
+.ud-orbat-box { background: var(--ud-panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.ud-orbat-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--ud-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+.ud-orbat-link { 
+  display: inline-flex; align-items: center; gap: 10px; padding: 16px 20px; 
+  background: rgba(255,170,0,0.05); border: 1px solid rgba(255,170,0,0.2); 
+  border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; 
+  color: #e8eaf0; text-decoration: none; transition: all 200ms ease; 
+}
+.ud-orbat-link:hover { background: rgba(255,170,0,0.15); border-color: var(--ud-accent); transform: translateX(4px); box-shadow: 0 4px 12px rgba(255,170,0,0.1); }
 .ud-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 /* History */
 .ud-list { display: flex; flex-direction: column; gap: 12px; }
-.ud-list-item { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: rgba(255,59,59,0.05); border: 1px solid rgba(255,59,59,0.2); border-radius: 6px; font-size: 15px; font-weight: 500; color: #e8eaf0; }
+.ud-list-item { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: rgba(255,59,59,0.05); border: 1px solid rgba(255,59,59,0.2); border-radius: 6px; font-size: 15px; font-weight: 500; color: #e8eaf0; }
 .ud-list-item::before { content: ''; width: 8px; height: 8px; background: #ff3b3b; border-radius: 50%; box-shadow: 0 0 10px #ff3b3b; flex-shrink: 0; }
 
 /* Sidebar */
 .ud-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
-.ud-info-card { background: var(--ud-panel); border: 1px solid var(--ud-border); border-radius: 8px; padding: 24px; backdrop-filter: blur(16px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
-.ud-info-card-title { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; color: var(--ud-accent); text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--ud-border); }
+.ud-info-card { background: var(--ud-panel); border: 1px solid var(--ud-border); border-radius: 8px; padding: 28px 24px; backdrop-filter: blur(16px); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+.ud-info-card-title { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; color: var(--ud-accent); text-transform: uppercase; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--ud-border); display: flex; align-items: center; gap: 8px; }
 .ud-info-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 16px; }
 .ud-info-row:last-child { border-bottom: none; padding-bottom: 0; }
 .ud-info-key { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: var(--ud-muted); text-transform: uppercase; letter-spacing: 0.1em; }
 .ud-info-val { font-size: 15px; color: var(--ud-text); font-weight: 600; text-align: right; }
 
 @media(max-width:1024px) { .ud-layout { grid-template-columns: 1fr; } .ud-sidebar { position: static; } }
-@media(max-width:768px) { .ud-hero { padding: 32px 24px; } .ud-body { padding: 32px 24px 64px; } .ud-sub-grid { grid-template-columns: 1fr; } }
+@media(max-width:768px) { .ud-hero { padding: 32px 24px 48px; } .ud-body { padding: 32px 24px 64px; } .ud-sub-grid { grid-template-columns: 1fr; } .ud-name { font-size: 36px; } }
 `;
 
 function injectCSS(id, css) {
@@ -133,8 +175,8 @@ export default function UnitDetail() {
               <div className="ud-country-badge">
                 <span style={{ fontSize: 18 }}>{ctry?.flag}</span> {unit.country}
               </div>
-              <div className="ud-badge" style={{ color: br.color, borderColor: `${br.color}55`, background: `${br.color}15`, backdropFilter: 'blur(4px)' }}>{br.label}</div>
-              <div className="ud-badge" style={{ color: unit.status==='Active' ? '#00ff88' : '#8892a4', borderColor: unit.status==='Active' ? 'rgba(0,255,136,0.4)' : 'rgba(255,255,255,0.2)', backdropFilter: 'blur(4px)' }}>{unit.status}</div>
+              <div className="ud-badge" style={{ color: br.color, borderColor: `${br.color}55`, background: `${br.color}15` }}>{br.label}</div>
+              <div className="ud-badge" style={{ color: unit.status==='Active' ? '#00ff88' : '#8892a4', borderColor: unit.status==='Active' ? 'rgba(0,255,136,0.4)' : 'rgba(255,255,255,0.2)' }}>{unit.status}</div>
             </div>
             
             <div className="ud-name">{unit.name}</div>
@@ -203,7 +245,7 @@ export default function UnitDetail() {
             {/* Sidebar */}
             <div className="ud-sidebar">
               <div className="ud-info-card">
-                <div className="ud-info-card-title">UNIT DOSSIER LOG</div>
+                <div className="ud-info-card-title"><Icons.Clipboard /> UNIT DOSSIER LOG</div>
                 {[
                   ['Nation',         `${unit.country}`],
                   ['Branch',         `${br.label}`],
