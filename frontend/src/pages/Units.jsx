@@ -68,14 +68,13 @@ const CSS = `
 .un-title span { color: var(--un-accent); text-shadow: 0 0 24px rgba(255,170,0,.3); }
 
 /* ── Sticky filter bar ── */
-/* NOTE: NO overflow:hidden here — that's what was clipping the dropdowns */
 .un-filters {
   background: rgba(14,16,18,.92);
   border-bottom: 1px solid var(--un-border);
   padding: 14px 40px;
   display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
   position: sticky; top: 60px;
-  z-index: 30;                   /* filters bar sits at 30 */
+  z-index: 30;
   backdrop-filter: blur(12px);
 }
 .un-filter-group { display: flex; gap: 10px; align-items: center; }
@@ -123,13 +122,13 @@ const CSS = `
   opacity: 1;
 }
 
-/* ── Portal menu — rendered into <body>, never clipped ── */
+/* ── Portal menu ── */
 .tac-dd-menu {
-  position: fixed;          /* fixed so sticky parent can't clip it */
+  position: fixed;
   background: #0e1014;
   border: 1px solid var(--un-border);
   border-radius: 6px;
-  z-index: 9999;            /* always on top */
+  z-index: 9999;
   max-height: 280px;
   overflow-y: auto;
   box-shadow: 0 12px 40px rgba(0,0,0,.85), 0 0 0 1px rgba(255,170,0,.05);
@@ -208,11 +207,6 @@ const CSS = `
 .un-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--b-color); opacity: .9; z-index: 5; }
 .un-card:hover { border-color: rgba(255,170,0,.3); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
 
-.un-card-img { height: 160px; position: relative; border-bottom: 1px solid rgba(255,255,255,.05); overflow: hidden; }
-.un-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease, filter 400ms ease; filter: sepia(.8) hue-rotate(30deg) saturate(2) brightness(.6); }
-.un-card:hover .un-card-img img { transform: scale(1.05); filter: sepia(.5) hue-rotate(30deg) saturate(1.5) brightness(.8); }
-.un-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,20,23,1) 0%, rgba(18,20,23,0) 100%); pointer-events: none; }
-
 .un-card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
 .un-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
 .un-card-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: var(--un-text); line-height: 1.1; margin-bottom: 4px; letter-spacing: .01em; }
@@ -262,16 +256,11 @@ function injectCSS(id, css) {
 }
 
 // ─── Portal Tactical Dropdown ─────────────────────────────────────────────────
-// Renders the menu via a React portal directly into <body> so that:
-//  • position:sticky on the filter bar never creates a clipping context
-//  • z-index battles between layers are avoided entirely
-//  • The dropdown always appears above every other element on the page
 function TacticalDropdown({ label, options, value, onChange }) {
   const [isOpen, setIsOpen]   = useState(false);
   const [menuPos, setMenuPos] = useState({ top: 0, left: 0, width: 0 });
   const triggerRef = useRef(null);
 
-  // Recompute menu position each time it opens (or on scroll/resize while open)
   const updatePos = useCallback(() => {
     if (!triggerRef.current) return;
     const r = triggerRef.current.getBoundingClientRect();
@@ -287,12 +276,10 @@ function TacticalDropdown({ label, options, value, onChange }) {
 
   const toggle = useCallback(() => (isOpen ? close() : open()), [isOpen, open, close]);
 
-  // Close on outside click or Escape
   useEffect(() => {
     if (!isOpen) return;
     const onDown = (e) => {
       if (triggerRef.current && triggerRef.current.contains(e.target)) return;
-      // check if click is inside the portal menu
       const menu = document.getElementById('tac-dd-portal-menu');
       if (menu && menu.contains(e.target)) return;
       close();
@@ -320,7 +307,6 @@ function TacticalDropdown({ label, options, value, onChange }) {
       className="tac-dd-menu"
       style={{ top: menuPos.top, left: menuPos.left, width: menuPos.width }}
     >
-      {/* "All" option */}
       <div
         className={`tac-dd-item ${value === '' ? 'active' : ''}`}
         onMouseDown={(e) => { e.preventDefault(); onChange(''); close(); }}
@@ -416,7 +402,6 @@ export default function UnitsDir() {
     return d;
   }, [country, branch, search]);
 
-  // Root nodes: units whose parent is not in the current filtered set
   const rootNodes = useMemo(() =>
     filtered.filter(u => !u.parentId || !filtered.find(p => p.id === u.parentId)),
     [filtered]
@@ -500,14 +485,9 @@ export default function UnitsDir() {
           ) : view === 'grid' ? (
             <div className="un-grid">
               {filtered.map(u => {
-                const br  = BRANCHES[u.branch] || BRANCHES.army;
-                const img = u.image || 'https://images.unsplash.com/photo-1508614999368-9260051292e5?auto=format&fit=crop&w=600&q=80';
+                const br = BRANCHES[u.branch] || BRANCHES.army;
                 return (
                   <Link key={u.id} to={`/units/${u.id}`} className="un-card" style={{ '--b-color': br.color }}>
-                    <div className="un-card-img">
-                      <img src={img} alt={u.name} loading="lazy" />
-                      <div className="un-card-overlay" />
-                    </div>
                     <div className="un-card-body">
                       <div className="un-card-top">
                         <div>

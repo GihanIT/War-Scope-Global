@@ -80,7 +80,7 @@ export const VEHICLES = [
     id: 'usa-m1a2-abrams',
     country: 'USA', category: 'tank',
     name: 'M1A2 SEPv3 Abrams', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 1980, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/960px-M1A2_SEP_v3.jpg', inService: true, year: 1980, origin: 'USA',
     crew: 4, operators: ['USA', 'Iraq', 'Egypt', 'Australia', 'Poland', 'Ukraine', 'Saudi Arabia', 'Kuwait', 'Taiwan', 'Morocco'],
     unitCost: '$8.9M', totalBuilt: '10,288+', status: 'Active',
     specs: {
@@ -110,7 +110,7 @@ export const VEHICLES = [
     id: 'usa-m2a4-bradley',
     country: 'USA', category: 'ifv',
     name: 'M2A4 Bradley', designation: 'Infantry Fighting Vehicle',
-    image: null, inService: true, year: 1981, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/US_M2A1_Bradley_deployed_to_Saudi_Arabia_during_Operation_Desert_Shield.jpg/960px-US_M2A1_Bradley_deployed_to_Saudi_Arabia_during_Operation_Desert_Shield.jpg', inService: true, year: 1981, origin: 'USA',
     crew: 3, operators: ['USA', 'Saudi Arabia', 'Ukraine'],
     unitCost: '$3.2M', totalBuilt: '6,720+', status: 'Active',
     specs: {
@@ -140,7 +140,7 @@ export const VEHICLES = [
     id: 'usa-stryker',
     country: 'USA', category: 'ifv',
     name: 'Stryker ICV/Dragoon', designation: 'Infantry Carrier Vehicle',
-    image: null, inService: true, year: 2002, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Stryker_ICV_front_q.jpg', inService: true, year: 2002, origin: 'USA',
     crew: 2, operators: ['USA', 'Thailand'],
     unitCost: '$4.9M', totalBuilt: '4,466+', status: 'Active',
     specs: {
@@ -169,7 +169,7 @@ export const VEHICLES = [
     id: 'usa-f35a',
     country: 'USA', category: 'aircraft',
     name: 'F-35A Lightning II', designation: 'Multirole Stealth Fighter',
-    image: null, inService: true, year: 2015, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/F-35A_flight_%28cropped%29.jpg/960px-F-35A_flight_%28cropped%29.jpg', inService: true, year: 2015, origin: 'USA',
     crew: 1, operators: ['USA', 'UK', 'Australia', 'Japan', 'South Korea', 'Israel', 'Netherlands', 'Norway', 'Denmark', 'Italy', 'Belgium', 'Poland', 'Finland', 'Canada', 'Germany', 'Switzerland', 'Czech Republic', 'Greece', 'Romania', 'Singapore'],
     unitCost: '$82.5M', totalBuilt: '1,000+', status: 'Active',
     specs: {
@@ -199,7 +199,7 @@ export const VEHICLES = [
     id: 'usa-f22-raptor',
     country: 'USA', category: 'aircraft',
     name: 'F-22A Raptor', designation: 'Air Superiority Stealth Fighter',
-    image: null, inService: true, year: 2005, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/F-22_Raptor_edit1_%28cropped%29.jpg/960px-F-22_Raptor_edit1_%28cropped%29.jpg', inService: true, year: 2005, origin: 'USA',
     crew: 1, operators: ['USA'],
     unitCost: '$150M (flyaway)', totalBuilt: '195 (187 production)', status: 'Active',
     specs: {
@@ -227,7 +227,7 @@ export const VEHICLES = [
     id: 'usa-b2-spirit',
     country: 'USA', category: 'aircraft',
     name: 'B-2A Spirit', designation: 'Strategic Stealth Bomber',
-    image: null, inService: true, year: 1997, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/RAF_F-35B_integration_flying_training_with_USAF_B-2_30092019_-_4.jpg/960px-RAF_F-35B_integration_flying_training_with_USAF_B-2_30092019_-_4.jpg', inService: true, year: 1997, origin: 'USA',
     crew: 2, operators: ['USA'],
     unitCost: '$2.13B', totalBuilt: '21 (20 operational)', status: 'Active',
     specs: {
@@ -256,7 +256,7 @@ export const VEHICLES = [
     id: 'usa-b21-raider',
     country: 'USA', category: 'aircraft',
     name: 'B-21 Raider', designation: 'Next-Generation Stealth Bomber',
-    image: null, inService: false, year: 2026, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/B-21-in-flight.jpg/960px-B-21-in-flight.jpg', inService: false, year: 2026, origin: 'USA',
     crew: 2, operators: ['USA'],
     unitCost: '$692M (target)', totalBuilt: '6 test articles (100+ planned)', status: 'Development',
     specs: {
@@ -285,7 +285,7 @@ export const VEHICLES = [
     id: 'usa-f18-super-hornet',
     country: 'USA', category: 'aircraft',
     name: 'F/A-18E/F Super Hornet', designation: 'Carrier-Based Multirole Fighter',
-    image: null, inService: true, year: 1999, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/US_Navy_071203-N-8923M-074_An_F-A-18F_Super_Hornet%2C_from_the_Red_Rippers_of_Strike_Fighter_Squadron_%28VFA%29_11%2C_makes_a_sharp_turn_above_the_flight_deck_aboard_the_Nimitz-class_nuclear-powered_aircraft_carrier_USS_Harry_S._Truman.jpg/960px-thumbnail.jpg', inService: true, year: 1999, origin: 'USA',
     crew: 1, operators: ['USA', 'Australia', 'Kuwait'],
     unitCost: '$66.9M', totalBuilt: '600+', status: 'Active',
     specs: {
@@ -313,7 +313,7 @@ export const VEHICLES = [
     id: 'usa-ah64-apache',
     country: 'USA', category: 'helicopter',
     name: 'AH-64E Apache Guardian', designation: 'Attack Helicopter',
-    image: null, inService: true, year: 1986, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/AH-64D_Apache_Longbow.jpg/960px-AH-64D_Apache_Longbow.jpg', inService: true, year: 1986, origin: 'USA',
     crew: 2, operators: ['USA', 'UK', 'Netherlands', 'Israel', 'Japan', 'South Korea', 'Saudi Arabia', 'UAE', 'India', 'Egypt', 'Greece', 'Singapore', 'Indonesia', 'Morocco', 'Qatar', 'Kuwait'],
     unitCost: '$35.5M', totalBuilt: '2,400+', status: 'Active',
     specs: {
@@ -341,7 +341,7 @@ export const VEHICLES = [
     id: 'usa-uh60-blackhawk',
     country: 'USA', category: 'helicopter',
     name: 'UH-60M Black Hawk', designation: 'Utility Helicopter',
-    image: null, inService: true, year: 1979, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/National-Guard-UH-60-Black-Hawk-operations-at-Fort-McCoy.jpg/960px-National-Guard-UH-60-Black-Hawk-operations-at-Fort-McCoy.jpg', inService: true, year: 1979, origin: 'USA',
     crew: 4, operators: ['USA', 'Japan', 'South Korea', 'Turkey', 'Saudi Arabia', 'Australia', 'Colombia', 'Israel', 'Mexico', 'Brazil', 'Taiwan', 'Sweden'],
     unitCost: '$21.3M', totalBuilt: '4,000+', status: 'Active',
     specs: {
@@ -369,7 +369,7 @@ export const VEHICLES = [
     id: 'usa-ch47-chinook',
     country: 'USA', category: 'helicopter',
     name: 'CH-47F Chinook', designation: 'Heavy-Lift Transport Helicopter',
-    image: null, inService: true, year: 1962, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg/960px-CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg', inService: true, year: 1962, origin: 'USA',
     crew: 5, operators: ['USA', 'UK', 'Australia', 'Netherlands', 'Italy', 'Japan', 'South Korea', 'Spain', 'Canada', 'India', 'Turkey', 'UAE', 'Saudi Arabia', 'Germany'],
     unitCost: '$38.5M', totalBuilt: '1,200+', status: 'Active',
     specs: {
@@ -397,7 +397,7 @@ export const VEHICLES = [
     id: 'usa-virginia-ssn',
     country: 'USA', category: 'naval',
     name: 'Virginia-class SSN', designation: 'Nuclear Attack Submarine',
-    image: null, inService: true, year: 2004, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/US_Navy_040730-N-1234E-002_PCU_Virginia_%28SSN_774%29_returns_to_the_General_Dynamics_Electric_Boat_shipyard.jpg/960px-US_Navy_040730-N-1234E-002_PCU_Virginia_%28SSN_774%29_returns_to_the_General_Dynamics_Electric_Boat_shipyard.jpg', inService: true, year: 2004, origin: 'USA',
     crew: 135, operators: ['USA', 'Australia (AUKUS — future)'],
     unitCost: '$3.4B', totalBuilt: '23 in service (more building)', status: 'Active',
     specs: {
@@ -424,7 +424,7 @@ export const VEHICLES = [
     id: 'usa-arleigh-burke',
     country: 'USA', category: 'naval',
     name: 'Arleigh Burke-class DDG', designation: 'Guided Missile Destroyer',
-    image: null, inService: true, year: 1991, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/US_Navy_080906-N-1082Z-067_The_guided-missile_destroyer_USS_Roosevelt_%28DDG_80%29_transits_the_Atlantic_Ocean.jpg/960px-US_Navy_080906-N-1082Z-067_The_guided-missile_destroyer_USS_Roosevelt_%28DDG_80%29_transits_the_Atlantic_Ocean.jpg', inService: true, year: 1991, origin: 'USA',
     crew: 329, operators: ['USA', 'Japan (modified Kongo/Atago)', 'South Korea (modified Sejong)'],
     unitCost: '$1.8B (Flight III)', totalBuilt: '73 in service (89 planned)', status: 'Active',
     specs: {
@@ -450,7 +450,7 @@ export const VEHICLES = [
     id: 'usa-nimitz',
     country: 'USA', category: 'naval',
     name: 'Nimitz-class CVN', designation: 'Nuclear-Powered Aircraft Carrier',
-    image: null, inService: true, year: 1975, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/USS_Nimitz_%28CVN-68%29.jpg/960px-USS_Nimitz_%28CVN-68%29.jpg', inService: true, year: 1975, origin: 'USA',
     crew: 5680, operators: ['USA'],
     unitCost: '$8.5B (adjusted)', totalBuilt: '10', status: 'Active',
     specs: {
@@ -476,7 +476,7 @@ export const VEHICLES = [
     id: 'usa-ford-cvn',
     country: 'USA', category: 'naval',
     name: 'Gerald R. Ford-class CVN', designation: 'Nuclear-Powered Supercarrier',
-    image: null, inService: true, year: 2022, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/USS_Gerald_R._Ford_%28CVN-78%29_underway_in_the_Atlantic_Ocean_on_9_October_2022_%28221009-N-TL968-1248%29.JPG/960px-USS_Gerald_R._Ford_%28CVN-78%29_underway_in_the_Atlantic_Ocean_on_9_October_2022_%28221009-N-TL968-1248%29.JPG', inService: true, year: 2022, origin: 'USA',
     crew: 4539, operators: ['USA'],
     unitCost: '$13.3B', totalBuilt: '1 active, 3 building', status: 'Active',
     specs: {
@@ -502,7 +502,7 @@ export const VEHICLES = [
     id: 'usa-mq9-reaper',
     country: 'USA', category: 'drone',
     name: 'MQ-9B Reaper / SkyGuardian', designation: 'Hunter-Killer MALE UAV',
-    image: null, inService: true, year: 2007, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/MQ-9_Reaper_UAV_%28cropped%29.jpg/960px-MQ-9_Reaper_UAV_%28cropped%29.jpg', inService: true, year: 2007, origin: 'USA',
     crew: 0, operators: ['USA', 'UK', 'France', 'Italy', 'Netherlands', 'Belgium', 'Poland', 'India', 'UAE', 'Japan', 'Australia', 'Spain'],
     unitCost: '$32.5M', totalBuilt: '400+', status: 'Active',
     specs: {
@@ -531,7 +531,7 @@ export const VEHICLES = [
     id: 'usa-rq170-sentinel',
     country: 'USA', category: 'drone',
     name: 'RQ-170 Sentinel', designation: 'Stealth Reconnaissance UAV',
-    image: null, inService: true, year: 2007, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/RQ-170_art_impression.jpg/960px-RQ-170_art_impression.jpg', inService: true, year: 2007, origin: 'USA',
     crew: 0, operators: ['USA'],
     unitCost: 'Classified', totalBuilt: '20–30 (estimated)', status: 'Active',
     specs: {
@@ -556,7 +556,7 @@ export const VEHICLES = [
     id: 'usa-patriot-pac3',
     country: 'USA', category: 'missile',
     name: 'Patriot PAC-3 MSE', designation: 'Air & Missile Defence System',
-    image: null, inService: true, year: 1984, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg/1280px-U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg', inService: true, year: 1984, origin: 'USA',
     crew: 90, operators: ['USA', 'Germany', 'Netherlands', 'Japan', 'South Korea', 'Taiwan', 'Saudi Arabia', 'UAE', 'Kuwait', 'Israel', 'Poland', 'Romania', 'Greece', 'Ukraine', 'Sweden', 'Switzerland', 'Bahrain', 'Qatar'],
     unitCost: '$4M per missile; ~$1B per battery', totalBuilt: '240+ batteries worldwide', status: 'Active',
     specs: {
@@ -583,7 +583,7 @@ export const VEHICLES = [
     id: 'usa-thaad',
     country: 'USA', category: 'missile',
     name: 'THAAD', designation: 'Terminal High Altitude Area Defense',
-    image: null, inService: true, year: 2008, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_first_of_two_Terminal_High_Altitude_Area_Defense_%28THAAD%29_interceptors_is_launched_during_a_successful_intercept_test_-_US_Army.jpg/960px-The_first_of_two_Terminal_High_Altitude_Area_Defense_%28THAAD%29_interceptors_is_launched_during_a_successful_intercept_test_-_US_Army.jpg', inService: true, year: 2008, origin: 'USA',
     crew: null, operators: ['USA', 'UAE', 'South Korea', 'Saudi Arabia', 'Israel'],
     unitCost: '$800M per battery', totalBuilt: '7 batteries', status: 'Active',
     specs: {
@@ -608,7 +608,7 @@ export const VEHICLES = [
     id: 'usa-javelin',
     country: 'USA', category: 'missile',
     name: 'FGM-148 Javelin', designation: 'Man-Portable Anti-Tank Missile',
-    image: null, inService: true, year: 1996, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FGM-148_Javelin_missile_launch.jpg/960px-FGM-148_Javelin_missile_launch.jpg', inService: true, year: 1996, origin: 'USA',
     crew: 2, operators: ['USA', 'UK', 'France', 'Australia', 'Poland', 'Norway', 'Taiwan', 'Ukraine', 'Estonia', 'Lithuania', 'Czech Republic', 'Georgia', 'Indonesia'],
     unitCost: '$240,000 per missile; $126,000 CLU', totalBuilt: '45,000+ missiles', status: 'Active',
     specs: {
@@ -635,7 +635,7 @@ export const VEHICLES = [
     id: 'usa-m142-himars',
     country: 'USA', category: 'artillery',
     name: 'M142 HIMARS', designation: 'High Mobility Artillery Rocket System',
-    image: null, inService: true, year: 2005, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/HIMARS_-_missile_launched.jpg/960px-HIMARS_-_missile_launched.jpg', inService: true, year: 2005, origin: 'USA',
     crew: 3, operators: ['USA', 'Ukraine', 'Poland', 'Romania', 'Taiwan', 'Lithuania', 'Morocco', 'UAE', 'Jordan', 'Qatar', 'Estonia', 'Latvia', 'Australia', 'Netherlands'],
     unitCost: '$5.1M', totalBuilt: '600+', status: 'Active',
     specs: {
@@ -662,7 +662,7 @@ export const VEHICLES = [
     id: 'usa-m777',
     country: 'USA', category: 'artillery',
     name: 'M777A2 Lightweight Howitzer', designation: 'Towed 155mm Howitzer',
-    image: null, inService: true, year: 2005, origin: 'USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/M777_howitzer_rear.jpg/960px-M777_howitzer_rear.jpg', inService: true, year: 2005, origin: 'USA',
     crew: 8, operators: ['USA', 'Australia', 'Canada', 'India', 'Saudi Arabia', 'Colombia', 'Ukraine'],
     unitCost: '$3.7M', totalBuilt: '1,500+', status: 'Active',
     specs: {
@@ -692,7 +692,7 @@ export const VEHICLES = [
     id: 'rus-t14-armata',
     country: 'Russia', category: 'tank',
     name: 'T-14 Armata', designation: 'Next-Generation Main Battle Tank',
-    image: null, inService: false, year: 2015, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/VDayRehearsal05052016-28.jpg/960px-VDayRehearsal05052016-28.jpg', inService: false, year: 2015, origin: 'Russia',
     crew: 3, operators: ['Russia'],
     unitCost: '$3.7M–$8M (estimated)', totalBuilt: '~20 (pre-production)', status: 'Development',
     specs: {
@@ -721,7 +721,7 @@ export const VEHICLES = [
     id: 'rus-t90m',
     country: 'Russia', category: 'tank',
     name: 'T-90M Proryv-3', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 1992, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/T-90M.jpg/960px-T-90M.jpg', inService: true, year: 1992, origin: 'Russia',
     crew: 3, operators: ['Russia', 'India', 'Algeria', 'Iraq', 'Syria', 'Vietnam', 'Azerbaijan', 'Turkmenistan', 'Uganda'],
     unitCost: '$4.5M', totalBuilt: '3,000+ (all variants)', status: 'Active',
     specs: {
@@ -749,7 +749,7 @@ export const VEHICLES = [
     id: 'rus-t72b3m',
     country: 'Russia', category: 'tank',
     name: 'T-72B3M (2016)', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 1973, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/960px-Alabino05042017-40.jpg', inService: true, year: 1973, origin: 'Russia',
     crew: 3, operators: ['Russia'],
     unitCost: '$1.5M (upgrade cost)', totalBuilt: '25,000+ (all T-72 variants)', status: 'Active',
     specs: {
@@ -776,7 +776,7 @@ export const VEHICLES = [
     id: 'rus-bmp2',
     country: 'Russia', category: 'ifv',
     name: 'BMP-2M Berezhok', designation: 'Infantry Fighting Vehicle',
-    image: null, inService: true, year: 1980, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Army2016demo-007.jpg/960px-Army2016demo-007.jpg', inService: true, year: 1980, origin: 'Russia',
     crew: 3, operators: ['Russia', 'India', 'Ukraine', 'Algeria', 'Iran', 'Syria', 'Iraq', 'Finland'],
     unitCost: '$300,000–500,000', totalBuilt: '20,000+', status: 'Active',
     specs: {
@@ -804,7 +804,7 @@ export const VEHICLES = [
     id: 'rus-su57',
     country: 'Russia', category: 'aircraft',
     name: 'Su-57 Felon', designation: '5th-Generation Stealth Multirole Fighter',
-    image: null, inService: true, year: 2020, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Sukhoi_Design_Bureau%2C_054%2C_Sukhoi_T-50_%28Su-57_prototype%29_%2849581303977%29.jpg/960px-Sukhoi_Design_Bureau%2C_054%2C_Sukhoi_T-50_%28Su-57_prototype%29_%2849581303977%29.jpg', inService: true, year: 2020, origin: 'Russia',
     crew: 1, operators: ['Russia'],
     unitCost: '$35–50M (estimated)', totalBuilt: '~30 operational (2025)', status: 'Active',
     specs: {
@@ -831,7 +831,7 @@ export const VEHICLES = [
     id: 'rus-su35s',
     country: 'Russia', category: 'aircraft',
     name: 'Su-35S Flanker-E', designation: '4++ Generation Multirole Fighter',
-    image: null, inService: true, year: 2014, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Russian_Air_Force%2C_RF-81719%2C_Sukhoi_Su-35S_%2849581740157%29.jpg/960px-Russian_Air_Force%2C_RF-81719%2C_Sukhoi_Su-35S_%2849581740157%29.jpg', inService: true, year: 2014, origin: 'Russia',
     crew: 1, operators: ['Russia', 'China', 'Egypt', 'Indonesia', 'Algeria (planned)'],
     unitCost: '$65M', totalBuilt: '150+', status: 'Active',
     specs: {
@@ -857,7 +857,7 @@ export const VEHICLES = [
     id: 'rus-su34',
     country: 'Russia', category: 'aircraft',
     name: 'Su-34 Fullback', designation: 'Fighter-Bomber',
-    image: null, inService: true, year: 2014, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/MAKS2015part1-10_%28cropped%29.jpg/960px-MAKS2015part1-10_%28cropped%29.jpg', inService: true, year: 2014, origin: 'Russia',
     crew: 2, operators: ['Russia'],
     unitCost: '$36–50M', totalBuilt: '150+', status: 'Active',
     specs: {
@@ -884,7 +884,7 @@ export const VEHICLES = [
     id: 'rus-s400',
     country: 'Russia', category: 'missile',
     name: 'S-400 Triumf (NATO: SA-21 Growler)', designation: 'Long-Range Air Defence System',
-    image: null, inService: true, year: 2007, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/%D0%A1-400_%C2%AB%D0%A2%D1%80%D0%B8%D1%83%D0%BC%D1%84%C2%BB.JPG/960px-%D0%A1-400_%C2%AB%D0%A2%D1%80%D0%B8%D1%83%D0%BC%D1%84%C2%BB.JPG', inService: true, year: 2007, origin: 'Russia',
     crew: null, operators: ['Russia', 'China', 'India', 'Turkey', 'Belarus'],
     unitCost: '$500M per battery', totalBuilt: '~60 batteries', status: 'Active',
     specs: {
@@ -910,7 +910,7 @@ export const VEHICLES = [
     id: 'rus-iskander',
     country: 'Russia', category: 'missile',
     name: 'Iskander-M (NATO: SS-26 Stone)', designation: 'Short-Range Ballistic Missile System',
-    image: null, inService: true, year: 2006, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Army2016demo-075.jpg/960px-Army2016demo-075.jpg', inService: true, year: 2006, origin: 'Russia',
     crew: 3, operators: ['Russia', 'Armenia', 'Algeria', 'Belarus'],
     unitCost: '$3M per missile', totalBuilt: '180+ launchers (estimated)', status: 'Active',
     specs: {
@@ -936,7 +936,7 @@ export const VEHICLES = [
     id: 'rus-ka52',
     country: 'Russia', category: 'helicopter',
     name: 'Ka-52 Alligator (NATO: Hokum-B)', designation: 'Attack/Reconnaissance Helicopter',
-    image: null, inService: true, year: 2011, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Russian_Air_Force_Kamov_Ka-50.jpg/960px-Russian_Air_Force_Kamov_Ka-50.jpg', inService: true, year: 2011, origin: 'Russia',
     crew: 2, operators: ['Russia', 'Egypt'],
     unitCost: '$16M', totalBuilt: '200+', status: 'Active',
     specs: {
@@ -963,7 +963,7 @@ export const VEHICLES = [
     id: 'rus-lancet',
     country: 'Russia', category: 'drone',
     name: 'ZALA Lancet-3', designation: 'Loitering Munition / Kamikaze Drone',
-    image: null, inService: true, year: 2022, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/ZALA_Lancet_1.jpg/500px-ZALA_Lancet_1.jpg', inService: true, year: 2022, origin: 'Russia',
     crew: 0, operators: ['Russia'],
     unitCost: '$35,000–50,000 (estimated)', totalBuilt: '10,000+ (estimated)', status: 'Active',
     specs: {
@@ -990,7 +990,7 @@ export const VEHICLES = [
     id: 'rus-orlan10',
     country: 'Russia', category: 'drone',
     name: 'Orlan-10', designation: 'Tactical Reconnaissance UAV',
-    image: null, inService: true, year: 2010, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Orlan-10_%282%29.jpg/960px-Orlan-10_%282%29.jpg', inService: true, year: 2010, origin: 'Russia',
     crew: 0, operators: ['Russia', 'Myanmar'],
     unitCost: '$87,000–120,000', totalBuilt: '2,000+ (estimated)', status: 'Active',
     specs: {
@@ -1016,7 +1016,7 @@ export const VEHICLES = [
     id: 'rus-msta-s',
     country: 'Russia', category: 'artillery',
     name: '2S19M2 Msta-S', designation: 'Self-Propelled Howitzer',
-    image: null, inService: true, year: 1989, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/AlabinoTraining0904-34.jpg/960px-AlabinoTraining0904-34.jpg', inService: true, year: 1989, origin: 'Russia',
     crew: 5, operators: ['Russia', 'Ukraine', 'Belarus', 'Ethiopia', 'Venezuela', 'Algeria'],
     unitCost: '$1.5M', totalBuilt: '1,200+', status: 'Active',
     specs: {
@@ -1042,7 +1042,7 @@ export const VEHICLES = [
     id: 'rus-tos1a',
     country: 'Russia', category: 'artillery',
     name: 'TOS-1A Solntsepyok', designation: 'Heavy Flamethrower / Thermobaric MLRS',
-    image: null, inService: true, year: 2001, origin: 'Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Army2016-487.jpg/960px-Army2016-487.jpg', inService: true, year: 2001, origin: 'Russia',
     crew: 3, operators: ['Russia', 'Iraq', 'Syria', 'Kazakhstan', 'Algeria', 'Azerbaijan'],
     unitCost: '$6.5M (estimated)', totalBuilt: '80+', status: 'Active',
     specs: {
@@ -1070,7 +1070,7 @@ export const VEHICLES = [
     id: 'chn-j20',
     country: 'China', category: 'aircraft',
     name: 'J-20A/B Mighty Dragon', designation: '5th-Generation Stealth Air Superiority Fighter',
-    image: null, inService: true, year: 2017, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/J-20_at_CCAS2022_%2820220827103424%29.jpg/960px-J-20_at_CCAS2022_%2820220827103424%29.jpg', inService: true, year: 2017, origin: 'China',
     crew: 1, operators: ['China'],
     unitCost: '$100–120M (estimated)', totalBuilt: '250+ (estimated 2025)', status: 'Active',
     specs: {
@@ -1098,7 +1098,7 @@ export const VEHICLES = [
     id: 'chn-j16',
     country: 'China', category: 'aircraft',
     name: 'J-16 / J-16D', designation: 'Multirole Strike Fighter / Electronic Warfare',
-    image: null, inService: true, year: 2015, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/PLAAF_J-16_-_2.jpg/960px-PLAAF_J-16_-_2.jpg', inService: true, year: 2015, origin: 'China',
     crew: 2, operators: ['China'],
     unitCost: '$60–70M (estimated)', totalBuilt: '300+ (estimated)', status: 'Active',
     specs: {
@@ -1124,7 +1124,7 @@ export const VEHICLES = [
     id: 'chn-type99a',
     country: 'China', category: 'tank',
     name: 'Type 99A (ZTZ-99A)', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 2001, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/ZTZ-99A_tank_front_20170902.jpg/960px-ZTZ-99A_tank_front_20170902.jpg', inService: true, year: 2001, origin: 'China',
     crew: 3, operators: ['China'],
     unitCost: '$2.5M (estimated)', totalBuilt: '1,200+', status: 'Active',
     specs: {
@@ -1153,7 +1153,7 @@ export const VEHICLES = [
     id: 'chn-vt4',
     country: 'China', category: 'tank',
     name: 'VT-4 (MBT-3000)', designation: 'Export Main Battle Tank',
-    image: null, inService: true, year: 2014, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/NORINCO_VT-4_at_IDEX_2017.jpg/960px-NORINCO_VT-4_at_IDEX_2017.jpg', inService: true, year: 2014, origin: 'China',
     crew: 3, operators: ['Pakistan', 'Thailand', 'Nigeria', 'Bangladesh'],
     unitCost: '$3–4M', totalBuilt: '200+ (estimated exports)', status: 'Active',
     specs: {
@@ -1180,7 +1180,7 @@ export const VEHICLES = [
     id: 'chn-type055',
     country: 'China', category: 'naval',
     name: 'Type 055 Renhai-class', designation: 'Guided Missile Cruiser',
-    image: null, inService: true, year: 2020, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/2/21/PLANS_Nanchang_%28DDG-101%29_20211021.jpg', inService: true, year: 2020, origin: 'China',
     crew: 310, operators: ['China'],
     unitCost: '$920M (estimated)', totalBuilt: '8 (4 more planned)', status: 'Active',
     specs: {
@@ -1206,7 +1206,7 @@ export const VEHICLES = [
     id: 'chn-type003-fujian',
     country: 'China', category: 'naval',
     name: 'Type 003 Fujian', designation: 'Aircraft Carrier (CATOBAR)',
-    image: null, inService: false, year: 2026, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/PLAN_CV-18_Fujian_20250911.jpg', inService: false, year: 2026, origin: 'China',
     crew: 'Estimated 5,000+', operators: ['China'],
     unitCost: '$5B+ (estimated)', totalBuilt: '1 (sea trials)', status: 'Development',
     specs: {
@@ -1231,7 +1231,7 @@ export const VEHICLES = [
     id: 'chn-df21d',
     country: 'China', category: 'missile',
     name: 'DF-21D', designation: 'Anti-Ship Ballistic Missile (ASBM)',
-    image: null, inService: true, year: 2010, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/DF-21A_TEL_-_Chinese_Military_Museum_Beijing.jpg/960px-DF-21A_TEL_-_Chinese_Military_Museum_Beijing.jpg', inService: true, year: 2010, origin: 'China',
     crew: null, operators: ['China'],
     unitCost: '$5–11M (estimated)', totalBuilt: 'Classified',
     status: 'Active',
@@ -1257,7 +1257,7 @@ export const VEHICLES = [
     id: 'chn-df41',
     country: 'China', category: 'missile',
     name: 'DF-41 (CSS-20)', designation: 'Intercontinental Ballistic Missile',
-    image: null, inService: true, year: 2019, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/120%E7%A7%92%E7%9C%8B%E5%A4%A7%E9%98%85%E5%85%B5%E9%9C%87%E6%92%BC%E7%9E%AC%E9%97%B4%EF%BC%811.png/960px-120%E7%A7%92%E7%9C%8B%E5%A4%A7%E9%98%85%E5%85%B5%E9%9C%87%E6%92%BC%E7%9E%AC%E9%97%B4%EF%BC%811.png', inService: true, year: 2019, origin: 'China',
     crew: null, operators: ['China'],
     unitCost: 'Classified', totalBuilt: 'Classified (estimated 100+ missiles)',
     status: 'Active',
@@ -1283,7 +1283,7 @@ export const VEHICLES = [
     id: 'chn-wingloong2',
     country: 'China', category: 'drone',
     name: 'Wing Loong II (CAIG)', designation: 'MALE Armed UAV',
-    image: null, inService: true, year: 2017, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Wing_Loong_II_side_view.jpg/960px-Wing_Loong_II_side_view.jpg', inService: true, year: 2017, origin: 'China',
     crew: 0, operators: ['China', 'UAE', 'Saudi Arabia', 'Egypt', 'Pakistan', 'Nigeria', 'Ethiopia', 'Kazakhstan', 'Algeria', 'Indonesia', 'Serbia', 'Uzbekistan'],
     unitCost: '$1–2M (estimated)', totalBuilt: '250+ (estimated)', status: 'Active',
     specs: {
@@ -1310,7 +1310,7 @@ export const VEHICLES = [
     id: 'chn-gj11',
     country: 'China', category: 'drone',
     name: 'GJ-11 Sharp Sword', designation: 'Stealth Strike UCAV',
-    image: null, inService: true, year: 2023, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Gongji-11_20221020.jpg/960px-Gongji-11_20221020.jpg', inService: true, year: 2023, origin: 'China',
     crew: 0, operators: ['China'],
     unitCost: 'Classified', totalBuilt: 'Classified', status: 'Active',
     specs: {
@@ -1336,7 +1336,7 @@ export const VEHICLES = [
     id: 'chn-z20',
     country: 'China', category: 'helicopter',
     name: 'Z-20', designation: 'Medium Utility Helicopter',
-    image: null, inService: true, year: 2019, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Z-20_Airshow_China_2022_fly.jpg/1280px-Z-20_Airshow_China_2022_fly.jpg', inService: true, year: 2019, origin: 'China',
     crew: 2, operators: ['China'],
     unitCost: '$20M (estimated)', totalBuilt: '200+ (estimated)', status: 'Active',
     specs: {
@@ -1363,7 +1363,7 @@ export const VEHICLES = [
     id: 'chn-plz05',
     country: 'China', category: 'artillery',
     name: 'PLZ-05 / Type 05', designation: 'Self-Propelled Howitzer',
-    image: null, inService: true, year: 2005, origin: 'China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/PLZ-05_Self-Propelled_Artillery_20170919.jpg/960px-PLZ-05_Self-Propelled_Artillery_20170919.jpg', inService: true, year: 2005, origin: 'China',
     crew: 5, operators: ['China'],
     unitCost: '$2.5M (estimated)', totalBuilt: '400+ (estimated)', status: 'Active',
     specs: {
@@ -1392,7 +1392,7 @@ export const VEHICLES = [
     id: 'uk-challenger3',
     country: 'UK', category: 'tank',
     name: 'Challenger 3', designation: 'Main Battle Tank',
-    image: null, inService: false, year: 2027, origin: 'UK',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Challenger_3_ATD.jpg/960px-Challenger_3_ATD.jpg', inService: false, year: 2027, origin: 'UK',
     crew: 4, operators: ['UK'],
     unitCost: '$5.5M (upgrade cost per unit)', totalBuilt: '148 (upgraded from CR2)', status: 'Development',
     specs: {
@@ -1420,7 +1420,7 @@ export const VEHICLES = [
     id: 'uk-typhoon',
     country: 'UK', category: 'aircraft',
     name: 'Eurofighter Typhoon FGR.4', designation: 'Multirole Fighter',
-    image: null, inService: true, year: 2003, origin: 'UK/Germany/Italy/Spain',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg/960px-RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg', inService: true, year: 2003, origin: 'UK/Germany/Italy/Spain',
     crew: 1, operators: ['UK', 'Germany', 'Italy', 'Spain', 'Saudi Arabia', 'Qatar', 'Kuwait', 'Oman', 'Austria'],
     unitCost: '$105M', totalBuilt: '700+', status: 'Active',
     specs: {
@@ -1448,7 +1448,7 @@ export const VEHICLES = [
     id: 'uk-tempest-gcap',
     country: 'UK', category: 'aircraft',
     name: 'GCAP (Global Combat Air Programme)', designation: '6th-Generation Fighter',
-    image: null, inService: false, year: 2035, origin: 'UK/Japan/Italy',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Tempest_fighter_in_hangar.jpg/960px-Tempest_fighter_in_hangar.jpg', inService: false, year: 2035, origin: 'UK/Japan/Italy',
     crew: 1, operators: ['UK', 'Japan', 'Italy'],
     unitCost: 'TBD (programme: $37B+)', totalBuilt: '0 (design phase)', status: 'Development',
     specs: {
@@ -1475,7 +1475,7 @@ export const VEHICLES = [
     id: 'uk-astute-ssn',
     country: 'UK', category: 'naval',
     name: 'Astute-class SSN', designation: 'Nuclear Attack Submarine',
-    image: null, inService: true, year: 2010, origin: 'UK',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/HMS_Ambush_long.jpg/960px-HMS_Ambush_long.jpg', inService: true, year: 2010, origin: 'UK',
     crew: 98, operators: ['UK'],
     unitCost: '$2.1B', totalBuilt: '5 in service, 7 planned', status: 'Active',
     specs: {
@@ -1500,7 +1500,7 @@ export const VEHICLES = [
     id: 'uk-type26',
     country: 'UK', category: 'naval',
     name: 'Type 26 City-class Frigate', designation: 'Anti-Submarine Warfare Frigate',
-    image: null, inService: true, year: 2024, origin: 'UK',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/HMS_Glasgow_%2852567292390%29.jpg/960px-HMS_Glasgow_%2852567292390%29.jpg', inService: true, year: 2024, origin: 'UK',
     crew: 157, operators: ['UK', 'Australia (Hunter-class)', 'Canada (Type 26 derivative)'],
     unitCost: '$1.5B', totalBuilt: '2 in service, 8 planned (UK); 9 Australia; 15 Canada', status: 'Active',
     specs: {
@@ -1530,7 +1530,7 @@ export const VEHICLES = [
     id: 'fra-rafale',
     country: 'France', category: 'aircraft',
     name: 'Dassault Rafale F4', designation: 'Omnirole Fighter',
-    image: null, inService: true, year: 2001, origin: 'France',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Rafale_-_RIAT_2009_%283751416421%29.jpg/960px-Rafale_-_RIAT_2009_%283751416421%29.jpg', inService: true, year: 2001, origin: 'France',
     crew: 1, operators: ['France', 'Egypt', 'Qatar', 'India', 'Greece', 'UAE', 'Croatia', 'Indonesia', 'Serbia'],
     unitCost: '$100M (F4 variant)', totalBuilt: '350+', status: 'Active',
     specs: {
@@ -1559,7 +1559,7 @@ export const VEHICLES = [
     id: 'fra-leclerc',
     country: 'France', category: 'tank',
     name: 'AMX-56 Leclerc XLR', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 1992, origin: 'France',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Leclerc_XLR_expos%C3%A9_%C3%A0_l%27Eurosatory_de_2022.jpg/960px-Leclerc_XLR_expos%C3%A9_%C3%A0_l%27Eurosatory_de_2022.jpg', inService: true, year: 1992, origin: 'France',
     crew: 3, operators: ['France', 'UAE'],
     unitCost: '$12.6M (new)', totalBuilt: '862', status: 'Active',
     specs: {
@@ -1587,7 +1587,7 @@ export const VEHICLES = [
     id: 'fra-caesar',
     country: 'France', category: 'artillery',
     name: 'CAESAR Mk II', designation: 'Self-Propelled Wheeled Howitzer',
-    image: null, inService: true, year: 2003, origin: 'France',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/French_Caesar_self-propelled_howitzer_in_Iraq.jpg/960px-French_Caesar_self-propelled_howitzer_in_Iraq.jpg', inService: true, year: 2003, origin: 'France',
     crew: 5, operators: ['France', 'Indonesia', 'Saudi Arabia', 'Thailand', 'Denmark', 'Czech Republic', 'Lithuania', 'Belgium', 'Ukraine', 'Morocco'],
     unitCost: '$5M', totalBuilt: '500+', status: 'Active',
     specs: {
@@ -1617,7 +1617,7 @@ export const VEHICLES = [
     id: 'deu-leopard2a7',
     country: 'Germany', category: 'tank',
     name: 'Leopard 2A7V / 2A8', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 1979, origin: 'Germany',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/960px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG', inService: true, year: 1979, origin: 'Germany',
     crew: 4, operators: ['Germany', 'Netherlands', 'Denmark', 'Norway', 'Sweden', 'Finland', 'Poland', 'Hungary', 'Turkey', 'Greece', 'Spain', 'Portugal', 'Chile', 'Singapore', 'Canada', 'Ukraine', 'Czech Republic', 'Austria', 'Switzerland', 'Indonesia'],
     unitCost: '$8M (A7)', totalBuilt: '3,600+ (all variants)', status: 'Active',
     specs: {
@@ -1646,7 +1646,7 @@ export const VEHICLES = [
     id: 'deu-puma-ifv',
     country: 'Germany', category: 'ifv',
     name: 'Puma IFV', designation: 'Infantry Fighting Vehicle',
-    image: null, inService: true, year: 2015, origin: 'Germany',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Puma%2C_first_series.jpg/960px-Puma%2C_first_series.jpg', inService: true, year: 2015, origin: 'Germany',
     crew: 3, operators: ['Germany'],
     unitCost: '$9–17M', totalBuilt: '350', status: 'Active',
     specs: {
@@ -1675,7 +1675,7 @@ export const VEHICLES = [
     id: 'deu-pzh2000',
     country: 'Germany', category: 'artillery',
     name: 'Panzerhaubitze 2000', designation: 'Self-Propelled Howitzer',
-    image: null, inService: true, year: 1998, origin: 'Germany',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lithuanian_PzH_2000_%282%29.jpg/960px-Lithuanian_PzH_2000_%282%29.jpg', inService: true, year: 1998, origin: 'Germany',
     crew: 5, operators: ['Germany', 'Netherlands', 'Italy', 'Greece', 'Lithuania', 'Hungary', 'Croatia', 'Qatar', 'Ukraine'],
     unitCost: '$4.5M', totalBuilt: '360+', status: 'Active',
     specs: {
@@ -1701,7 +1701,7 @@ export const VEHICLES = [
     id: 'deu-iris-t',
     country: 'Germany', category: 'missile',
     name: 'IRIS-T SLM', designation: 'Medium-Range Air Defence System',
-    image: null, inService: true, year: 2022, origin: 'Germany',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/MAN_10_t_mil_gl_IRIS-T_SL.jpg/960px-MAN_10_t_mil_gl_IRIS-T_SL.jpg', inService: true, year: 2022, origin: 'Germany',
     crew: null, operators: ['Germany', 'Ukraine', 'Egypt', 'Norway'],
     unitCost: '$150M per battery', totalBuilt: '10+ batteries', status: 'Active',
     specs: {
@@ -1730,7 +1730,7 @@ export const VEHICLES = [
     id: 'isr-merkava4',
     country: 'Israel', category: 'tank',
     name: 'Merkava Mk.4M Windbreaker', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 2004, origin: 'Israel',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Merkava-Mk4m-whiteback01.jpg/960px-Merkava-Mk4m-whiteback01.jpg', inService: true, year: 2004, origin: 'Israel',
     crew: 4, operators: ['Israel'],
     unitCost: '$6M', totalBuilt: '660+', status: 'Active',
     specs: {
@@ -1760,7 +1760,7 @@ export const VEHICLES = [
     id: 'isr-iron-dome',
     country: 'Israel', category: 'missile',
     name: 'Iron Dome', designation: 'Short-Range Air Defence System',
-    image: null, inService: true, year: 2011, origin: 'Israel',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/IDF_Iron_Dome_2021.jpg/960px-IDF_Iron_Dome_2021.jpg', inService: true, year: 2011, origin: 'Israel',
     crew: null, operators: ['Israel', 'USA (2 batteries)'],
     unitCost: '$50M per battery; $40,000–100,000 per Tamir interceptor', totalBuilt: '10+ batteries (Israel)', status: 'Active',
     specs: {
@@ -1786,7 +1786,7 @@ export const VEHICLES = [
     id: 'isr-iron-beam',
     country: 'Israel', category: 'missile',
     name: 'Iron Beam', designation: 'Directed Energy Weapon / Laser Air Defence',
-    image: null, inService: false, year: 2025, origin: 'Israel',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Demonstrator_Laser_Weapon_System_at_White_Sands_Missile_Range_2017.jpg/960px-Demonstrator_Laser_Weapon_System_at_White_Sands_Missile_Range_2017.jpg', inService: false, year: 2025, origin: 'Israel',
     crew: null, operators: ['Israel'],
     unitCost: '$3.50 per shot (estimated)', totalBuilt: '0 (entering service 2025)', status: 'Development',
     specs: {
@@ -1811,7 +1811,7 @@ export const VEHICLES = [
     id: 'isr-arrow3',
     country: 'Israel', category: 'missile',
     name: 'Arrow 3', designation: 'Exoatmospheric Anti-Ballistic Missile',
-    image: null, inService: true, year: 2017, origin: 'Israel/USA',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg/960px-IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg', inService: true, year: 2017, origin: 'Israel/USA',
     crew: null, operators: ['Israel', 'Germany (ordered)'],
     unitCost: '$3M per interceptor (estimated)', totalBuilt: 'Classified', status: 'Active',
     specs: {
@@ -1836,7 +1836,7 @@ export const VEHICLES = [
     id: 'isr-spike',
     country: 'Israel', category: 'missile',
     name: 'Spike ATGM Family', designation: 'Anti-Tank Guided Missile',
-    image: null, inService: true, year: 1997, origin: 'Israel',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/8/86/SPIKE_ATGM.jpg', inService: true, year: 1997, origin: 'Israel',
     crew: 2, operators: ['Israel', 'Germany', 'Spain', 'Italy', 'Netherlands', 'Poland', 'Finland', 'South Korea', 'Singapore', 'India', 'Chile', 'Colombia', 'Australia'],
     unitCost: '$100,000–250,000 per missile', totalBuilt: '35,000+', status: 'Active',
     specs: {
@@ -1866,7 +1866,7 @@ export const VEHICLES = [
     id: 'ind-tejas-mk1a',
     country: 'India', category: 'aircraft',
     name: 'HAL Tejas Mk.1A', designation: 'Light Combat Aircraft',
-    image: null, inService: true, year: 2016, origin: 'India',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/HAL_Tejas_%28LA-5018%29_of_Squadron_18_Flying_Bullets.jpg/960px-HAL_Tejas_%28LA-5018%29_of_Squadron_18_Flying_Bullets.jpg', inService: true, year: 2016, origin: 'India',
     crew: 1, operators: ['India'],
     unitCost: '$45M', totalBuilt: '40+ (Mk.1), 83 Mk.1A on order', status: 'Active',
     specs: {
@@ -1892,7 +1892,7 @@ export const VEHICLES = [
     id: 'ind-arjun-mk1a',
     country: 'India', category: 'tank',
     name: 'Arjun Mk.1A', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 2004, origin: 'India',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Arjun_MK1A_field_trials.jpg/960px-Arjun_MK1A_field_trials.jpg', inService: true, year: 2004, origin: 'India',
     crew: 4, operators: ['India'],
     unitCost: '$6.7M', totalBuilt: '124 (Mk.1) + 118 Mk.1A ordered', status: 'Active',
     specs: {
@@ -1919,7 +1919,7 @@ export const VEHICLES = [
     id: 'ind-brahmos',
     country: 'India', category: 'missile',
     name: 'BrahMos / BrahMos-II', designation: 'Supersonic Cruise Missile',
-    image: null, inService: true, year: 2006, origin: 'India/Russia',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/The_Brahmos_Missile_system_passes_through_the_Rajpath_during_the_full_dress_rehearsal_for_the_Republic_Day_Parade_in_New_Delhi_on_January_23%2C2006.jpg/960px-The_Brahmos_Missile_system_passes_through_the_Rajpath_during_the_full_dress_rehearsal_for_the_Republic_Day_Parade_in_New_Delhi_on_January_23%2C2006.jpg', inService: true, year: 2006, origin: 'India/Russia',
     crew: null, operators: ['India', 'Philippines'],
     unitCost: '$2.73M per missile', totalBuilt: '1,000+ (estimated)', status: 'Active',
     specs: {
@@ -1944,7 +1944,7 @@ export const VEHICLES = [
     id: 'ind-ins-vikrant',
     country: 'India', category: 'naval',
     name: 'INS Vikrant (IAC-1)', designation: 'Aircraft Carrier (STOBAR)',
-    image: null, inService: true, year: 2022, origin: 'India',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/IAC1_Vikrant_at_Cochin.jpg/960px-IAC1_Vikrant_at_Cochin.jpg', inService: true, year: 2022, origin: 'India',
     crew: 1600, operators: ['India'],
     unitCost: '$3B', totalBuilt: '1', status: 'Active',
     specs: {
@@ -1973,7 +1973,7 @@ export const VEHICLES = [
     id: 'tur-bayraktar-tb2',
     country: 'Turkey', category: 'drone',
     name: 'Bayraktar TB2', designation: 'Tactical Armed UAV',
-    image: null, inService: true, year: 2015, origin: 'Turkey',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Bayraktar_TB2_Runway.jpg/1280px-Bayraktar_TB2_Runway.jpg', inService: true, year: 2015, origin: 'Turkey',
     crew: 0, operators: ['Turkey', 'Ukraine', 'Azerbaijan', 'Libya (GNA)', 'Qatar', 'Morocco', 'Turkmenistan', 'Ethiopia', 'Poland', 'Albania', 'Djibouti', 'Togo', 'Niger', 'Romania', 'Kyrgyzstan'],
     unitCost: '$5M (system)', totalBuilt: '500+', status: 'Active',
     specs: {
@@ -2001,7 +2001,7 @@ export const VEHICLES = [
     id: 'tur-bayraktar-akinci',
     country: 'Turkey', category: 'drone',
     name: 'Bayraktar Akıncı', designation: 'Heavy Strike UCAV',
-    image: null, inService: true, year: 2023, origin: 'Turkey',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Bayraktar_Ak%C4%B1nc%C4%B1_of_the_Azerbaijani_Air_Force.jpg', inService: true, year: 2023, origin: 'Turkey',
     crew: 0, operators: ['Turkey', 'Pakistan (ordered)'],
     unitCost: '$20M (estimated)', totalBuilt: '30+ (estimated)', status: 'Active',
     specs: {
@@ -2030,7 +2030,7 @@ export const VEHICLES = [
     id: 'tur-kaan',
     country: 'Turkey', category: 'aircraft',
     name: 'TAI KAAN (TF-X)', designation: '5th-Generation Fighter',
-    image: null, inService: false, year: 2028, origin: 'Turkey',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/IMG-TAI-TFX.jpg/960px-IMG-TAI-TFX.jpg', inService: false, year: 2028, origin: 'Turkey',
     crew: 1, operators: ['Turkey'],
     unitCost: '$80M+ (estimated)', totalBuilt: '1 prototype (first flight Feb 2024)', status: 'Development',
     specs: {
@@ -2057,7 +2057,7 @@ export const VEHICLES = [
     id: 'tur-altay',
     country: 'Turkey', category: 'tank',
     name: 'Altay MBT', designation: 'Main Battle Tank',
-    image: null, inService: false, year: 2025, origin: 'Turkey',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Altay_Tank.jpg/500px-Altay_Tank.jpg', inService: false, year: 2025, origin: 'Turkey',
     crew: 4, operators: ['Turkey'],
     unitCost: '$13.75M (estimated)', totalBuilt: '2 prototypes (250 ordered)', status: 'Development',
     specs: {
@@ -2089,7 +2089,7 @@ export const VEHICLES = [
     id: 'kor-k2-black-panther',
     country: 'South Korea', category: 'tank',
     name: 'K2 Black Panther', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 2014, origin: 'South Korea',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/U.S.%2C_ROK_forces_forge_interoperability_with_combined_arms_exercise_-_8_of_8.jpg/960px-U.S.%2C_ROK_forces_forge_interoperability_with_combined_arms_exercise_-_8_of_8.jpg', inService: true, year: 2014, origin: 'South Korea',
     crew: 3, operators: ['South Korea', 'Poland (K2PL ordered)'],
     unitCost: '$8.5M', totalBuilt: '260+ (more on order)', status: 'Active',
     specs: {
@@ -2118,7 +2118,7 @@ export const VEHICLES = [
     id: 'kor-k9-thunder',
     country: 'South Korea', category: 'artillery',
     name: 'K9A2 Thunder', designation: 'Self-Propelled Howitzer',
-    image: null, inService: true, year: 1999, origin: 'South Korea',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/2011.2.17_%EC%9C%A1%EA%B5%B06%ED%8F%AC%EB%B3%91%EC%97%AC%EB%8B%A8_k-9%2Ck-55_%EC%9E%90%EC%A3%BC%ED%8F%AC%EC%82%AC%EA%B2%A9_%287633864346%29.jpg/960px-2011.2.17_%EC%9C%A1%EA%B5%B06%ED%8F%AC%EB%B3%91%EC%97%AC%EB%8B%A8_k-9%2Ck-55_%EC%9E%90%EC%A3%BC%ED%8F%AC%EC%82%AC%EA%B2%A9_%287633864346%29.jpg', inService: true, year: 1999, origin: 'South Korea',
     crew: 5, operators: ['South Korea', 'Turkey (T-155 Fırtına)', 'Poland', 'India', 'Norway', 'Finland', 'Egypt', 'Estonia', 'Australia', 'Romania', 'UK'],
     unitCost: '$3.5M', totalBuilt: '1,700+', status: 'Active',
     specs: {
@@ -2144,7 +2144,7 @@ export const VEHICLES = [
     id: 'kor-kf21',
     country: 'South Korea', category: 'aircraft',
     name: 'KAI KF-21 Boramae', designation: '4.5th-Generation Fighter',
-    image: null, inService: false, year: 2026, origin: 'South Korea',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/A_South_Korean_Air_Force_KF-21%2C_developed_by_Korea_Aerospace_Industries%2C_performs_an_aerial_demonstration_at_the_Aerospace_and_Defense_Exhibition_in_Seoul%2C_South_Korea%2C_October_21%2C_2023.jpg/960px-thumbnail.jpg', inService: false, year: 2026, origin: 'South Korea',
     crew: 1, operators: ['South Korea', 'Indonesia (partner, 20% share)'],
     unitCost: '$65M (estimated)', totalBuilt: '6 prototypes (120 planned)', status: 'Development',
     specs: {
@@ -2175,7 +2175,7 @@ export const VEHICLES = [
     id: 'jpn-type10',
     country: 'Japan', category: 'tank',
     name: 'Type 10 (TKX)', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 2012, origin: 'Japan',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Type10MBT.jpg/960px-Type10MBT.jpg', inService: true, year: 2012, origin: 'Japan',
     crew: 3, operators: ['Japan'],
     unitCost: '$9.4M', totalBuilt: '117', status: 'Active',
     specs: {
@@ -2204,7 +2204,7 @@ export const VEHICLES = [
     id: 'jpn-soryu',
     country: 'Japan', category: 'naval',
     name: 'Taigei-class SS', designation: 'Attack Submarine (Diesel-Electric)',
-    image: null, inService: true, year: 2022, origin: 'Japan',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/38/Naming_and_Launch_Ceremony_of_SS_Taigei.jpg', inService: true, year: 2022, origin: 'Japan',
     crew: 70, operators: ['Japan'],
     unitCost: '$700M', totalBuilt: '3 (7 planned)', status: 'Active',
     specs: {
@@ -2233,7 +2233,7 @@ export const VEHICLES = [
     id: 'pak-jf17',
     country: 'Pakistan', category: 'aircraft',
     name: 'JF-17 Thunder Block 3', designation: 'Multirole Light Fighter',
-    image: null, inService: true, year: 2007, origin: 'Pakistan/China',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Pakistan_Air_Force_Chengdu_JF-17_Gu.jpg/960px-Pakistan_Air_Force_Chengdu_JF-17_Gu.jpg', inService: true, year: 2007, origin: 'Pakistan/China',
     crew: 1, operators: ['Pakistan', 'Myanmar', 'Nigeria'],
     unitCost: '$25–32M', totalBuilt: '150+ (Pakistan)', status: 'Active',
     specs: {
@@ -2265,7 +2265,7 @@ export const VEHICLES = [
     id: 'irn-shahed136',
     country: 'Iran', category: 'drone',
     name: 'Shahed-136 / Geranium-2', designation: 'One-Way Attack Drone (OWA)',
-    image: null, inService: true, year: 2021, origin: 'Iran',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/2023_IRGC_Aerospace_Force_achievements_Exhibition_in_Kermanshah_%28018%29.jpg/960px-2023_IRGC_Aerospace_Force_achievements_Exhibition_in_Kermanshah_%28018%29.jpg', inService: true, year: 2021, origin: 'Iran',
     crew: 0, operators: ['Iran', 'Russia (Geranium-2)', 'Houthi (Wa\'ed)'],
     unitCost: '$20,000–50,000 (estimated)', totalBuilt: '5,000+ (estimated)', status: 'Active',
     specs: {
@@ -2291,7 +2291,7 @@ export const VEHICLES = [
     id: 'irn-fattah',
     country: 'Iran', category: 'missile',
     name: 'Fattah-1 / Fattah-2', designation: 'Hypersonic Medium-Range Ballistic Missile',
-    image: null, inService: true, year: 2023, origin: 'Iran',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Unveiling_ceremony_of_Fattah_hypersonic_missile_%2864%29.jpg/960px-Unveiling_ceremony_of_Fattah_hypersonic_missile_%2864%29.jpg', inService: true, year: 2023, origin: 'Iran',
     crew: null, operators: ['Iran'],
     unitCost: 'Unknown', totalBuilt: 'Classified', status: 'Active',
     specs: {
@@ -2319,7 +2319,7 @@ export const VEHICLES = [
     id: 'ukr-neptune',
     country: 'Ukraine', category: 'missile',
     name: 'R-360 Neptune', designation: 'Anti-Ship Cruise Missile',
-    image: null, inService: true, year: 2021, origin: 'Ukraine',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Neptune_R-360_missile%2C_Kyiv_2021%2C_05.jpg/960px-Neptune_R-360_missile%2C_Kyiv_2021%2C_05.jpg', inService: true, year: 2021, origin: 'Ukraine',
     crew: null, operators: ['Ukraine'],
     unitCost: '$1–2M (estimated)', totalBuilt: 'Classified', status: 'Active',
     specs: {
@@ -2343,7 +2343,7 @@ export const VEHICLES = [
     id: 'ukr-fpv-drones',
     country: 'Ukraine', category: 'drone',
     name: 'FPV Kamikaze Drones (various)', designation: 'First-Person-View Attack Drone',
-    image: null, inService: true, year: 2022, origin: 'Ukraine',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/2025-06-01_DroneAttack_SBU_%28Drones_in_containers%29.jpg', inService: true, year: 2022, origin: 'Ukraine',
     crew: 0, operators: ['Ukraine', 'Russia'],
     unitCost: '$300–$500', totalBuilt: '1,000,000+ (both sides combined, 2022–2025)', status: 'Active',
     specs: {
@@ -2373,7 +2373,7 @@ export const VEHICLES = [
     id: 'swe-gripen-e',
     country: 'Sweden', category: 'aircraft',
     name: 'Saab JAS 39E Gripen', designation: 'Multirole Fighter',
-    image: null, inService: true, year: 2024, origin: 'Sweden',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg/960px-Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg', inService: true, year: 2024, origin: 'Sweden',
     crew: 1, operators: ['Sweden', 'Brazil', 'Czech Republic (C/D)', 'Hungary (C/D)', 'South Africa (C/D)', 'Thailand (C/D)'],
     unitCost: '$85M (Gripen E)', totalBuilt: '271 (all variants)', status: 'Active',
     specs: {
@@ -2401,7 +2401,7 @@ export const VEHICLES = [
     id: 'swe-cv90',
     country: 'Sweden', category: 'ifv',
     name: 'CV90 Mk IV', designation: 'Infantry Fighting Vehicle',
-    image: null, inService: true, year: 1993, origin: 'Sweden',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Stridsfordon_90_Revinge_2012-2.jpg/960px-Stridsfordon_90_Revinge_2012-2.jpg', inService: true, year: 1993, origin: 'Sweden',
     crew: 3, operators: ['Sweden', 'Norway', 'Finland', 'Denmark', 'Netherlands', 'Estonia', 'Switzerland', 'Ukraine'],
     unitCost: '$4–6M', totalBuilt: '1,500+', status: 'Active',
     specs: {
@@ -2434,7 +2434,7 @@ export const VEHICLES = [
     id: 'ita-ariete',
     country: 'Italy', category: 'tank',
     name: 'C1 Ariete', designation: 'Main Battle Tank',
-    image: null, inService: true, year: 1995, origin: 'Italy',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Italian_Army_-_4th_Tank_Regiment_-_Ariete_tanks_during_an_exercise_at_Capo_Teulada_October_2022.jpg/960px-Italian_Army_-_4th_Tank_Regiment_-_Ariete_tanks_during_an_exercise_at_Capo_Teulada_October_2022.jpg', inService: true, year: 1995, origin: 'Italy',
     crew: 4, operators: ['Italy'],
     unitCost: '$7.5M', totalBuilt: '200', status: 'Active',
     specs: {
@@ -2460,7 +2460,7 @@ export const VEHICLES = [
     id: 'ita-fremm',
     country: 'Italy', category: 'naval',
     name: 'FREMM Bergamini-class', designation: 'Multirole Frigate',
-    image: null, inService: true, year: 2013, origin: 'Italy/France',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Nave_Bergamini_3.JPG/960px-Nave_Bergamini_3.JPG', inService: true, year: 2013, origin: 'Italy/France',
     crew: 200, operators: ['Italy', 'France', 'Egypt', 'USA (Constellation-class based on FREMM)'],
     unitCost: '$600–750M', totalBuilt: '22 (Italy 10, France 8, Egypt 2 + 2 building)', status: 'Active',
     specs: {
@@ -2490,7 +2490,7 @@ export const VEHICLES = [
     id: 'twn-hf2e',
     country: 'Taiwan', category: 'missile',
     name: 'Hsiung Feng IIE / III', designation: 'Anti-Ship / Land-Attack Cruise Missile',
-    image: null, inService: true, year: 2011, origin: 'Taiwan',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Hsiung_Feng_III_Anti-Ship_Missile_Display_in_Chengkungling_20111009a.jpg/960px-Hsiung_Feng_III_Anti-Ship_Missile_Display_in_Chengkungling_20111009a.jpg', inService: true, year: 2011, origin: 'Taiwan',
     crew: null, operators: ['Taiwan'],
     unitCost: '$2.5M (estimated)', totalBuilt: '500+ (all variants, estimated)', status: 'Active',
     specs: {
@@ -2519,7 +2519,7 @@ export const VEHICLES = [
     id: 'aus-boxer-crv',
     country: 'Australia', category: 'ifv',
     name: 'Boxer CRV', designation: 'Combat Reconnaissance Vehicle',
-    image: null, inService: true, year: 2022, origin: 'Germany',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/DSCN7330-crop_-_Copy.jpg/960px-DSCN7330-crop_-_Copy.jpg', inService: true, year: 2022, origin: 'Germany',
     crew: 3, operators: ['Australia', 'Germany', 'Netherlands', 'Lithuania', 'UK (planned)'],
     unitCost: '$5.2M', totalBuilt: '211 (Australian order)', status: 'Active',
     specs: {
@@ -2551,7 +2551,7 @@ export const VEHICLES = [
     id: 'prk-hwasong17',
     country: 'North Korea', category: 'missile',
     name: 'Hwasong-17', designation: 'Intercontinental Ballistic Missile',
-    image: null, inService: true, year: 2022, origin: 'North Korea',
+    image: 'https://www.missiledefenseadvocacy.org/wp-content/uploads/2023/02/Hwasong-17-1024x634.webp', inService: true, year: 2022, origin: 'North Korea',
     crew: null, operators: ['North Korea'],
     unitCost: 'Unknown', totalBuilt: 'Classified (small numbers)', status: 'Active',
     specs: {
@@ -2576,7 +2576,7 @@ export const VEHICLES = [
     id: 'prk-kn23',
     country: 'North Korea', category: 'missile',
     name: 'KN-23 (Hwasong-11Ga)', designation: 'Short-Range Ballistic Missile',
-    image: null, inService: true, year: 2019, origin: 'North Korea',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Diagram_of_KN-23.svg/500px-Diagram_of_KN-23.svg.png', inService: true, year: 2019, origin: 'North Korea',
     crew: null, operators: ['North Korea', 'Russia (supplied for Ukraine war)'],
     unitCost: '$2–3M (estimated)', totalBuilt: 'Hundreds (estimated)', status: 'Active',
     specs: {
@@ -2605,7 +2605,7 @@ export const VEHICLES = [
     id: 'pol-borsuk',
     country: 'Poland', category: 'ifv',
     name: 'Borsuk IFV', designation: 'Infantry Fighting Vehicle',
-    image: null, inService: false, year: 2025, origin: 'Poland',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/BWP_Borsuk_-_221114-Z-YU201-1007.jpg/960px-BWP_Borsuk_-_221114-Z-YU201-1007.jpg', inService: false, year: 2025, origin: 'Poland',
     crew: 3, operators: ['Poland'],
     unitCost: '$4–5M (estimated)', totalBuilt: '1 prototype (1,000+ planned)', status: 'Development',
     specs: {
@@ -2637,7 +2637,7 @@ export const VEHICLES = [
     id: 'sau-typhoon',
     country: 'Saudi Arabia', category: 'aircraft',
     name: 'Eurofighter Typhoon', designation: 'Multirole Fighter',
-    image: null, inService: true, year: 2009, origin: 'UK/Germany/Italy/Spain',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg/960px-RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg', inService: true, year: 2009, origin: 'UK/Germany/Italy/Spain',
     crew: 1, operators: ['Saudi Arabia'],
     unitCost: '$120M (Saudi contract)', totalBuilt: '72 (Saudi order)', status: 'Active',
     specs: {
@@ -2666,7 +2666,7 @@ export const VEHICLES = [
     id: 'bra-guarani',
     country: 'Brazil', category: 'ifv',
     name: 'Iveco VBTP-MR Guarani', designation: 'Armoured Personnel Carrier',
-    image: null, inService: true, year: 2012, origin: 'Brazil/Italy',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/19_04_2022-_Dia_do_Ex%C3%A9rcito_Brasileiro_%2852016606453%29.jpg/960px-19_04_2022-_Dia_do_Ex%C3%A9rcito_Brasileiro_%2852016606453%29.jpg', inService: true, year: 2012, origin: 'Brazil/Italy',
     crew: 2, operators: ['Brazil', 'Philippines (planned)', 'Lebanon'],
     unitCost: '$1.3M', totalBuilt: '400+ (2,044 planned)', status: 'Active',
     specs: {
@@ -2698,7 +2698,7 @@ export const VEHICLES = [
     id: 'zaf-rooivalk',
     country: 'South Africa', category: 'helicopter',
     name: 'Denel Rooivalk Mk II', designation: 'Attack Helicopter',
-    image: null, inService: true, year: 1999, origin: 'South Africa',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Rooivalk_in_flight_%28cropped%29.jpg', inService: true, year: 1999, origin: 'South Africa',
     crew: 2, operators: ['South Africa'],
     unitCost: '$40M', totalBuilt: '12', status: 'Active',
     specs: {
@@ -2728,7 +2728,7 @@ export const VEHICLES = [
     id: 'egy-mistral',
     country: 'Egypt', category: 'naval',
     name: 'Mistral-class LHD (ENS Gamal Abdel Nasser / ENS Anwar El Sadat)', designation: 'Amphibious Assault Ship',
-    image: null, inService: true, year: 2016, origin: 'France',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/%D0%A1%D0%B5%D0%B2%D0%B0%D1%81%D1%82%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C_-_Saint-Nazaire_d%C3%A9cembre_2014.jpg/960px-%D0%A1%D0%B5%D0%B2%D0%B0%D1%81%D1%82%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C_-_Saint-Nazaire_d%C3%A9cembre_2014.jpg', inService: true, year: 2016, origin: 'France',
     crew: 160, operators: ['Egypt', 'France (3 ships)'],
     unitCost: '$950M (for 2 ships)', totalBuilt: '2 (Egyptian Navy)', status: 'Active',
     specs: {
@@ -2757,7 +2757,7 @@ export const VEHICLES = [
     id: 'nor-nsm',
     country: 'Norway', category: 'missile',
     name: 'Naval Strike Missile (NSM) / Joint Strike Missile (JSM)', designation: 'Anti-Ship / Land-Attack Cruise Missile',
-    image: null, inService: true, year: 2012, origin: 'Norway',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Naval_Strike_Missile_launch.png/960px-Naval_Strike_Missile_launch.png', inService: true, year: 2012, origin: 'Norway',
     crew: null, operators: ['Norway', 'USA', 'Poland', 'Germany', 'Malaysia', 'Romania', 'Australia', 'Canada', 'Spain', 'Japan', 'UK'],
     unitCost: '$2.2M per missile', totalBuilt: '1,000+ (estimated)', status: 'Active',
     specs: {
@@ -2788,7 +2788,7 @@ export const VEHICLES = [
     id: 'fin-patria-amv',
     country: 'Finland', category: 'ifv',
     name: 'Patria AMV XP', designation: 'Armoured Modular Vehicle',
-    image: null, inService: true, year: 2004, origin: 'Finland',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Pansarterr%C3%A4ngbil_360_Revinge_2015-7.jpg/960px-Pansarterr%C3%A4ngbil_360_Revinge_2015-7.jpg', inService: true, year: 2004, origin: 'Finland',
     crew: 2, operators: ['Finland', 'Poland', 'South Africa', 'Croatia', 'Slovenia', 'UAE', 'Sweden', 'Latvia'],
     unitCost: '$2.5–4M', totalBuilt: '1,600+ (all variants)', status: 'Active',
     specs: {
@@ -2820,7 +2820,7 @@ export const VEHICLES = [
     id: 'esp-f110',
     country: 'Spain', category: 'naval',
     name: 'F-110 Bonifaz-class', designation: 'Multirole Frigate',
-    image: null, inService: false, year: 2027, origin: 'Spain',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Clase_Bonifaz_F110.png/1280px-Clase_Bonifaz_F110.png', inService: false, year: 2027, origin: 'Spain',
     crew: 154, operators: ['Spain', 'Saudi Arabia (possible)'],
     unitCost: '$1B (estimated)', totalBuilt: '0 (5 planned)', status: 'Development',
     specs: {
@@ -2849,7 +2849,7 @@ export const VEHICLES = [
     id: 'sgp-hunter-afv',
     country: 'Singapore', category: 'ifv',
     name: 'Hunter AFV', designation: 'Next-Generation Armoured Fighting Vehicle',
-    image: null, inService: true, year: 2019, origin: 'Singapore',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Hunter_AFV_of_the_Singapore_Army.jpg/960px-Hunter_AFV_of_the_Singapore_Army.jpg', inService: true, year: 2019, origin: 'Singapore',
     crew: 3, operators: ['Singapore'],
     unitCost: '$5M+ (estimated)', totalBuilt: '50+ (200 planned)', status: 'Active',
     specs: {
@@ -2882,7 +2882,7 @@ export const VEHICLES = [
     id: 'grc-belharra',
     country: 'Greece', category: 'naval',
     name: 'Belharra-class FDI', designation: 'Defence and Intervention Frigate',
-    image: null, inService: false, year: 2025, origin: 'France',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/FDI_Ronach_02.jpg/960px-FDI_Ronach_02.jpg', inService: false, year: 2025, origin: 'France',
     crew: 150, operators: ['Greece', 'France (5 ships)'],
     unitCost: '$850M (estimated)', totalBuilt: '0 (3 ordered for Greece, 5 for France)', status: 'Development',
     specs: {
