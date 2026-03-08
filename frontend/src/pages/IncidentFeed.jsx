@@ -65,7 +65,7 @@ const CSS = `
 }
 
 .if-topbar {
-  display: flex; align-items: center; gap: 16px; padding: 12px 20px;
+  display: flex; align-items: center; gap: 16px; padding: 12px 24px;
   background: rgba(5, 5, 8, 0.95); border-bottom: 1px solid var(--if-border);
   flex-shrink: 0; flex-wrap: wrap; z-index: 20; position: relative;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -73,7 +73,7 @@ const CSS = `
 }
 .if-title {
   font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
-  font-size: 20px; letter-spacing: 0.05em; color: var(--if-text);
+  font-size: 22px; letter-spacing: 0.05em; color: var(--if-text);
   white-space: nowrap; text-transform: uppercase;
 }
 .if-title span { color: var(--if-accent); text-shadow: 0 0 10px rgba(0,212,255,0.4); }
@@ -102,7 +102,7 @@ const CSS = `
 /* type filter pills */
 .if-filters { 
   display: flex; gap: 8px; flex-wrap: wrap; align-items: center; 
-  padding: 10px 20px; background: rgba(10, 12, 20, 0.7); 
+  padding: 12px 24px; background: rgba(10, 12, 20, 0.7); 
   border-bottom: 1px solid var(--if-border); flex-shrink: 0; z-index: 10; 
   backdrop-filter: blur(8px);
 }
@@ -126,13 +126,13 @@ const CSS = `
 
 /* ── Sidebar ── */
 .if-sidebar {
-  width: 360px; flex-shrink: 0; display: flex; flex-direction: column;
+  width: 380px; flex-shrink: 0; display: flex; flex-direction: column;
   background: var(--if-panel); border-left: 1px solid var(--if-border);
   overflow: hidden; backdrop-filter: blur(16px);
   box-shadow: -8px 0 32px rgba(0,0,0,0.5);
 }
 .if-sidebar-head {
-  padding: 16px 20px; border-bottom: 1px solid var(--if-border); flex-shrink: 0;
+  padding: 16px 24px; border-bottom: 1px solid var(--if-border); flex-shrink: 0;
   display: flex; justify-content: space-between; align-items: center;
   background: rgba(0, 212, 255, 0.03);
 }
@@ -143,28 +143,34 @@ const CSS = `
 }
 .if-sidebar-count {
   font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
-  color: var(--if-text); background: rgba(255,255,255,0.1); padding: 2px 8px; borderRadius: 4px;
+  color: var(--if-text); background: rgba(255,255,255,0.1); padding: 3px 8px; border-radius: 4px;
 }
 .if-feed { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,212,255,0.2) transparent; }
 .if-feed::-webkit-scrollbar { width: 4px; }
 .if-feed::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.2); border-radius: 2px; }
 
 .if-incident-card {
-  padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);
-  cursor: pointer; transition: all 200ms ease; display: flex; gap: 12px; align-items: flex-start;
+  padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer; transition: all 200ms ease; display: flex; gap: 14px; align-items: flex-start;
+  position: relative;
 }
 .if-incident-card:hover { background: rgba(255,255,255,0.03); }
-.if-incident-card.selected { background: rgba(0,212,255,0.08); border-left: 3px solid var(--if-accent); padding-left: 17px; }
+.if-incident-card.selected { background: rgba(0,212,255,0.08); border-left: 3px solid var(--if-accent); padding-left: 21px; }
+.if-incident-card.selected::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 212, 255, 0.05) 51%, transparent 51%);
+  background-size: 100% 4px; pointer-events: none;
+}
 .if-inc-icon { flex-shrink: 0; margin-top: 2px; opacity: 0.9; }
-.if-inc-body { flex: 1; min-width: 0; }
+.if-inc-body { flex: 1; min-width: 0; position: relative; z-index: 2; }
 .if-inc-title {
-  font-size: 14px; color: var(--if-text); line-height: 1.5;
+  font-size: 15px; color: var(--if-text); line-height: 1.5;
   margin-bottom: 8px; font-weight: 500;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.if-inc-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 6px; }
+.if-inc-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
 .if-inc-country {
-  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500;
   color: var(--if-muted); white-space: nowrap; display: flex; align-items: center; gap: 4px;
 }
 .if-inc-badge {
@@ -178,8 +184,10 @@ const CSS = `
 }
 .if-inc-source {
   font-family: 'IBM Plex Mono', monospace; font-size: 10px;
-  color: var(--if-dim); display: flex; align-items: center; gap: 4px;
+  color: var(--if-dim); display: flex; align-items: center; gap: 6px;
+  transition: color 200ms ease;
 }
+.if-inc-source:hover { color: var(--if-accent); }
 
 /* ── Popup ── */
 .if-popup {
@@ -202,10 +210,10 @@ const CSS = `
   display: flex; gap: 0; border-top: 1px solid var(--if-border);
   background: rgba(0, 0, 0, 0.4); flex-shrink: 0;
 }
-.if-stat { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,0.05); }
+.if-stat { flex: 1; padding: 16px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,0.05); }
 .if-stat:last-child { border-right: none; }
-.if-stat-val { font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; text-shadow: 0 0 10px currentColor; }
-.if-stat-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--if-muted); text-transform: uppercase; margin-top: 4px; }
+.if-stat-val { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; text-shadow: 0 0 10px currentColor; }
+.if-stat-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--if-muted); text-transform: uppercase; margin-top: 4px; }
 
 /* ── Loading ── */
 .if-loading {
@@ -228,9 +236,9 @@ const CSS = `
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .if-body { flex-direction: column; }
-  .if-sidebar { width: 100%; height: 360px; border-left: none; border-top: 1px solid var(--if-border); }
+  .if-sidebar { width: 100%; height: 400px; border-left: none; border-top: 1px solid var(--if-border); }
   .if-map-wrap { flex: 1; min-height: 300px; }
-  .if-title { font-size: 16px; }
+  .if-title { font-size: 18px; }
 }
 `;
 
@@ -330,7 +338,12 @@ function IncidentMap({ incidents, selected, onSelect, typeFilters }) {
     markersRef.current.forEach(m => map.removeLayer(m));
     markersRef.current = [];
 
-    const visible = incidents.filter(inc => typeFilters.size === 0 || typeFilters.has(inc.type));
+    // CRITICAL BUG FIX: Filter out items with missing or invalid coordinates!
+    const visible = incidents.filter(inc => {
+      const hasType = typeFilters.size === 0 || typeFilters.has(inc.type);
+      const hasCoords = inc.lat != null && inc.lng != null && !isNaN(inc.lat) && !isNaN(inc.lng);
+      return hasType && hasCoords;
+    });
 
     visible.forEach(inc => {
       const cfg  = TYPES[inc.type] ?? TYPES.battle;
@@ -339,7 +352,7 @@ function IncidentMap({ incidents, selected, onSelect, typeFilters }) {
       const opacity = isSelected ? 1 : 0.8;
 
       const marker = L.circleMarker([inc.lat, inc.lng], {
-        radius:      isSelected ? radius + 2 : radius,
+        radius:      isSelected ? radius + 3 : radius,
         fillColor:   cfg.color,
         color:       isSelected ? '#fff' : cfg.color,
         weight:      isSelected ? 2 : 1,
@@ -373,13 +386,21 @@ function IncidentMap({ incidents, selected, onSelect, typeFilters }) {
 
   useEffect(() => {
     if (!ready || !leafletMap.current || !selected) return;
+    if (selected.lat == null || selected.lng == null) return;
+    
     leafletMap.current.setView([selected.lat, selected.lng], Math.max(leafletMap.current.getZoom(), 5), { animate: true });
+    
     const marker = markersRef.current.find((_, i) => {
-      const inc = incidents.filter(inc => typeFilters.size === 0 || typeFilters.has(inc.type))[i];
-      return inc?.id === selected.id;
+      const visible = incidents.filter(inc => {
+        const hasType = typeFilters.size === 0 || typeFilters.has(inc.type);
+        const hasCoords = inc.lat != null && inc.lng != null && !isNaN(inc.lat) && !isNaN(inc.lng);
+        return hasType && hasCoords;
+      });
+      return visible[i]?.id === selected.id;
     });
+    
     if (marker) marker.openPopup();
-  }, [selected, ready]);
+  }, [selected, ready, incidents, typeFilters]);
 
   return (
     <div className="if-map-wrap" style={{ position:'relative' }}>
@@ -512,7 +533,7 @@ export default function IncidentFeed() {
 
       {/* ── Type filter pills ─────────────────────────────────────────────── */}
       <div className="if-filters">
-        <span style={{ fontFamily:'IBM Plex Mono,monospace', fontSize:10, fontWeight:600, color:'var(--if-dim)', letterSpacing:'0.15em', textTransform:'uppercase', marginRight:8 }}>PARAMETERS:</span>
+        <span style={{ fontFamily:'IBM Plex Mono,monospace', fontSize:11, fontWeight:600, color:'var(--if-dim)', letterSpacing:'0.15em', textTransform:'uppercase', marginRight:12 }}>PARAMETERS:</span>
         {Object.entries(TYPES).map(([type, cfg]) => {
           const isActive = typeFilters.has(type);
           const count    = stats[type] ?? 0;
@@ -534,7 +555,7 @@ export default function IncidentFeed() {
           <button
             className="if-filter-pill"
             onClick={() => setTypeFilters(new Set())}
-            style={{ borderColor:'rgba(255,59,59,0.3)', color:'#ff8080', background: 'rgba(255,59,59,0.1)' }}
+            style={{ borderColor:'rgba(255,59,59,0.3)', color:'#ff8080', background: 'rgba(255,59,59,0.1)', marginLeft: 8 }}
           >✕ CLEAR</button>
         )}
       </div>

@@ -551,7 +551,7 @@ export default function Home() {
     }}>
 
       {/* ── Navbar ───────────────────────────────────────────────────── */}
-      <div style={{ zIndex: 10, position: 'relative' }}>
+      <div style={{ zIndex: 50, position: 'relative' }}>
         <Navbar />
       </div>
 

@@ -1,200 +1,299 @@
-// src/components/Footer.jsx
-// Inline CSS only — paste into any page
+import { Link } from 'react-router-dom';
+
+// ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
+const Icons = {
+  Radar: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="12" x2="12" y2="2"/></svg>,
+  Shield: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+  Terminal: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>,
+  Database: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>,
+};
+
+// ─── CSS ──────────────────────────────────────────────────────────────────────
+const CSS = `
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap');
+
+  .ws-footer-wrapper {
+    background: #050508;
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    padding: 32px 24px 24px; /* Reduced height */
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .ws-footer-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .ws-ft-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ws-ft-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 24px; /* Reduced height */
+    margin-bottom: 20px;
+  }
+
+  .ws-ft-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 0 0 280px; /* Fixed width so links spread properly */
+  }
+
+  .ws-ft-brand-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #e8eaf0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(0,212,255,0.3);
+  }
+
+  .ws-ft-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #8892a4;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .ws-ft-live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: #ff8080;
+    letter-spacing: 0.15em;
+    width: fit-content;
+    margin-top: 4px;
+  }
+  
+  .ws-ft-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff3b3b;
+    box-shadow: 0 0 8px #ff3b3b;
+    animation: ft-pulse-live 2s infinite;
+  }
+  @keyframes ft-pulse-live {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* Fill center space */
+  .ws-ft-links-wrap {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Spreads link columns evenly */
+  }
+
+  .ws-ft-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 140px;
+  }
+
+  .ws-ft-col-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: #e8eaf0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ws-ft-col-title svg {
+    color: #00d4ff;
+    opacity: 0.8;
+  }
+
+  .ws-ft-link {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #8892a4;
+    text-decoration: none;
+    transition: all 200ms ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ws-ft-link::before {
+    content: '▸';
+    color: #00d4ff;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 200ms ease;
+    font-size: 12px;
+  }
+
+  .ws-ft-link:hover {
+    color: #00d4ff;
+    text-shadow: 0 0 8px rgba(0,212,255,0.4);
+    transform: translateX(4px);
+  }
+  .ws-ft-link:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Centered Bottom Area */
+  .ws-ft-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #4a5568;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .ws-ft-disclaimer {
+    max-width: 800px;
+    line-height: 1.5;
+    color: #3a4155;
+    font-size: 9px;
+  }
+
+  @media (max-width: 900px) {
+    .ws-ft-top { flex-direction: column; gap: 32px; }
+    .ws-ft-links-wrap { justify-content: flex-start; gap: 40px; }
+    .ws-ft-brand { flex: auto; }
+  }
+`;
+
+function injectCSS(id, css) {
+  if (document.getElementById(id)) return;
+  const el = document.createElement('style');
+  el.id = id;
+  el.textContent = css;
+  document.head.appendChild(el);
+}
 
 export default function Footer() {
+  injectCSS('ws-footer-styles', CSS);
   const year = new Date().getFullYear();
 
-  const styles = {
-    footer: {
-      background: 'rgba(4,4,10,0.95)',
-      borderTop: '1px solid #161b2e',
-      padding: '32px 40px 24px',
-      fontFamily: "'IBM Plex Mono', monospace",
-      color: '#8892a4',
-    },
-    inner: {
-      maxWidth: 1400,
-      margin: '0 auto',
-    },
-    top: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      flexWrap: 'wrap',
-      gap: 32,
-      marginBottom: 28,
-      paddingBottom: 24,
-      borderBottom: '1px solid #161b2e',
-    },
-    brand: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 8,
-    },
-    brandName: {
-      fontFamily: "'Barlow Condensed', sans-serif",
-      fontWeight: 800,
-      fontSize: 22,
-      color: '#e8eaf0',
-      letterSpacing: '0.04em',
-    },
-    brandTagline: {
-      fontSize: 11,
-      color: '#3a4155',
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      lineHeight: 1.6,
-      maxWidth: 220,
-    },
-    liveDot: {
-      display: 'inline-block',
-      width: 6,
-      height: 6,
-      borderRadius: '50%',
-      background: '#00d4ff',
-      boxShadow: '0 0 6px #00d4ff',
-      marginRight: 6,
-      animation: 'none',
-    },
-    linkGroups: {
-      display: 'flex',
-      gap: 48,
-      flexWrap: 'wrap',
-    },
-    linkGroup: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 10,
-    },
-    linkGroupTitle: {
-      fontSize: 9,
-      letterSpacing: '0.16em',
-      color: '#3a4155',
-      textTransform: 'uppercase',
-      marginBottom: 4,
-    },
-    link: {
-      fontSize: 12,
-      color: '#8892a4',
-      textDecoration: 'none',
-      letterSpacing: '0.04em',
-      transition: 'color 150ms',
-      cursor: 'pointer',
-    },
-    bottom: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      gap: 12,
-    },
-    copyright: {
-      fontSize: 11,
-      color: '#3a4155',
-      letterSpacing: '0.08em',
-    },
-    disclaimer: {
-      fontSize: 10,
-      color: '#3a4155',
-      letterSpacing: '0.06em',
-      maxWidth: 480,
-      textAlign: 'right',
-      lineHeight: 1.6,
-    },
-    dataSource: {
-      display: 'flex',
-      gap: 16,
-      flexWrap: 'wrap',
-      marginBottom: 16,
-    },
-    sourceTag: {
-      fontSize: 9,
-      letterSpacing: '0.1em',
-      color: '#3a4155',
-      border: '1px solid #161b2e',
-      padding: '3px 8px',
-      borderRadius: 3,
-      textTransform: 'uppercase',
-    },
-  };
+  const PLATFORM_LINKS = [
+    { label: 'Global Map', to: '/' },
+    { label: 'Conflict Timeline', to: '/timeline' },
+    { label: 'Nuclear Arsenal', to: '/nuclear' },
+    { label: 'Sanctions Tracker', to: '/sanctions' },
+    { label: 'Live Incident Feed', to: '/incidents' },
+  ];
 
-  const navLink = (href, label) => (
-    <a
-      key={label}
-      href={href}
-      style={styles.link}
-      onMouseEnter={e => e.target.style.color = '#00d4ff'}
-      onMouseLeave={e => e.target.style.color = '#8892a4'}
-    >
-      {label}
-    </a>
-  );
+  const LEGAL_LINKS = [
+    { label: 'Privacy Policy', to: '/privacy-policy' },
+    { label: 'Terms of Use', to: '/terms' },
+    { label: 'Disclaimer', to: '/disclaimer' },
+    { label: 'Cookie Policy', to: '/cookie-policy' },
+  ];
+
+  const INFO_LINKS = [
+    { label: 'About WarScope', to: '/about' },
+    { label: 'Data Sources', to: '/data-sources' },
+    { label: 'Methodology', to: '/methodology' },
+    { label: 'Secure Contact', to: '/contact' },
+  ];
 
   return (
-    <footer style={styles.footer}>
-      <div style={styles.inner}>
+    <footer className="ws-footer-wrapper">
+      <div className="ws-ft-inner">
 
         {/* ── Top section ─────────────────────────────────────────────── */}
-        <div style={styles.top}>
-
+        <div className="ws-ft-top">
+          
           {/* Brand */}
-          <div style={styles.brand}>
-            <div style={styles.brandName}>
-              <span style={{ color: '#00d4ff' }}>WAR</span>SCOPE
+          <div className="ws-ft-brand">
+            <div className="ws-ft-brand-name">
+              <Icons.Radar />
+              <span><span style={{ color: '#00d4ff' }}>WAR</span>SCOPE</span>
             </div>
-            <div style={styles.brandTagline}>
-              <span style={styles.liveDot} />
-              Global conflict intelligence<br />
-              Data updated every 15 minutes
+            <div className="ws-ft-tagline">
+              Global Geopolitical Intelligence<br />
+              Automated Data Aggregation
+            </div>
+            <div className="ws-ft-live-indicator">
+              <span className="ws-ft-pulse" />
+              SYSTEM ACTIVE
             </div>
           </div>
 
-          {/* Link groups */}
-          <div style={styles.linkGroups}>
-
-            <div style={styles.linkGroup}>
-              <div style={styles.linkGroupTitle}>Platform</div>
-              {navLink('/', 'Globe')}
-              {navLink('/timeline', 'Timeline')}
-              {navLink('/nuclear', 'Nuclear')}
-              {navLink('/sanctions', 'Sanctions')}
-              {navLink('/incidents', 'Incident Feed')}
+          {/* Link groups (Spreads out to fill center space) */}
+          <div className="ws-ft-links-wrap">
+            <div className="ws-ft-col">
+              <div className="ws-ft-col-title"><Icons.Terminal /> Platform</div>
+              {PLATFORM_LINKS.map(link => (
+                <Link key={link.label} to={link.to} className="ws-ft-link">
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
-            <div style={styles.linkGroup}>
-              <div style={styles.linkGroupTitle}>Legal</div>
-              {navLink('/privacy-policy', 'Privacy Policy')}
-              {navLink('/terms', 'Terms of Use')}
-              {navLink('/disclaimer', 'Disclaimer')}
-              {navLink('/cookie-policy', 'Cookie Policy')}
+            <div className="ws-ft-col">
+              <div className="ws-ft-col-title"><Icons.Shield /> Legal</div>
+              {LEGAL_LINKS.map(link => (
+                <Link key={link.label} to={link.to} className="ws-ft-link">
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
-            <div style={styles.linkGroup}>
-              <div style={styles.linkGroupTitle}>Information</div>
-              {navLink('/about', 'About WarScope')}
-              {navLink('/data-sources', 'Data Sources')}
-              {navLink('/methodology', 'Methodology')}
-              {navLink('/contact', 'Contact')}
+            <div className="ws-ft-col">
+              <div className="ws-ft-col-title"><Icons.Database /> Intelligence</div>
+              {INFO_LINKS.map(link => (
+                <Link key={link.label} to={link.to} className="ws-ft-link">
+                  {link.label}
+                </Link>
+              ))}
             </div>
-
           </div>
         </div>
 
-        {/* ── Data sources ────────────────────────────────────────────── */}
-        <div style={styles.dataSource}>
-          {['UCDP Conflict Data', 'GDELT Project', 'SIPRI Arms Data', 'OFAC SDN List', 'UN Security Council', 'ACLED'].map(s => (
-            <span key={s} style={styles.sourceTag}>{s}</span>
-          ))}
-        </div>
-
-        {/* ── Bottom bar ──────────────────────────────────────────────── */}
-        <div style={styles.bottom}>
-          <div style={styles.copyright}>
-            © {year} WarScope · All rights reserved
+        {/* ── Bottom bar (Centered, plain text sources) ────────────────── */}
+        <div className="ws-ft-bottom">
+          <div>
+            DATA SOURCES: UCDP Conflict Data · GDELT Project · SIPRI Arms Data · OFAC SDN List · UN Security Council · ACLED
           </div>
-          <div style={styles.disclaimer}>
-            For informational purposes only. Data sourced from public databases.
-            Not intended as operational military intelligence.
+          <div className="ws-ft-disclaimer">
+            [ SYSTEM LOG ] For informational and analytical purposes only. Data sourced from public OSINT databases and automated aggregators. Not intended for use as operational military intelligence.
+          </div>
+          <div style={{ marginTop: '8px' }}>
+            © {year} WARSCOPE · ALL RIGHTS RESERVED
           </div>
         </div>
 

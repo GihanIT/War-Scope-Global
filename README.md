@@ -207,3 +207,97 @@ War-Scope-Global
    └─ seed.js
 
 ```
+```
+War-Scope-Global
+├─ backend
+│  ├─ controllers
+│  │  ├─ conflictsController.js
+│  │  ├─ countriesController.js
+│  │  ├─ gdeltController.js
+│  │  ├─ incidentController.js
+│  │  └─ newsController.js
+│  ├─ db
+│  │  ├─ connection.js
+│  │  └─ schema.sql
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ routes
+│  │  ├─ conflicts.js
+│  │  ├─ countries.js
+│  │  ├─ incidents.js
+│  │  └─ news.js
+│  ├─ server.js
+│  └─ utils
+│     └─ gdeltEventParser.js
+├─ data
+│  ├─ conflicts.json
+│  └─ raw
+├─ docker
+│  └─ docker-compose.yml
+├─ frontend
+│  ├─ index.html
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ postcss.config.js
+│  ├─ src
+│  │  ├─ api.js
+│  │  ├─ App.jsx
+│  │  ├─ blog
+│  │  │  ├─ BlogCard.jsx
+│  │  │  ├─ BlogPage.jsx
+│  │  │  └─ BlogPost.jsx
+│  │  ├─ components
+│  │  │  ├─ AdBanner.jsx
+│  │  │  ├─ AlliancePanel.jsx
+│  │  │  ├─ CountryPanel.jsx
+│  │  │  ├─ Footer.jsx
+│  │  │  ├─ Navbar.jsx
+│  │  │  └─ Skeleton.jsx
+│  │  ├─ data
+│  │  │  ├─ alliance-data.js
+│  │  │  ├─ arms-trade-data.js
+│  │  │  ├─ army-units-db.js
+│  │  │  ├─ blog-data.js
+│  │  │  ├─ nuclear-data.js
+│  │  │  ├─ sanctions-data.js
+│  │  │  ├─ timeline-data.js
+│  │  │  └─ vehicles-data.js
+│  │  ├─ globe
+│  │  │  └─ GlobeView.jsx
+│  │  ├─ index.css
+│  │  ├─ main.jsx
+│  │  ├─ pages
+│  │  │  ├─ About.jsx
+│  │  │  ├─ ArmsTrade.jsx
+│  │  │  ├─ Blog.jsx
+│  │  │  ├─ Compare.jsx
+│  │  │  ├─ Contact.jsx
+│  │  │  ├─ CookiePolicy.jsx
+│  │  │  ├─ DataSources.jsx
+│  │  │  ├─ Disclaimer.jsx
+│  │  │  ├─ Home.jsx
+│  │  │  ├─ IncidentFeed.jsx
+│  │  │  ├─ Methodology.jsx
+│  │  │  ├─ NotFound.jsx
+│  │  │  ├─ Nuclear.jsx
+│  │  │  ├─ PrivacyPolicy.jsx
+│  │  │  ├─ Sanctions.jsx
+│  │  │  ├─ Terms.jsx
+│  │  │  ├─ Timeline.jsx
+│  │  │  ├─ Units.jsx
+│  │  │  ├─ UnitsDetail.jsx
+│  │  │  ├─ VehicleDetail.jsx
+│  │  │  └─ Vehicles.jsx
+│  │  └─ utils
+│  ├─ tailwind.config.js
+│  └─ vite.config.js
+├─ generate_timeline_data.py
+├─ LICENSE
+├─ package-lock.json
+├─ package.json
+├─ README.md
+└─ scripts
+   ├─ import_data.py
+   └─ seed.js
+
+```
