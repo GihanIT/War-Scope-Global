@@ -6,6 +6,8 @@ import Navbar       from '../components/Navbar.jsx';
 import AdBanner     from '../components/AdBanner.jsx';
 import AlliancePanel from '../components/AlliancePanel.jsx';
 import { ALLIANCES } from '../data/alliance-data.js';
+import SEO from '../seo/SEO.jsx';
+import { websiteSchema, organizationSchema } from '../seo/structuredData.js';
 
 
 // ─── CSS injected once ────────────────────────────────────────────────────────
@@ -246,7 +248,9 @@ function Ticker() {
       overflow:      'hidden',
       whiteSpace:    'nowrap',
       zIndex:        10,
-    }}>
+    }}
+    suppressHydrationWarning
+    >
       <span style={{
         display:      'inline-block',
         width:          6,
@@ -257,7 +261,7 @@ function Ticker() {
         flexShrink:   0,
         animation:    'overlay-pulse 2s infinite',
       }} />
-      {TICKER_ITEMS[idx]}
+      <span suppressHydrationWarning>{TICKER_ITEMS[idx]}</span>
     </div>
   );
 }
@@ -549,6 +553,14 @@ export default function Home() {
       background:    'transparent',
       overflow:      'hidden',
     }}>
+      <SEO
+        title="Global Military Intelligence Map"
+        description="Explore real-time global conflict zones, compare military power by country, track nuclear arsenals, arms trade, and live incident reports."
+        canonical="/"
+      >
+        <script type="application/ld+json">{JSON.stringify(websiteSchema())}</script>
+        <script type="application/ld+json">{JSON.stringify(organizationSchema())}</script>
+      </SEO>
 
       {/* ── Navbar ───────────────────────────────────────────────────── */}
       <div style={{ zIndex: 50, position: 'relative' }}>

@@ -2,43 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <!-- Viewport — required for responsive layout and mobile AdSense -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- ── Base SEO (overridden per-page by react-helmet-async) ── -->
     <title>WarScope — Global Military Intelligence</title>
-    <meta name="description" content="Real-time global conflict visualization, military power rankings, and intelligence briefings." />
+    <meta name="description" content="Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://warscopeglobal.com/" />
 
-    <!-- ─── Google Fonts ──────────────────────────────────────────────────── -->
+    <!-- ── Open Graph base (overridden per-page) ── -->
+    <meta property="og:site_name"   content="WarScope" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="WarScope — Global Military Intelligence" />
+    <meta property="og:description" content="Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
+    <meta property="og:image"       content="https://warscopeglobal.com/og-default.jpg" />
+    <meta property="og:url"         content="https://warscopeglobal.com/" />
+
+    <!-- ── Twitter Card base ── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="WarScope — Global Military Intelligence" />
+    <meta name="twitter:description" content="Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
+    <meta name="twitter:image"       content="https://warscopeglobal.com/og-default.jpg" />
+
+    <!-- ── Theme color (browser chrome on mobile) ── -->
+    <meta name="theme-color" content="#050508" />
+
+    <!-- ── Google Fonts ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Inter (body / UI) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- IBM Plex Mono (monospace labels, data) + Barlow (headings, cards) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- ─── Google AdSense ───────────────────────────────────────────────────
-         Replace the placeholder below with your actual AdSense publisher ID
-         once your site is approved. Remove this comment block and uncomment
-         the <script> tag.
-
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
-      crossorigin="anonymous"
-    ></script>
-
-    ─────────────────────────────────────────────────────────────────────── -->
+    <!-- ── Google AdSense (uncomment when approved) ──
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+    ── -->
   </head>
   <body>
     <div id="root"></div>

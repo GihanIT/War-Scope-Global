@@ -4,15 +4,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 
+  build: {
+    target: 'es2019',  // ← ADD THIS — makes ?. and ?? compatible with older Chromium
+  },
+
   optimizeDeps: {
-    // Force Vite to pre-bundle these CJS/broken-ESM packages so the
-    // "does not provide an export named 'default'" error disappears
-    include: [
-      'globe.gl',
-      'three-globe',
-      'frame-ticker',
-      'three',
-    ],
+    include: ['globe.gl', 'three-globe', 'frame-ticker', 'three'],
   },
 
   server: {

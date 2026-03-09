@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import SEO from '../seo/SEO.jsx';
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap');
@@ -42,6 +43,7 @@ export default function CookiePolicy() {
   injectCSS('ck-css', CSS);
   return (
     <div className="ck-page">
+      <SEO title="Cookie Policy" description="WarScope cookie policy." canonical="/cookie-policy" noindex={true} />
       <Navbar />
       <div className="ck-hero">
         <div className="ck-hero-inner">

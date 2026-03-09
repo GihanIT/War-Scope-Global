@@ -289,7 +289,7 @@ export default function Navbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
           
           {/* Tactical UTC Clock */}
-          <div className="ws-clock">
+          <div className="ws-clock" suppressHydrationWarning>
             {time}
           </div>
 

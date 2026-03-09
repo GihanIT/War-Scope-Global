@@ -1,12 +1,12 @@
 // src/pages/Blog.jsx
 import { useState, useMemo } from 'react';
-import { Helmet }   from 'react-helmet';
 import { Link }     from 'react-router-dom';
 import Navbar       from '../components/Navbar.jsx';
 import AdBanner     from '../components/AdBanner.jsx';
 import BlogCard     from '../blog/BlogCard.jsx';
 import BLOG_POSTS, { CATEGORIES } from '../data/blog-data.js';
 import Footer from '../components/Footer.jsx';
+import SEO from '../seo/SEO.jsx';
 
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
@@ -353,15 +353,11 @@ export default function Blog() {
 
   return (
     <div className="blog-page-wrapper">
-      <Helmet>
-        <title>Intelligence Briefings | WarScope</title>
-        <meta
-          name="description"
-          content="In-depth military analysis, country comparisons, nuclear rankings and global conflict intelligence from the WarScope research team."
-        />
-        <meta property="og:title" content="Intelligence Briefings | WarScope" />
-        <meta property="og:description" content="Military analysis, comparisons, nuclear rankings and global power data." />
-      </Helmet>
+      <SEO
+        title="Military Intelligence Blog — Analysis, Comparisons & Rankings"
+        description="In-depth military intelligence analysis: country comparisons, nuclear doctrine, arms trade reports, conflict analysis, and military power rankings."
+        canonical="/blog"
+      />
 
       <div className="blog-content">
         <Navbar />

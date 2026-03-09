@@ -143,70 +143,7 @@ docker compose up -d
 Insert conflicts, countries, and news directly via the PostgreSQL schema in `backend/db/schema.sql`, or use the seed script in `scripts/seed.js` as a template to import from JSON.
 
 ```
-War-Scope-Global
-├─ backend
-│  ├─ controllers
-│  │  ├─ conflictsController.js
-│  │  ├─ countriesController.js
-│  │  ├─ gdeltController.js
-│  │  └─ newsController.js
-│  ├─ db
-│  │  ├─ connection.js
-│  │  └─ schema.sql
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ routes
-│  │  ├─ conflicts.js
-│  │  ├─ countries.js
-│  │  └─ news.js
-│  ├─ server.js
-│  └─ utils
-│     └─ gdeltEventParser.js
-├─ data
-│  ├─ conflicts.json
-│  └─ raw
-├─ docker
-│  └─ docker-compose.yml
-├─ frontend
-│  ├─ index.html
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ postcss.config.js
-│  ├─ src
-│  │  ├─ api.js
-│  │  ├─ App.jsx
-│  │  ├─ blog
-│  │  │  ├─ blog-data.js
-│  │  │  ├─ BlogCard.jsx
-│  │  │  ├─ BlogPage.jsx
-│  │  │  └─ BlogPost.jsx
-│  │  ├─ components
-│  │  │  ├─ AdBanner.jsx
-│  │  │  ├─ CountryPanel.jsx
-│  │  │  ├─ Navbar.jsx
-│  │  │  └─ Skeleton.jsx
-│  │  ├─ globe
-│  │  │  └─ GlobeView.jsx
-│  │  ├─ index.css
-│  │  ├─ main.jsx
-│  │  ├─ pages
-│  │  │  ├─ Blog.jsx
-│  │  │  ├─ Compare.jsx
-│  │  │  ├─ Home copy.jsx
-│  │  │  ├─ Home.jsx
-│  │  │  └─ NotFound.jsx
-│  │  └─ utils
-│  ├─ tailwind.config.js
-│  └─ vite.config.js
-├─ LICENSE
-├─ package-lock.json
-├─ package.json
-├─ README.md
-└─ scripts
-   ├─ import_data.py
-   └─ seed.js
 
-```
 ```
 War-Scope-Global
 ├─ backend
@@ -291,12 +228,12 @@ War-Scope-Global
 │  │  └─ utils
 │  ├─ tailwind.config.js
 │  └─ vite.config.js
-├─ generate_timeline_data.py
 ├─ LICENSE
 ├─ package-lock.json
 ├─ package.json
 ├─ README.md
 └─ scripts
+   ├─ generate_timeline_data.py
    ├─ import_data.py
    └─ seed.js
 

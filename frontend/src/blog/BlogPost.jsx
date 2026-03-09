@@ -1,12 +1,12 @@
 // src/blog/BlogPost.jsx
 import { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Helmet }      from 'react-helmet';
 import ReactMarkdown   from 'react-markdown';
 import { getPost, getRelated } from '../data/blog-data.js';
 import Navbar          from '../components/Navbar.jsx';
 import AdBanner        from '../components/AdBanner.jsx';
 import BlogCard        from './BlogCard.jsx';
+import SEO from '../seo/SEO.jsx';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const API = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
@@ -537,19 +537,23 @@ export default function BlogPost() {
 
   return (
     <div className="wp-page-wrapper">
-      <Helmet>
-        <title>{post.metaTitle || `${post.title} | WarScope`}</title>
-        <meta name="description"        content={post.metaDescription || post.excerpt} />
-        <meta property="og:title"       content={post.metaTitle || post.title} />
-        <meta property="og:description" content={post.metaDescription || post.excerpt} />
-        <meta property="og:image"       content={post.coverImage || ''} />
-        <meta property="og:type"        content="article" />
-        <link rel="canonical"           href={`https://warscope.com/blog/${post.slug}`} />
-        <script type="application/ld+json">{jsonLd}</script>
-      </Helmet>
-
-      <ReadingProgress />
-      
+      <SEO
+            title={post.title}
+            description={post.excerpt || post.description}
+            canonical={`/blog/${post.slug}`}
+            image={post.image}
+            type="article"
+          >
+            <script type="application/ld+json">{JSON.stringify(articleSchema({
+              title: post.title,
+              description: post.excerpt || post.description,
+              slug: post.slug,
+              date: post.date,
+              image: post.image,
+              category: post.category,
+            }))}</script>
+          </SEO>
+      <ReadingProgress />  
       <div className="wp-content">
         <Navbar />
 

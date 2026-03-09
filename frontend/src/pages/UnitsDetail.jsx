@@ -3,6 +3,8 @@ import Navbar   from '../components/Navbar.jsx';
 import Footer   from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import { UNITS, BRANCHES, COUNTRIES } from '../data/army-units-db.js';
+import SEO from '../seo/SEO.jsx';
+import { unitSchema, breadcrumbSchema } from '../seo/structuredData.js';
 
 // ─── SVG Icons ───────────────────────────────────────────────────────────────
 const Icons = {
@@ -158,6 +160,18 @@ export default function UnitDetail() {
 
   return (
     <div className="ud-page-wrapper" style={{ '--b-color': br.color }}>
+      <SEO
+            title={`${unit.name} — Military Unit Profile`}
+            description={`${unit.name}: history, capabilities, order of battle, and notable operations. ${unit.branch || ''} ${unit.country || ''}.`}
+            canonical={`/units/${unit.id}`}
+          >
+            <script type="application/ld+json">{JSON.stringify(unitSchema(unit))}</script>
+            <script type="application/ld+json">{JSON.stringify(breadcrumbSchema([
+              { name: 'Home', url: '/' },
+              { name: 'Units', url: '/units' },
+              { name: unit.name, url: `/units/${unit.id}` },
+            ]))}</script>
+          </SEO>
       <div className="ud-content-layer">
         <Navbar />
 

@@ -1,6 +1,8 @@
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import SEO from '../seo/SEO.jsx';
+
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;700;800;900&family=Barlow:wght@300;400;500;600&display=swap');
@@ -64,6 +66,12 @@ export default function About() {
   injectCSS('ab-css', CSS);
   return (
     <div className="ab-page">
+      <SEO
+        title="About WarScope — Global Military Intelligence Platform"
+        description="WarScope aggregates open-source military data to provide conflict visualization, power comparison tools, and intelligence briefings for researchers and analysts."
+        canonical="/about"
+      />
+      
       <Navbar />
 
       <div className="ab-hero">

@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import SEO from '../seo/SEO.jsx';
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap');
@@ -39,6 +40,7 @@ export default function Disclaimer() {
   injectCSS('lg-css-disc', CSS);
   return (
     <div className="lg-page">
+      <SEO title="Disclaimer" description="WarScope disclaimer." canonical="/disclaimer" noindex={true} />
       <Navbar />
       <div className="lg-hero">
         <div className="lg-hero-inner">

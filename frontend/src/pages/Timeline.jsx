@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import { TIMELINE_CONFLICTS, TIMELINE_STATS } from '../data/timeline-data.js';
 import Footer from '../components/Footer.jsx';
+import SEO from '../seo/SEO.jsx';
+
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
 const Icons = {
@@ -848,6 +850,11 @@ export default function Timeline() {
 
   return (
     <div className="tl-page">
+      <SEO
+        title="Military Conflict Timeline — Wars & Conflicts Since 1900"
+        description="Interactive timeline of major military conflicts worldwide from 1900 to present. Filter by region, decade, conflict type and casualty count."
+        canonical="/timeline"
+      />
       <div className="tl-content-layer">
         <Navbar />
 

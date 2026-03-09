@@ -1,10 +1,10 @@
 // src/pages/Compare.jsx
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import Navbar   from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import Footer from '../components/Footer.jsx';
+import SEO from '../seo/SEO.jsx';
 
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
@@ -587,12 +587,11 @@ export default function Compare() {
 
   return (
     <div className="cmp-page-wrapper">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content="Compare military strength of any two countries — personnel, armor, air power, naval assets, defense budgets and nuclear arsenals side by side." />
-        {bothLoaded && <link rel="canonical" href={`https://warscope.com/compare?a=${isoA}&b=${isoB}`} />}
-      </Helmet>
-
+      <SEO
+        title="Compare Military Power — Country vs Country"
+        description="Compare military capabilities side-by-side: personnel, aircraft, naval fleet, defense budget, tanks, and nuclear warheads. Data for 170+ countries."
+        canonical="/compare"
+      />
       <div className="cmp-content">
         <Navbar />
 

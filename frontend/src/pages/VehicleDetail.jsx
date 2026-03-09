@@ -3,6 +3,8 @@ import Navbar   from '../components/Navbar.jsx';
 import Footer   from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import { VEHICLES, CATEGORIES, COUNTRIES } from '../data/vehicles-data.js';
+import SEO from '../seo/SEO.jsx';
+import { vehicleSchema, breadcrumbSchema } from '../seo/structuredData.js';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const getIso2 = (countryName) => {
@@ -304,6 +306,18 @@ export default function VehicleDetail() {
 
   return (
     <div className="vd-page-wrapper">
+      <SEO
+            title={`${vehicle.name} — Specifications & Data`}
+            description={`${vehicle.name}: full technical specifications, origin, operators, and combat history. ${vehicle.category} from ${vehicle.country}.`}
+            canonical={`/vehicles/${vehicle.id}`}
+          >
+            <script type="application/ld+json">{JSON.stringify(vehicleSchema(vehicle))}</script>
+            <script type="application/ld+json">{JSON.stringify(breadcrumbSchema([
+              { name: 'Home', url: '/' },
+              { name: 'Vehicles', url: '/vehicles' },
+              { name: vehicle.name, url: `/vehicles/${vehicle.id}` },
+            ]))}</script>
+          </SEO>
       <div className="vd-content-layer">
         <Navbar />
 

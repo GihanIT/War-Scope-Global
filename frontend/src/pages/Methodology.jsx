@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import SEO from '../seo/SEO.jsx';
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap');
@@ -49,6 +50,12 @@ export default function Methodology() {
   injectCSS('mth-css', CSS);
   return (
     <div className="mth-page">
+      <SEO
+        title="Methodology — How WarScope Collects and Scores Military Data"
+        description="Explanation of WarScope's data collection, normalization, and military power scoring methodology. Transparency on sources, update frequency, and limitations."
+        canonical="/methodology"
+      />
+      
       <Navbar />
       <div className="mth-hero">
         <div className="mth-hero-inner">

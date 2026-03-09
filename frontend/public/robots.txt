@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block non-content utility pages from crawl budget
+Disallow: /privacy-policy
+Disallow: /terms
+Disallow: /disclaimer
+Disallow: /cookie-policy
+
+Sitemap: https://warscopeglobal.com/sitemap.xml

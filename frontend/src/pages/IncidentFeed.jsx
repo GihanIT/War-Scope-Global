@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Navbar   from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import SEO from '../seo/SEO.jsx';
+
 
 const API = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
 
@@ -510,6 +512,11 @@ export default function IncidentFeed() {
 
   return (
     <div className="if-page">
+      <SEO
+        title="Live Conflict Incident Feed — Real-Time Military Events"
+        description="Real-time feed of military incidents, airstrikes, ground operations, and conflict events worldwide. Sourced from GDELT and open-source intelligence."
+        canonical="/incidents"
+      />
       <Navbar />
 
       {/* ── Top control bar ───────────────────────────────────────────────── */}
