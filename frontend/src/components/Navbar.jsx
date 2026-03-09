@@ -214,7 +214,10 @@ export default function Navbar() {
 
   const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState(() => {
+  const now = new Date();
+  return now.toISOString().substring(11, 19) + ' UTC';
+  });
   const menuRef      = useRef(null);
   const hamburgerRef = useRef(null);
 

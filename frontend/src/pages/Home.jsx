@@ -381,7 +381,7 @@ export default function Home() {
   const [showPanel,       setShowPanel]       = useState(false);
   const [showOverlay,     setShowOverlay]     = useState(true);
   const [totalConflicts,  setTotalConflicts]  = useState(0);
-  const [isMobile,        setIsMobile]        = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false);
   const [allianceOpen,    setAllianceOpen]    = useState(false);
   const [activeAlliance,  setActiveAlliance]  = useState(null);
 
@@ -592,7 +592,9 @@ export default function Home() {
           letterSpacing: '0.08em',
           whiteSpace:    'nowrap',
           flexShrink:    0,
-        }}>
+        }}
+        suppressHydrationWarning
+        >
           {new Date().toUTCString().replace(/ GMT$/, ' UTC')}
         </div>
       </div>
