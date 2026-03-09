@@ -7,6 +7,8 @@ import Navbar          from '../components/Navbar.jsx';
 import AdBanner        from '../components/AdBanner.jsx';
 import BlogCard        from './BlogCard.jsx';
 import SEO from '../seo/SEO.jsx';
+import { articleSchema } from '../seo/structuredData.js';
+
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const API = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';

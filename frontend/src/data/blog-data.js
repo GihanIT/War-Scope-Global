@@ -107,7 +107,7 @@ Explore this data live on the WarScope interactive globe.
     date: "2025-01-20",
     readTime: "10 min",
     author: "WarScope Intelligence",
-    coverImage: "https://pixabay.com/get/g36016c18cda128a0760c1cb85c3d8342826df539598cd073f2e221a295156ad163b39e649e0c8b3ab6d09aa3851274a0ee611711da9a1921348808ccff03400672021ef13ce410d48a69a9aa90c39e49_640.jpg",
+    coverImage: "https://m.economictimes.com/thumb/msid-126461707,width-1600,height-900,resizemode-4,imgsize-145824/the-10-strongest-armed-forces-on-the-planet.jpg",
     excerpt:
       "Military power is measured across dozens of variables — from troop numbers and equipment to logistics, technology, and nuclear capability. Here are the 10 most powerful militaries in the world as of 2025.",
     tags: ["military ranking", "world military", "defense power", "global security", "armed forces"],
