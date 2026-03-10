@@ -153,7 +153,7 @@ export default function CookiePolicy() {
 
         <div className="ck-section">
           <h2 className="ck-h2"><span>08.</span> Contact</h2>
-          <p className="ck-p">If you have questions about our use of cookies, please contact us at <a href="mailto:privacy@warscopeglobal.com">privacy@warscopeglobal.com</a>.</p>
+          <p className="ck-p">If you have questions about our use of cookies, please contact us at <a href="mailto:contact@warscopeglobal.com" style={{color:'#00d4ff'}}>contact@warscopeglobal.com</a>.</p>
         </div>
 
       </div>

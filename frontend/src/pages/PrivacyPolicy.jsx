@@ -90,27 +90,29 @@ export default function PrivacyPolicy() {
         </div>
 
         <div className="lg-section">
-          <h2 className="lg-h2"><span>04.</span> Third-Party Services</h2>
-          <p className="lg-p">We use the following third-party services that may process your data:</p>
+          <h2 className="lg-h2"><span>04.</span> Third-Party Services & Google AdSense</h2>
+          <p className="lg-p">We use third-party services to support and monetize our platform. Most notably, we use Google AdSense to publish advertisements. To comply with Google's publisher policies, please be aware of the following:</p>
           <ul className="lg-ul">
-            <li><strong>Google AdSense</strong> — Displays advertisements. Google may use cookies and device identifiers to show personalised ads based on your interests. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
-            <li><strong>GDELT Project</strong> — We fetch publicly available news event data from GDELT. No personal data is shared with GDELT.</li>
-            <li><strong>CartoDB / OpenStreetMap</strong> — Map tiles used on the Incident Feed page. Your IP may be visible to tile servers during map requests.</li>
+            <li>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.</li>
+            <li>Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the Internet.</li>
+            <li>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>.</li>
+            <li>Alternatively, users can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="http://www.aboutads.info" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</li>
           </ul>
+          <p className="lg-p" style={{ marginTop: '16px' }}>Other third-party services include the GDELT Project (for fetching publicly available news event data) and CartoDB / OpenStreetMap (for rendering map tiles). No personal identifiable information is shared by us with these secondary services.</p>
         </div>
 
         <div className="lg-section">
-          <h2 className="lg-h2"><span>05.</span> Cookies</h2>
-          <p className="lg-p">We use the following types of cookies:</p>
+          <h2 className="lg-h2"><span>05.</span> Cookies & Tracking Technologies</h2>
+          <p className="lg-p">We use the following types of cookies to operate and monetize WarScope:</p>
           <table className="lg-table">
             <thead><tr><th>Type</th><th>Purpose</th><th>Duration</th></tr></thead>
             <tbody>
-              <tr><td>Essential</td><td>Required for the site to function</td><td>Session</td></tr>
-              <tr><td>Analytics</td><td>Understanding how visitors use the site</td><td>Up to 2 years</td></tr>
-              <tr><td>Advertising</td><td>Google AdSense personalised ads</td><td>Up to 2 years</td></tr>
+              <tr><td>Essential</td><td>Required for the site to function and load securely.</td><td>Session</td></tr>
+              <tr><td>Analytics</td><td>Understanding how visitors navigate our intelligence feeds.</td><td>Up to 2 years</td></tr>
+              <tr><td>Advertising</td><td>Google AdSense and DoubleClick cookies for ad delivery.</td><td>Up to 2 years</td></tr>
             </tbody>
           </table>
-          <p className="lg-p">You can control cookies through your browser settings. Disabling advertising cookies will not remove ads but will make them non-personalised.</p>
+          <p className="lg-p"><strong>Consent:</strong> By using this site, you consent to the placement of these cookies. You can control or delete cookies through your browser settings at any time. Disabling advertising cookies will not remove ads from the site, but it will make them non-personalized.</p>
         </div>
 
         <div className="lg-section">
@@ -128,7 +130,7 @@ export default function PrivacyPolicy() {
             <li>Right to data portability</li>
             <li>Right to opt out of personalised advertising (via Google Ad Settings)</li>
           </ul>
-          <p className="lg-p">To exercise any of these rights, contact us at <a href="mailto:privacy@warscope.app">privacy@warscope.app</a>.</p>
+          <p className="lg-p">To exercise any of these rights, contact us at <a href="mailto:contact@warscopeglobal.com">contact@warscopeglobal.com</a>.</p>
         </div>
 
         <div className="lg-section">

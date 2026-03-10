@@ -94,16 +94,15 @@ export default function Terms() {
           <h2 className="lg-h2"><span>04.</span> Prohibited Use</h2>
           <p className="lg-p">You may not use WarScope for:</p>
           <ul className="lg-ul">
-            <li>Any unlawful purpose or in violation of any applicable laws or regulations</li>
-            <li>Operational military planning, targeting, or intelligence gathering</li>
-            <li>Facilitating, planning, or promoting violence or terrorism</li>
-            <li>Systematic scraping, crawling, or automated data extraction without permission</li>
-            <li>Reproducing or redistributing our content commercially without written consent</li>
-            <li>Attempting to compromise the security or integrity of the Platform</li>
-            <li>Any purpose that could bring WarScope into disrepute</li>
+            <li>Any unlawful purpose or in violation of any applicable laws or regulations.</li>
+            <li>Operational military planning, targeting, or intelligence gathering.</li>
+            <li>Facilitating, planning, or promoting violence or terrorism.</li>
+            <li>Systematic scraping, crawling, or automated data extraction without written permission.</li>
+            <li>Reproducing or redistributing our content commercially without written consent.</li>
+            <li>Attempting to compromise the security or integrity of the Platform.</li>
+            <li><strong>Engaging in ad fraud:</strong> using bots, click-farms, automated scripts, or any deceptive methods to artificially generate impressions or clicks on advertisements displayed on this Platform.</li>
           </ul>
         </div>
-
         <div className="lg-section">
           <h2 className="lg-h2"><span>05.</span> Intellectual Property</h2>
           <p className="lg-p">The WarScope platform, including its design, code, visualisations, and original content, is owned by WarScope and protected by applicable intellectual property laws.</p>
@@ -139,8 +138,7 @@ export default function Terms() {
           <p className="lg-p">These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts in the applicable jurisdiction.</p>
         </div>
 
-        <div className="lg-box"><p><strong>Questions?</strong> If you have questions about these Terms, contact us at <a href="mailto:legal@warscope.app" style={{color:'#00d4ff'}}>legal@warscope.app</a></p></div>
-
+        <div className="lg-box"><p><strong>Questions?</strong> If you have questions about these Terms, contact us at <a href="mailto:contact@warscopeglobal.com" style={{color:'#00d4ff'}}>contact@warscopeglobal.com</a></p></div>
       </div>
 
       <AdBanner />

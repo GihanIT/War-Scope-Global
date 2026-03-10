@@ -1,10 +1,8 @@
 User-agent: *
 Allow: /
 
-# Block non-content utility pages from crawl budget
-Disallow: /privacy-policy
-Disallow: /terms
-Disallow: /disclaimer
-Disallow: /cookie-policy
+# Specifically ensure AdSense bots have full access
+User-agent: Mediapartners-Google
+Allow: /
 
 Sitemap: https://warscopeglobal.com/sitemap.xml

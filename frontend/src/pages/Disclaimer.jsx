@@ -103,12 +103,14 @@ export default function Disclaimer() {
         </div>
 
         <div className="lg-section">
-          <h2 className="lg-h2"><span>07.</span> External Links</h2>
-          <p className="lg-p">WarScope links to external news sources and data providers. We are not responsible for the content, accuracy, or availability of external websites. The inclusion of a link does not imply endorsement of the linked site or its content.</p>
+          <h2 className="lg-h2"><span>07.</span> Automated Feeds & External Links</h2>
+          <p className="lg-p">WarScope utilizes automated APIs (such as the GDELT Project) to aggregate external news headlines and event data. We do not manually curate, edit, or endorse the content of these third-party news feeds. The inclusion of an automated headline or link does not imply endorsement of the linked site, its publisher, or its content.</p>
+          <p className="lg-p">If you encounter an automated headline or external link that violates our commitment to educational and analytical integrity (e.g., explicitly graphic, dangerous, or derogatory third-party content), please report it to our moderation team immediately for review and removal.</p>
         </div>
 
-        <div className="lg-box"><p><strong>Questions about this disclaimer?</strong> Contact us at <a href="mailto:legal@warscope.app" style={{color:'#00d4ff'}}>legal@warscope.app</a></p></div>
-
+        <div className="lg-box">
+          <p><strong>Questions about this disclaimer or reporting content?</strong> Contact us at <a href="mailto:contact@warscopeglobal.com" style={{color:'#00d4ff'}}>contact@warscopeglobal.com</a></p>
+        </div>
       </div>
 
       <AdBanner />

@@ -7,7 +7,7 @@ import AdBanner        from '../components/AdBanner.jsx';
 import BlogCard        from './BlogCard.jsx';
 import SEO from '../seo/SEO.jsx';
 import { articleSchema } from '../seo/structuredData.js';
-import ReactMarkdown   from 'react-markdown';
+import Footer from '../components/Footer.jsx';
 
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -747,6 +747,7 @@ export default function BlogPost() {
 
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
