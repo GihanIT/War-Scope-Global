@@ -143,7 +143,6 @@ docker compose up -d
 Insert conflicts, countries, and news directly via the PostgreSQL schema in `backend/db/schema.sql`, or use the seed script in `scripts/seed.js` as a template to import from JSON.
 
 ```
-
 ```
 War-Scope-Global
 ├─ backend
@@ -176,6 +175,12 @@ War-Scope-Global
 │  ├─ package-lock.json
 │  ├─ package.json
 │  ├─ postcss.config.js
+│  ├─ public
+│  │  ├─ favicon.svg
+│  │  ├─ robots.txt
+│  │  └─ sitemap.xml
+│  ├─ scripts
+│  │  └─ generate-sitemap.js
 │  ├─ src
 │  │  ├─ api.js
 │  │  ├─ App.jsx
@@ -189,6 +194,7 @@ War-Scope-Global
 │  │  │  ├─ CountryPanel.jsx
 │  │  │  ├─ Footer.jsx
 │  │  │  ├─ Navbar.jsx
+│  │  │  ├─ ScrollToTop.jsx
 │  │  │  └─ Skeleton.jsx
 │  │  ├─ data
 │  │  │  ├─ alliance-data.js
@@ -225,6 +231,9 @@ War-Scope-Global
 │  │  │  ├─ UnitsDetail.jsx
 │  │  │  ├─ VehicleDetail.jsx
 │  │  │  └─ Vehicles.jsx
+│  │  ├─ seo
+│  │  │  ├─ SEO.jsx
+│  │  │  └─ structuredData.js
 │  │  └─ utils
 │  ├─ tailwind.config.js
 │  └─ vite.config.js

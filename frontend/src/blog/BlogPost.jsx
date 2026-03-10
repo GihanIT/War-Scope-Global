@@ -1,13 +1,13 @@
 // src/blog/BlogPost.jsx
 import { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import ReactMarkdown   from 'react-markdown';
 import { getPost, getRelated } from '../data/blog-data.js';
 import Navbar          from '../components/Navbar.jsx';
 import AdBanner        from '../components/AdBanner.jsx';
 import BlogCard        from './BlogCard.jsx';
 import SEO from '../seo/SEO.jsx';
 import { articleSchema } from '../seo/structuredData.js';
+import ReactMarkdown   from 'react-markdown';
 
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -358,21 +358,41 @@ function Breadcrumb({ category, title }) {
   );
 }
 
-// ─── Markdown with injected inline ads ───────────────────────────────────────
+// ─── HTML with injected inline ads ───────────────────────────────────────
 function ContentWithAds({ content }) {
   const chunks = useMemo(() => {
     if (!content) return [];
-    const paragraphs = content.split(/\n{2,}/);
+    
+    // We split safely by the closing paragraph tag to ensure we don't 
+    // accidentally break tables or lists in half when injecting ads.
+    const rawChunks = content.split('</p>');
+    const combined = [];
+    
+    for (let i = 0; i < rawChunks.length; i++) {
+      let chunk = rawChunks[i];
+      // Add the </p> back, except for the very last piece 
+      if (i < rawChunks.length - 1) {
+        chunk += '</p>';
+      }
+      if (chunk.trim()) {
+        combined.push(chunk);
+      }
+    }
+
     const out = [];
     let adCount = 0;
-    paragraphs.forEach((text, i) => {
-      out.push({ type: 'md', text, key: `md-${i}` });
-      // Added the environment check here:
-      if ((i + 1) % 4 === 0 && i < paragraphs.length - 1 && import.meta.env.VITE_SHOW_ADS !== 'false') {
+    
+    combined.forEach((htmlString, i) => {
+      // 1. Push the safe HTML chunk
+      out.push({ type: 'html', html: htmlString, key: `html-${i}` });
+      
+      // 2. Inject an ad every 2 paragraphs (adjust the % 2 to change frequency)
+      if ((i + 1) % 2 === 0 && i < combined.length - 1 && import.meta.env.VITE_SHOW_ADS !== 'false') {
         adCount++;
         out.push({ type: 'ad', id: `ad-inline-${adCount}`, key: `ad-${adCount}` });
       }
     });
+    
     return out;
   }, [content]);
 
@@ -392,7 +412,8 @@ function ContentWithAds({ content }) {
             <AdBanner id={chunk.id} size="300x250" />
           </div>
         ) : (
-          <ReactMarkdown key={chunk.key}>{chunk.text}</ReactMarkdown>
+          // This tells React to render the actual HTML elements!
+          <div key={chunk.key} dangerouslySetInnerHTML={{ __html: chunk.html }} />
         )
       )}
     </div>
