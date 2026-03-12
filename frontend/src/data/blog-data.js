@@ -14,7 +14,7 @@ export const posts = [
     metaDescription:
       "A comprehensive, data-driven comparison of China and Russia's military strength in 2025, analyzing naval capabilities, air superiority, and defense budgets.",
     category: "Comparison",
-    date: "2025-02-15",
+    date: "2025-01-05",
     readTime: "8 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1500&auto=format&fit=crop",
@@ -229,7 +229,7 @@ export const posts = [
     metaDescription:
       "An in-depth, objective analysis of the military balance between the United States and China. Comparing naval fleets, air superiority, and defense spending.",
     category: "Comparison",
-    date: "2025-02-01",
+    date: "2025-01-25",
     readTime: "9 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1500252185289-40ca85eb23a7?q=80&w=1171&auto=format&fit=crop",
@@ -288,7 +288,7 @@ export const posts = [
     metaDescription:
       "A purely factual comparison of the armed forces of India and Pakistan. Exploring troop deployments, defense budgets, and regional security dynamics.",
     category: "Comparison",
-    date: "2025-02-20",
+    date: "2025-02-01",
     readTime: "8 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1763656443862-fef331a4b7cf?q=80&w=1170&auto=format&fit=crop",
@@ -350,7 +350,7 @@ export const posts = [
     metaDescription:
       "An analytical deep-dive into the combined military capabilities of the 32 NATO member states in 2025. Evaluating troops, defense spending, and strategic readiness.",
     category: "Analysis",
-    date: "2025-03-01",
+    date: "2025-02-10",
     readTime: "9 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1706548633589-2a02f434f0d0?q=80&w=1170&auto=format&fit=crop",
@@ -408,7 +408,7 @@ export const posts = [
     metaDescription:
       "A quantitative analysis of global drone superpowers in 2026. Compare the export dominance of Turkey's Bayraktar, Iran's asymmetric Shahed, and the USA's advanced CCA.",
     category: "Comparison",
-    date: "2026-03-10",
+    date: "2026-02-15",
     readTime: "7 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1500&auto=format&fit=crop",
@@ -497,7 +497,7 @@ export const posts = [
     metaDescription:
       "A deep-dive technical analysis of the 2026 hypersonic arms race. Comparing the glide vehicles and scramjet cruise missiles of the USA, China, and Russia.",
     category: "Analysis",
-    date: "2026-03-10",
+    date: "2026-02-17",
     readTime: "8 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1678402001029-5b8cc141944a?q=80&w=1332&auto=format&fit=crop",
@@ -587,7 +587,7 @@ export const posts = [
     metaDescription:
       "An analytical breakdown of the militarization of space in 2026. Exploring the United States Space Force, China's Aerospace Force, and global anti-satellite (ASAT) capabilities.",
     category: "Analysis",
-    date: "2026-03-10",
+    date: "2026-02-20",
     readTime: "9 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1500&auto=format&fit=crop",
@@ -674,7 +674,7 @@ export const posts = [
     metaDescription:
       "Analyze the geopolitical and economic significance of the Strait of Malacca in 2026. Understand China's Malacca Dilemma and global maritime security.",
     category: "Analysis",
-    date: "2026-03-10",
+    date: "2026-02-24",
     readTime: "8 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1589733000502-225e3f26fb8f?q=80&w=1074&auto=format&fit=crop",
@@ -762,7 +762,7 @@ export const posts = [
     metaDescription:
       "A quantitative analysis of the global defense industrial base in 2026. Explore how the US dominates arms exports, while France officially overtakes Russia.",
     category: "Analysis",
-    date: "2026-03-10",
+    date: "2026-02-28",
     readTime: "8 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1653289755843-c7469886050e?q=80&w=1170&auto=format&fit=crop",
@@ -858,7 +858,7 @@ export const posts = [
     metaDescription:
       "A complete ranking of the world's largest military budgets in 2026. Analyze the historic European rearmament, US spending, and China's Indo-Pacific investments.",
     category: "Rankings",
-    date: "2026-03-10",
+    date: "2026-03-01",
     readTime: "9 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1170&auto=format&fit=crop",
@@ -953,7 +953,7 @@ export const posts = [
     metaDescription:
       "A technical comparison of the world's most capable submarine fleets in 2026. Analyzing nuclear propulsion, AIP diesel-electrics, and acoustic stealth.",
     category: "Comparison",
-    date: "2026-03-10",
+    date: "2026-03-04",
     readTime: "8 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1600119330210-e7a3f5a0d079?q=80&w=1170&auto=format&fit=crop",
@@ -1041,7 +1041,7 @@ export const posts = [
     metaDescription:
       "A technical ranking of the world's top 5 most advanced Main Battle Tanks (MBTs) in 2026. Analyzing Active Protection Systems, sensor fusion, and armor.",
     category: "Rankings",
-    date: "2026-03-10",
+    date: "2026-03-08",
     readTime: "7 min",
     author: "WarScope Intelligence",
     coverImage: "https://images.unsplash.com/photo-1630161861535-b39e5635da68?q=80&w=1170&auto=format&fit=crop",
