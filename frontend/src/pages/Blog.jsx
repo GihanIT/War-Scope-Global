@@ -1,5 +1,5 @@
 // src/pages/Blog.jsx
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link }     from 'react-router-dom';
 import Navbar       from '../components/Navbar.jsx';
 import AdBanner     from '../components/AdBanner.jsx';
@@ -204,7 +204,6 @@ function FeaturedCard({ post }) {
               height:     '100%',
               objectFit:  'cover',
               display:    'block',
-              // The filter line has been removed to eliminate the dark vintage look
               transform:  hovered ? 'scale(1.02)' : 'scale(1)',
               transition: 'all 500ms ease',
             }}
@@ -216,7 +215,6 @@ function FeaturedCard({ post }) {
             backgroundSize: '32px 32px',
           }} />
         )}
-
 
         {/* Tactical Scanline Overlay */}
         <div style={{
@@ -362,7 +360,6 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 
   const pages = [];
   for (let i = 1; i <= totalPages; i++) {
-    // Always show first, last, current, and neighbors; use ellipsis otherwise
     if (
       i === 1 ||
       i === totalPages ||
@@ -376,7 +373,6 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       pages.push('...');
     }
   }
-  // Deduplicate consecutive ellipses
   const dedupedPages = pages.filter((p, i) => !(p === '...' && pages[i - 1] === '...'));
 
   return (
@@ -448,8 +444,21 @@ export default function Blog() {
 
   const [activeCategory, setActiveCategory] = useState('All');
   const [currentPage, setCurrentPage]       = useState(1);
+  const [isMobile, setIsMobile]             = useState(false);
 
-  // Sort all posts newest → oldest
+  // Responsive logic to fix the ad sizes blowing out the page bounds
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize(); // trigger on initial load
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Dynamically set ad size
+  const currentAdSize = isMobile ? '300x50' : '728x90';
+
   const sortedPosts = useMemo(() =>
     [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date)),
   []);
@@ -466,14 +475,12 @@ export default function Blog() {
     ? filtered.filter(p => !p.featured)
     : filtered;
 
-  // Paginate non-featured grid posts
   const totalPages = Math.ceil(nonFeatured.length / POSTS_PER_PAGE);
   const gridPosts  = nonFeatured.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE,
   );
 
-  // Reset to page 1 when category changes
   const handleCategoryChange = (cat) => {
     setActiveCategory(cat);
     setCurrentPage(1);
@@ -481,11 +488,9 @@ export default function Blog() {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    // Scroll back to the grid section smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Build grid items with inline ads every 3 cards
   const gridItems = [];
   let adRowCount  = 0;
   gridPosts.forEach((post, i) => {
@@ -524,7 +529,6 @@ export default function Blog() {
           borderBottom: '1px solid rgba(0, 212, 255, 0.15)',
           boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
         }}>
-          {/* Vignette */}
           <div style={{
             position:   'absolute',
             inset:      0,
@@ -578,7 +582,6 @@ export default function Blog() {
               Access classified military analysis, global power comparisons, and real-time conflict assessments.
             </p>
 
-            {/* Stat pills */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
               {[
                 { label: 'ARCHIVED BRIEFS', value: BLOG_POSTS.length, icon: <Icons.Database /> },
@@ -609,13 +612,14 @@ export default function Blog() {
         </div>
 
         {/* ── Top ad ────────────────────────────────────────────────────── */}
-        <div style={{ padding: '40px 48px 0', maxWidth: 1200, margin: '0 auto' }}>
-          <AdBanner id="ad-blog-top" size="728x90" />
+        {/* Adjusted padding with clamp() so margins don't break mobile flow */}
+        <div style={{ padding: '40px clamp(16px, 5vw, 48px) 0', maxWidth: 1200, margin: '0 auto', overflow: 'hidden' }}>
+          <AdBanner id="ad-blog-top" size={currentAdSize} />
         </div>
 
         {/* ── Featured posts (All view only) ────────────────────────────── */}
         {activeCategory === 'All' && featured.length > 0 && (
-          <div style={{ padding: '48px 48px 0', maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ padding: '48px clamp(16px, 5vw, 48px) 0', maxWidth: 1200, margin: '0 auto' }}>
             <div style={{
               fontFamily:    "'IBM Plex Mono', monospace",
               fontSize:      11,
@@ -656,7 +660,7 @@ export default function Blog() {
 
         {/* ── Category filter ───────────────────────────────────────────── */}
         <div style={{
-          padding:    '48px 48px 0',
+          padding:    '48px clamp(16px, 5vw, 48px) 0',
           maxWidth:   1200,
           margin:     '0 auto',
         }}>
@@ -696,7 +700,7 @@ export default function Blog() {
         </div>
 
         {/* ── Posts grid ───────────────────────────────────────────────── */}
-        <div style={{ padding: '32px 48px 80px', maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ padding: '32px clamp(16px, 5vw, 48px) 80px', maxWidth: 1200, margin: '0 auto' }}>
           {gridPosts.length === 0 ? (
             <div style={{
               textAlign:    'center',
@@ -730,9 +734,10 @@ export default function Blog() {
                           alignItems: 'center',
                           justifyContent: 'center',
                           minHeight: 110,
+                          overflow: 'hidden' // prevents any accidental horizontal scroll
                         }}
                       >
-                        <AdBanner id={item.id} size="728x90" />
+                        <AdBanner id={item.id} size={currentAdSize} />
                       </div>
                     );
                   }
