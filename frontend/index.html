@@ -3,28 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="google-site-verification" content="yP7Hg5LNMmR2Fq-5826szCP8AOZ_kEAea4rUoulrsxw" />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
     <!-- ── Base SEO (overridden per-page by react-helmet-async) ── -->
-    <title>WarScope — Global Military Intelligence</title>
-    <meta name="description" content="Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
+    <title>WarScope — War Scope Global Military Intelligence</title>
+    <meta name="description" content="WarScope is your war scope global intelligence platform. Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings. Track every war scope worldwide." />
+    <meta name="keywords" content="war scope, war scope global, warscopeglobal, global military intelligence, conflict map, military power rankings, arms trade, nuclear arsenals, intelligence briefings, real-time conflict tracking, war tracker, global conflict visualization" />
+    <meta name="author" content="WarScope Global" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://warscopeglobal.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- ── Structured Data (JSON-LD) ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "WarScope Global",
+      "alternateName": ["War Scope", "War Scope Global", "WarScope"],
+      "url": "https://warscopeglobal.com/",
+      "description": "War Scope Global — real-time military intelligence, conflict visualization, power rankings, and arms trade data.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://warscopeglobal.com/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- ── Open Graph base (overridden per-page) ── -->
-    <meta property="og:site_name"   content="WarScope" />
+    <meta property="og:site_name"   content="WarScope Global" />
     <meta property="og:type"        content="website" />
-    <meta property="og:title"       content="WarScope — Global Military Intelligence" />
-    <meta property="og:description" content="Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
+    <meta property="og:title"       content="WarScope — War Scope Global Military Intelligence" />
+    <meta property="og:description" content="WarScope is your war scope global intelligence platform. Real-time conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
     <meta property="og:image"       content="https://warscopeglobal.com/og-default.jpg" />
     <meta property="og:url"         content="https://warscopeglobal.com/" />
 
     <!-- ── Twitter Card base ── -->
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="WarScope — Global Military Intelligence" />
-    <meta name="twitter:description" content="Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
+    <meta name="twitter:site"        content="@warscopeglobal" />
+    <meta name="twitter:title"       content="WarScope — War Scope Global Military Intelligence" />
+    <meta name="twitter:description" content="WarScope is your war scope global intelligence platform. Real-time conflict visualization, military power rankings, arms trade data, and intelligence briefings." />
     <meta name="twitter:image"       content="https://warscopeglobal.com/og-default.jpg" />
 
     <!-- ── Theme color (browser chrome on mobile) ── -->
@@ -39,7 +62,7 @@
     <!-- ── Google AdSense (uncomment when approved) ──
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
     ── -->
-    <!-- Google tag (gtag.js) -->
+     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X5Y3QPH0L"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
