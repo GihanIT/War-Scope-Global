@@ -3,6 +3,8 @@ import Navbar   from '../components/Navbar.jsx';
 import Footer   from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import { ARMS_TRANSFERS, ARMS_ERAS, ARMS_CATEGORIES } from '../data/arms-trade-data.js';
+import SEO from '../seo/SEO.jsx';
+import { datasetSchema } from '../seo/structuredData.js';
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
 const Icons = {
@@ -668,6 +670,18 @@ export default function ArmsTrade() {
 
   return (
     <div className="at-page-wrapper">
+      <SEO
+        title="Global Arms Trade Database — Military Transfers by Country"
+        description="Track international arms transfers: exporter, importer, equipment type, and deal value. Covers air, naval, armor, missile and artillery systems from 1950 to present."
+        canonical="/arms-trade"
+      >
+        <script type="application/ld+json">{JSON.stringify(datasetSchema({
+          name: 'Global Arms Trade Database',
+          description: 'International arms transfers by country, category, and era.',
+          url: '/arms-trade',
+          keywords: ['arms trade', 'weapons exports', 'defense contracts', 'military sales', 'SIPRI'],
+        }))}</script>
+      </SEO>
       <div className="at-content-layer">
         <Navbar />
 

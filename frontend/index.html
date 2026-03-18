@@ -2,43 +2,75 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <!-- Viewport — required for responsive layout and mobile AdSense -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- ── Base SEO (overridden per-page by react-helmet-async) ── -->
+    <title>WarScope — War Scope Global Military Intelligence</title>
+    <meta name="description" content="WarScope is your war scope global intelligence platform. Real-time global conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings. Track every war scope worldwide." />
+    <meta name="keywords" content="war scope, war scope global, warscopeglobal, global military intelligence, conflict map, military power rankings, arms trade, nuclear arsenals, intelligence briefings, real-time conflict tracking, war tracker, global conflict visualization" />
+    <meta name="author" content="WarScope Global" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://warscopeglobal.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-    <title>WarScope — Global Military Intelligence</title>
-    <meta name="description" content="Real-time global conflict visualization, military power rankings, and intelligence briefings." />
+    <!-- ── Structured Data (JSON-LD) ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "WarScope Global",
+      "alternateName": ["War Scope", "War Scope Global", "WarScope"],
+      "url": "https://warscopeglobal.com/",
+      "description": "War Scope Global — real-time military intelligence, conflict visualization, power rankings, and arms trade data.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://warscopeglobal.com/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
-    <!-- ─── Google Fonts ──────────────────────────────────────────────────── -->
+    <!-- ── Open Graph base (overridden per-page) ── -->
+    <meta property="og:site_name"   content="WarScope Global" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="WarScope — War Scope Global Military Intelligence" />
+    <meta property="og:description" content="WarScope is your war scope global intelligence platform. Real-time conflict visualization, military power rankings, arms trade data, nuclear arsenals, and intelligence briefings." />
+    <meta property="og:image"       content="https://warscopeglobal.com/og-default.jpg" />
+    <meta property="og:url"         content="https://warscopeglobal.com/" />
+
+    <!-- ── Twitter Card base ── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:site"        content="@warscopeglobal" />
+    <meta name="twitter:title"       content="WarScope — War Scope Global Military Intelligence" />
+    <meta name="twitter:description" content="WarScope is your war scope global intelligence platform. Real-time conflict visualization, military power rankings, arms trade data, and intelligence briefings." />
+    <meta name="twitter:image"       content="https://warscopeglobal.com/og-default.jpg" />
+
+    <!-- ── Theme color (browser chrome on mobile) ── -->
+    <meta name="theme-color" content="#050508" />
+
+    <!-- ── Google Fonts ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Inter (body / UI) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- ── Google AdSense (uncomment when approved) ──
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+    ── -->
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X5Y3QPH0L"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-    <!-- IBM Plex Mono (monospace labels, data) + Barlow (headings, cards) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- ─── Google AdSense ───────────────────────────────────────────────────
-         Replace the placeholder below with your actual AdSense publisher ID
-         once your site is approved. Remove this comment block and uncomment
-         the <script> tag.
-
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
-      crossorigin="anonymous"
-    ></script>
-
-    ─────────────────────────────────────────────────────────────────────── -->
+    gtag('config', 'G-6X5Y3QPH0L');
+    </script>
   </head>
   <body>
     <div id="root"></div>

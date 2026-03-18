@@ -5,6 +5,8 @@ import Navbar   from '../components/Navbar.jsx';
 import Footer   from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import { UNITS, BRANCHES, COUNTRIES } from '../data/army-units-db.js';
+import SEO from '../seo/SEO.jsx';
+
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 const Icons = {
@@ -420,6 +422,11 @@ export default function UnitsDir() {
 
   return (
     <div className="un-page">
+      <SEO
+        title="Military Units Database — Special Forces, Divisions & Order of Battle"
+        description="Profiles of military units worldwide: special forces, divisions, brigades and regiments. Search by country, branch, and specialization."
+        canonical="/units"
+      />
       <div className="un-content">
         <Navbar />
 

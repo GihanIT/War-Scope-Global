@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
+import SEO from '../seo/SEO.jsx';
+
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;700;800;900&family=Barlow:wght@300;400;500;600&display=swap');
@@ -106,6 +108,11 @@ export default function Contact() {
 
   return (
     <div className="ct-page">
+      <SEO
+        title="Contact WarScope"
+        description="Get in touch with the WarScope team for data corrections, partnership inquiries, or media requests."
+        canonical="/contact"
+      />
       <Navbar />
 
       <div className="ct-hero">

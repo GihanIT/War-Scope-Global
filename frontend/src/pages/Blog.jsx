@@ -1,12 +1,12 @@
 // src/pages/Blog.jsx
-import { useState, useMemo } from 'react';
-import { Helmet }   from 'react-helmet';
+import { useState, useMemo, useEffect } from 'react';
 import { Link }     from 'react-router-dom';
 import Navbar       from '../components/Navbar.jsx';
 import AdBanner     from '../components/AdBanner.jsx';
 import BlogCard     from '../blog/BlogCard.jsx';
 import BLOG_POSTS, { CATEGORIES } from '../data/blog-data.js';
 import Footer from '../components/Footer.jsx';
+import SEO from '../seo/SEO.jsx';
 
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
@@ -16,6 +16,7 @@ const Icons = {
   Crosshair: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>,
   Tag: () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>,
   ChevronRight: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
+  ChevronLeft: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>,
 };
 
 // ─── CSS injected once ────────────────────────────────────────────────────────
@@ -114,6 +115,43 @@ const BLOG_CSS = `
     0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(255,59,59,0.4); }
     50% { opacity: 0.6; box-shadow: 0 0 2px rgba(255,59,59,0.1); }
   }
+
+  .pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 200ms ease;
+    outline: none;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    background: rgba(10, 12, 20, 0.6);
+    color: #8892a4;
+  }
+  .pagination-btn:hover:not(:disabled) {
+    border-color: #00d4ff;
+    color: #e8eaf0;
+    background: rgba(0, 212, 255, 0.05);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+  }
+  .pagination-btn.active {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    border-color: #00d4ff;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+  }
+  .pagination-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 `;
 
 function injectCSS(id, css) {
@@ -166,7 +204,6 @@ function FeaturedCard({ post }) {
               height:     '100%',
               objectFit:  'cover',
               display:    'block',
-              // The filter line has been removed to eliminate the dark vintage look
               transform:  hovered ? 'scale(1.02)' : 'scale(1)',
               transition: 'all 500ms ease',
             }}
@@ -178,7 +215,6 @@ function FeaturedCard({ post }) {
             backgroundSize: '32px 32px',
           }} />
         )}
-
 
         {/* Tactical Scanline Overlay */}
         <div style={{
@@ -316,23 +352,145 @@ function CountBadge({ count, category }) {
   );
 }
 
+// ─── Pagination component ─────────────────────────────────────────────────────
+const POSTS_PER_PAGE = 9;
+
+function Pagination({ currentPage, totalPages, onPageChange }) {
+  if (totalPages <= 1) return null;
+
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - 1 && i <= currentPage + 1)
+    ) {
+      pages.push(i);
+    } else if (
+      (i === currentPage - 2 && currentPage - 2 > 1) ||
+      (i === currentPage + 2 && currentPage + 2 < totalPages)
+    ) {
+      pages.push('...');
+    }
+  }
+  const dedupedPages = pages.filter((p, i) => !(p === '...' && pages[i - 1] === '...'));
+
+  return (
+    <div style={{
+      display:        'flex',
+      alignItems:     'center',
+      justifyContent: 'center',
+      gap:            8,
+      padding:        '32px 0 0',
+      fontFamily:     "'IBM Plex Mono', monospace",
+    }}>
+      {/* Prev */}
+      <button
+        className="pagination-btn"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        aria-label="Previous page"
+      >
+        <Icons.ChevronLeft />
+      </button>
+
+      {dedupedPages.map((p, i) =>
+        p === '...' ? (
+          <span key={`ellipsis-${i}`} style={{
+            color: '#4a5568',
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: 11,
+            padding: '0 4px',
+          }}>···</span>
+        ) : (
+          <button
+            key={p}
+            className={`pagination-btn${currentPage === p ? ' active' : ''}`}
+            onClick={() => onPageChange(p)}
+            aria-label={`Page ${p}`}
+            aria-current={currentPage === p ? 'page' : undefined}
+          >
+            {p}
+          </button>
+        )
+      )}
+
+      {/* Next */}
+      <button
+        className="pagination-btn"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        aria-label="Next page"
+      >
+        <Icons.ChevronRight />
+      </button>
+
+      <span style={{
+        marginLeft:    16,
+        color:         '#4a5568',
+        fontSize:      10,
+        letterSpacing: '0.1em',
+        textTransform: 'uppercase',
+      }}>
+        PAGE {currentPage} / {totalPages}
+      </span>
+    </div>
+  );
+}
+
 // ─── Blog page ────────────────────────────────────────────────────────────────
 export default function Blog() {
   injectCSS('blog-page-css', BLOG_CSS);
 
   const [activeCategory, setActiveCategory] = useState('All');
+  const [currentPage, setCurrentPage]       = useState(1);
+  const [isMobile, setIsMobile]             = useState(false);
+
+  // Responsive logic to fix the ad sizes blowing out the page bounds
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize(); // trigger on initial load
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Dynamically set ad size
+  const currentAdSize = isMobile ? '300x50' : '728x90';
+
+  const sortedPosts = useMemo(() =>
+    [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date)),
+  []);
 
   const filtered = useMemo(() => {
-    if (activeCategory === 'All') return BLOG_POSTS;
-    return BLOG_POSTS.filter(p => p.category === activeCategory);
-  }, [activeCategory]);
+    const posts = activeCategory === 'All'
+      ? sortedPosts
+      : sortedPosts.filter(p => p.category === activeCategory);
+    return posts;
+  }, [activeCategory, sortedPosts]);
 
-  const featured = BLOG_POSTS.filter(p => p.featured);
-  const gridPosts = activeCategory === 'All'
+  const featured  = sortedPosts.filter(p => p.featured);
+  const nonFeatured = activeCategory === 'All'
     ? filtered.filter(p => !p.featured)
     : filtered;
 
-  // Build grid items with inline ads every 3 cards
+  const totalPages = Math.ceil(nonFeatured.length / POSTS_PER_PAGE);
+  const gridPosts  = nonFeatured.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  );
+
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const gridItems = [];
   let adRowCount  = 0;
   gridPosts.forEach((post, i) => {
@@ -353,15 +511,11 @@ export default function Blog() {
 
   return (
     <div className="blog-page-wrapper">
-      <Helmet>
-        <title>Intelligence Briefings | WarScope</title>
-        <meta
-          name="description"
-          content="In-depth military analysis, country comparisons, nuclear rankings and global conflict intelligence from the WarScope research team."
-        />
-        <meta property="og:title" content="Intelligence Briefings | WarScope" />
-        <meta property="og:description" content="Military analysis, comparisons, nuclear rankings and global power data." />
-      </Helmet>
+      <SEO
+        title="Military Intelligence Blog — Analysis, Comparisons & Rankings"
+        description="In-depth military intelligence analysis: country comparisons, nuclear doctrine, arms trade reports, conflict analysis, and military power rankings."
+        canonical="/blog"
+      />
 
       <div className="blog-content">
         <Navbar />
@@ -375,7 +529,6 @@ export default function Blog() {
           borderBottom: '1px solid rgba(0, 212, 255, 0.15)',
           boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
         }}>
-          {/* Vignette */}
           <div style={{
             position:   'absolute',
             inset:      0,
@@ -429,7 +582,6 @@ export default function Blog() {
               Access classified military analysis, global power comparisons, and real-time conflict assessments.
             </p>
 
-            {/* Stat pills */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32, flexWrap: 'wrap' }}>
               {[
                 { label: 'ARCHIVED BRIEFS', value: BLOG_POSTS.length, icon: <Icons.Database /> },
@@ -460,13 +612,14 @@ export default function Blog() {
         </div>
 
         {/* ── Top ad ────────────────────────────────────────────────────── */}
-        <div style={{ padding: '40px 48px 0', maxWidth: 1200, margin: '0 auto' }}>
-          <AdBanner id="ad-blog-top" size="728x90" />
+        {/* Adjusted padding with clamp() so margins don't break mobile flow */}
+        <div style={{ padding: '40px clamp(16px, 5vw, 48px) 0', maxWidth: 1200, margin: '0 auto', overflow: 'hidden' }}>
+          <AdBanner id="ad-blog-top" size={currentAdSize} />
         </div>
 
         {/* ── Featured posts (All view only) ────────────────────────────── */}
         {activeCategory === 'All' && featured.length > 0 && (
-          <div style={{ padding: '48px 48px 0', maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ padding: '48px clamp(16px, 5vw, 48px) 0', maxWidth: 1200, margin: '0 auto' }}>
             <div style={{
               fontFamily:    "'IBM Plex Mono', monospace",
               fontSize:      11,
@@ -507,7 +660,7 @@ export default function Blog() {
 
         {/* ── Category filter ───────────────────────────────────────────── */}
         <div style={{
-          padding:    '48px 48px 0',
+          padding:    '48px clamp(16px, 5vw, 48px) 0',
           maxWidth:   1200,
           margin:     '0 auto',
         }}>
@@ -526,7 +679,7 @@ export default function Blog() {
               <button
                 key={cat}
                 className={`blog-cat-btn ${activeCategory === cat ? 'active' : 'inactive'}`}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => handleCategoryChange(cat)}
               >
                 {cat}
                 <CountBadge count={catCounts[cat]} category={cat} />
@@ -547,7 +700,7 @@ export default function Blog() {
         </div>
 
         {/* ── Posts grid ───────────────────────────────────────────────── */}
-        <div style={{ padding: '32px 48px 80px', maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ padding: '32px clamp(16px, 5vw, 48px) 80px', maxWidth: 1200, margin: '0 auto' }}>
           {gridPosts.length === 0 ? (
             <div style={{
               textAlign:    'center',
@@ -564,39 +717,48 @@ export default function Blog() {
               [ ERR: NO DECLASSIFIED FILES IN THIS SECTOR ]
             </div>
           ) : (
-            <div className="blog-grid">
-              {gridItems.map((item, idx) => {
-                if (item.type === 'ad') {
+            <>
+              <div className="blog-grid">
+                {gridItems.map((item, idx) => {
+                  if (item.type === 'ad') {
+                    return (
+                      <div
+                        key={item.id}
+                        style={{ 
+                          gridColumn: '1 / -1', 
+                          margin: '16px 0',
+                          background: 'rgba(0, 212, 255, 0.02)',
+                          border: '1px dashed rgba(0, 212, 255, 0.2)',
+                          borderRadius: 6,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          minHeight: 110,
+                          overflow: 'hidden' // prevents any accidental horizontal scroll
+                        }}
+                      >
+                        <AdBanner id={item.id} size={currentAdSize} />
+                      </div>
+                    );
+                  }
                   return (
                     <div
-                      key={item.id}
-                      style={{ 
-                        gridColumn: '1 / -1', 
-                        margin: '16px 0',
-                        background: 'rgba(0, 212, 255, 0.02)',
-                        border: '1px dashed rgba(0, 212, 255, 0.2)',
-                        borderRadius: 6,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        minHeight: 110,
-                      }}
+                      key={item.post.slug}
+                      className="blog-card-anim"
+                      style={{ animationDelay: `${(item.index % 3) * 100}ms` }}
                     >
-                      <AdBanner id={item.id} size="728x90" />
+                      <BlogCard post={item.post} />
                     </div>
                   );
-                }
-                return (
-                  <div
-                    key={item.post.slug}
-                    className="blog-card-anim"
-                    style={{ animationDelay: `${(item.index % 3) * 100}ms` }}
-                  >
-                    <BlogCard post={item.post} />
-                  </div>
-                );
-              })}
-            </div>
+                })}
+              </div>
+
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </>
           )}
         </div>
       </div>

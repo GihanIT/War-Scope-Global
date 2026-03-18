@@ -1,12 +1,14 @@
 // src/blog/BlogPost.jsx
 import { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Helmet }      from 'react-helmet';
-import ReactMarkdown   from 'react-markdown';
 import { getPost, getRelated } from '../data/blog-data.js';
 import Navbar          from '../components/Navbar.jsx';
 import AdBanner        from '../components/AdBanner.jsx';
 import BlogCard        from './BlogCard.jsx';
+import SEO from '../seo/SEO.jsx';
+import { articleSchema } from '../seo/structuredData.js';
+import Footer from '../components/Footer.jsx';
+
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const API = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
@@ -165,16 +167,19 @@ const POST_CSS = `
     padding: 20px;
     overflow-x: auto;
     margin-bottom: 24px;
-    /* Removed: box-shadow: inset 0 0 20px rgba(0,0,0,0.5); */
   }
   .wp-prose pre code { background: transparent; border: none; padding: 0; font-size: 13px; color: #00ff88; }
   
+  /* TABLE RESPONSIVE FIXES ADDED HERE */
   .wp-prose table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 28px;
     font-size: 14px;
     font-family: 'Barlow', system-ui, sans-serif;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .wp-prose th {
     background: rgba(0, 212, 255, 0.05);
@@ -187,9 +192,10 @@ const POST_CSS = `
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    white-space: nowrap; /* Keeps headers from crushing */
   }
   .wp-prose td {
-    color: #cdd4e0;      /* Brightened to match body text */
+    color: #cdd4e0;      
     padding: 12px 16px;
     border: 1px solid rgba(30, 36, 51, 0.5);
     vertical-align: top;
@@ -285,14 +291,14 @@ const POST_CSS = `
 
   .wp-progress {
     position: fixed;
-    bottom: 0;         /* Changed from top: 60px */
+    bottom: 0;         
     left: 0;
-    height: 4px;       /* Slightly thicker for better bottom visibility */
+    height: 4px;       
     background: linear-gradient(90deg, #00d4ff, #00ff88);
-    z-index: 9999;     /* Ensure it sits above all other elements */
+    z-index: 9999;     
     transition: width 100ms ease-out;
     pointer-events: none;
-    box-shadow: 0 -2px 10px rgba(0, 212, 255, 0.4); /* Flipped shadow upwards */
+    box-shadow: 0 -2px 10px rgba(0, 212, 255, 0.4); 
   }
 
   @keyframes wp-fade-up {
@@ -307,9 +313,10 @@ const POST_CSS = `
   .wp-sidebar::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.2); border-radius: 2px; }
   .wp-sidebar::-webkit-scrollbar-thumb:hover { background: #00d4ff; }
 
+  /* UPDATED MEDIA QUERY FOR BETTER MOBILE WRAPPING */
   @media (max-width: 900px) {
     .wp-layout  { flex-direction: column !important; }
-    .wp-sidebar { position: static !important; width: 100% !important; max-height: none !important; }
+    .wp-main-column, .wp-sidebar { position: static !important; width: 100% !important; max-height: none !important; flex: none !important; }
     .wp-bottom-grid { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 600px) {
@@ -356,21 +363,40 @@ function Breadcrumb({ category, title }) {
   );
 }
 
-// ─── Markdown with injected inline ads ───────────────────────────────────────
+// ─── HTML with injected inline ads ───────────────────────────────────────
 function ContentWithAds({ content }) {
   const chunks = useMemo(() => {
     if (!content) return [];
-    const paragraphs = content.split(/\n{2,}/);
+    
+    // We split safely by the closing paragraph tag to ensure we don't 
+    // accidentally break tables or lists in half when injecting ads.
+    const rawChunks = content.split('</p>');
+    const combined = [];
+    
+    for (let i = 0; i < rawChunks.length; i++) {
+      let chunk = rawChunks[i];
+      // Add the </p> back, except for the very last piece 
+      if (i < rawChunks.length - 1) {
+        chunk += '</p>';
+      }
+      if (chunk.trim()) {
+        combined.push(chunk);
+      }
+    }
+
     const out = [];
     let adCount = 0;
-    paragraphs.forEach((text, i) => {
-      out.push({ type: 'md', text, key: `md-${i}` });
-      // Added the environment check here:
-      if ((i + 1) % 4 === 0 && i < paragraphs.length - 1 && import.meta.env.VITE_SHOW_ADS !== 'false') {
+    
+    combined.forEach((htmlString, i) => {
+      out.push({ type: 'html', html: htmlString, key: `html-${i}` });
+      
+      // Inject an ad every 2 paragraphs
+      if ((i + 1) % 2 === 0 && i < combined.length - 1 && import.meta.env.VITE_SHOW_ADS !== 'false') {
         adCount++;
         out.push({ type: 'ad', id: `ad-inline-${adCount}`, key: `ad-${adCount}` });
       }
     });
+    
     return out;
   }, [content]);
 
@@ -385,12 +411,13 @@ function ContentWithAds({ content }) {
             padding: '16px 0',
             borderRadius: 4,
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            overflow: 'hidden' // Added to prevent overflow
           }}>
             <AdBanner id={chunk.id} size="300x250" />
           </div>
         ) : (
-          <ReactMarkdown key={chunk.key}>{chunk.text}</ReactMarkdown>
+          <div key={chunk.key} dangerouslySetInnerHTML={{ __html: chunk.html }} />
         )
       )}
     </div>
@@ -515,6 +542,17 @@ export default function BlogPost() {
   const post    = useMemo(() => getPost(slug),       [slug]);
   const related = useMemo(() => getRelated(slug, 3), [slug]);
 
+  // AD RESPONSIVE LOGIC ADDED HERE
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize(); 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const currentAdSize = isMobile ? '300x50' : '728x90';
+
   useEffect(() => {
     if (!post) navigate('/blog', { replace: true });
   }, [post, navigate]);
@@ -537,19 +575,23 @@ export default function BlogPost() {
 
   return (
     <div className="wp-page-wrapper">
-      <Helmet>
-        <title>{post.metaTitle || `${post.title} | WarScope`}</title>
-        <meta name="description"        content={post.metaDescription || post.excerpt} />
-        <meta property="og:title"       content={post.metaTitle || post.title} />
-        <meta property="og:description" content={post.metaDescription || post.excerpt} />
-        <meta property="og:image"       content={post.coverImage || ''} />
-        <meta property="og:type"        content="article" />
-        <link rel="canonical"           href={`https://warscope.com/blog/${post.slug}`} />
-        <script type="application/ld+json">{jsonLd}</script>
-      </Helmet>
-
-      <ReadingProgress />
-      
+      <SEO
+            title={post.title}
+            description={post.excerpt || post.description}
+            canonical={`/blog/${post.slug}`}
+            image={post.image}
+            type="article"
+          >
+            <script type="application/ld+json">{JSON.stringify(articleSchema({
+              title: post.title,
+              description: post.excerpt || post.description,
+              slug: post.slug,
+              date: post.date,
+              image: post.image,
+              category: post.category,
+            }))}</script>
+          </SEO>
+      <ReadingProgress />  
       <div className="wp-content">
         <Navbar />
 
@@ -559,7 +601,8 @@ export default function BlogPost() {
           <div className="wp-layout wp-fade-up" style={{ display: 'flex', gap: 48, alignItems: 'flex-start' }}>
 
             {/* ══ LEFT (65%) ════════════════════════════════════════════ */}
-            <div style={{ flex: '0 0 65%', minWidth: 0 }}>
+            {/* ADDED wp-main-column CLASS HERE FOR MOBILE CSS OVERRIDES */}
+            <div className="wp-main-column" style={{ flex: '0 0 65%', minWidth: 0 }}>
 
               <Breadcrumb category={post.category} title={post.title} />
 
@@ -620,8 +663,8 @@ export default function BlogPost() {
               </header>
 
               {/* Ad after header */}
-              <div style={{ margin: '32px 0' }}>
-                <AdBanner id="ad-post-top" size="728x90" />
+              <div style={{ margin: '32px 0', overflow: 'hidden' }}>
+                <AdBanner id="ad-post-top" size={currentAdSize} />
               </div>
 
               {/* Globe CTA */}
@@ -652,8 +695,8 @@ export default function BlogPost() {
               )}
 
               {/* Bottom ad */}
-              <div style={{ margin: '48px 0 0' }}>
-                <AdBanner id="ad-post-bottom" size="728x90" />
+              <div style={{ margin: '48px 0 0', overflow: 'hidden' }}>
+                <AdBanner id="ad-post-bottom" size={currentAdSize} />
               </div>
             </div>
 
@@ -685,7 +728,8 @@ export default function BlogPost() {
               </div>
 
               {/* Sidebar ad */}
-              <div style={{ background: 'rgba(0, 212, 255, 0.02)', border: '1px dashed rgba(0, 212, 255, 0.2)', borderRadius: 6, padding: '16px 0', display: 'flex', justifyContent: 'center' }}>
+              <div style={{ background: 'rgba(0, 212, 255, 0.02)', border: '1px dashed rgba(0, 212, 255, 0.2)', borderRadius: 6, padding: '16px 0', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+                {/* 300x250 usually fits mobile screens naturally, but overflow hidden keeps it safe */}
                 <AdBanner id="ad-sidebar" size="300x250" />
               </div>
 
@@ -720,6 +764,7 @@ export default function BlogPost() {
 
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

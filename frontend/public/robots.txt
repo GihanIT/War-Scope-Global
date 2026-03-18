@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Specifically ensure AdSense bots have full access
+User-agent: Mediapartners-Google
+Allow: /
+
+Sitemap: https://warscopeglobal.com/sitemap.xml

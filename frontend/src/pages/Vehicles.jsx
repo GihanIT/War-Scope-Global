@@ -5,6 +5,8 @@ import Navbar   from '../components/Navbar.jsx';
 import Footer   from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import { VEHICLES, CATEGORIES, COUNTRIES } from '../data/vehicles-data.js';
+import SEO from '../seo/SEO.jsx';
+
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const getIso2 = (countryName) => {
@@ -414,6 +416,11 @@ export default function Vehicles() {
 
   return (
     <div className="vl-page-wrapper">
+      <SEO
+        title="Military Vehicles Database — Tanks, Aircraft, Naval & Missile Systems"
+        description="Browse specifications for hundreds of military vehicles: tanks, fighter jets, warships, artillery, and missile systems. Filter by country, category, and era."
+        canonical="/vehicles"
+      />
       <div className="vl-content-layer">
         <Navbar />
 

@@ -4,6 +4,9 @@ import { NUCLEAR_COUNTRIES, NUCLEAR_SUMMARY } from '../data/nuclear-data.js';
 import Navbar from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import Footer from '../components/Footer.jsx';
+import SEO from '../seo/SEO.jsx';
+import { datasetSchema } from '../seo/structuredData.js';
+
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 // Maps ISO-3 codes to ISO-2 codes for the FlagCDN image API
@@ -607,6 +610,18 @@ export default function Nuclear() {
 
   return (
     <div className="nuc-page-wrapper">
+      <SEO
+        title="Nuclear Arsenals by Country — Warhead Counts & Delivery Systems"
+        description="Detailed breakdown of global nuclear arsenals: warhead counts, delivery systems, and doctrine for the USA, Russia, China, UK, France, India, Pakistan, Israel and North Korea."
+        canonical="/nuclear"
+      >
+        <script type="application/ld+json">{JSON.stringify(datasetSchema({
+          name: 'Global Nuclear Arsenal Data',
+          description: 'Nuclear warhead counts, delivery systems, and doctrine by country.',
+          url: '/nuclear',
+          keywords: ['nuclear weapons', 'nuclear arsenals', 'warheads', 'ICBM', 'nuclear deterrence'],
+        }))}</script>
+      </SEO>
       <div className="nuc-content-layer">
         <Navbar />
         {import.meta.env.VITE_SHOW_ADS !== 'false' && (

@@ -3,17 +3,19 @@ import Navbar from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import { SANCTIONED_COUNTRIES, ISSUERS, SANCTION_TYPES } from '../data/sanctions-data.js';
 import Footer from '../components/Footer.jsx';
+import SEO from '../seo/SEO.jsx';
+import { datasetSchema } from '../seo/structuredData.js';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 // Maps ISO-3 codes to ISO-2 codes for the FlagCDN image API
 const getIso2 = (iso3) => {
   const map = { 
-    USA: 'us', RUS: 'ru', CHN: 'cn', FRA: 'fr', GBR: 'gb', 
-    PAK: 'pk', IND: 'in', PRK: 'kp', ISR: 'il', IRN: 'ir', 
-    SYR: 'ir', CUB: 'cu', VEN: 'cu', BLR: 've', MMR: 'mm',
-    SDN: 'sd', AFG: 'af', YEM: 'ye', SOM: 'so', LBY: 'so',
-    COD: 'sd', PRK: 'kp' // Add more as needed, fallback is 'un'
-  };
+  USA: 'us', RUS: 'ru', CHN: 'cn', FRA: 'fr', GBR: 'gb', 
+  PAK: 'pk', IND: 'in', PRK: 'kp', ISR: 'il', IRN: 'ir', 
+  SYR: 'sy', CUB: 'cu', VEN: 've', BLR: 'by', MMR: 'mm',
+  SDN: 'sd', AFG: 'af', YEM: 'ye', SOM: 'so', LBY: 'ly',
+  COD: 'cd'
+};
   return map[iso3] || iso3.substring(0, 2).toLowerCase();
 };
 
@@ -438,6 +440,18 @@ export default function Sanctions() {
 
   return (
     <div className="snc-page-wrapper">
+      <SEO
+        title="Global Military & Economic Sanctions Tracker"
+        description="Track active international sanctions against countries. Filter by issuer (USA, EU, UN), sanction type, and target country. Updated data from OFAC, EU, and UN Security Council."
+        canonical="/sanctions"
+      >
+        <script type="application/ld+json">{JSON.stringify(datasetSchema({
+          name: 'International Sanctions Database',
+          description: 'Active military and economic sanctions by country, issuer and type.',
+          url: '/sanctions',
+          keywords: ['sanctions', 'OFAC', 'EU sanctions', 'UN sanctions', 'economic sanctions'],
+        }))}</script>
+      </SEO>
       <div className="snc-content-layer">
         <Navbar />
         {import.meta.env.VITE_SHOW_ADS !== 'false' && (
