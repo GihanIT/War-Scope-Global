@@ -87,8 +87,7 @@ const getCountryByIso3 = async (req, res, next) => {
 };
 
 // ─────────────────────────────────────────────
-// GET /api/countries/:iso3/military
-// Military stats for one country + world averages
+// Shared numeric columns list (used by getMilitaryStats + getMilitaryStatsRaw)
 // ─────────────────────────────────────────────
 const MILITARY_NUMERIC_COLS = [
   'active_personnel',
@@ -117,13 +116,16 @@ const MILITARY_NUMERIC_COLS = [
   'nuclear_weapons',
 ];
 
+// ─────────────────────────────────────────────
+// GET /api/countries/:iso3/military
+// Military stats for one country + world averages
+// ─────────────────────────────────────────────
 const getMilitaryStats = async (req, res, next) => {
   try {
     const iso3 = req.params.iso3.toUpperCase();
 
-    // Resolve country
     const countryResult = await pool.query(
-      'SELECT id, name, iso2, iso3 FROM countries WHERE iso3 = $1',
+      'SELECT id, name, iso2, iso3, rank FROM countries WHERE iso3 = $1',
       [iso3]
     );
     if (!countryResult.rows.length) {
@@ -131,14 +133,12 @@ const getMilitaryStats = async (req, res, next) => {
     }
     const country = countryResult.rows[0];
 
-    // Fetch this country's stats
     const statsResult = await pool.query(
       'SELECT * FROM military_stats WHERE country_id = $1',
       [country.id]
     );
     const stats = statsResult.rows[0] || null;
 
-    // Build world-average query dynamically (only numeric cols, exclude zeros from avg)
     const avgSelects = MILITARY_NUMERIC_COLS
       .map(col => `ROUND(AVG(NULLIF(${col}, 0)))::BIGINT AS ${col}`)
       .join(',\n        ');
@@ -150,14 +150,40 @@ const getMilitaryStats = async (req, res, next) => {
     `);
     const worldAverages = avgResult.rows[0] || {};
 
-    res.json({
-      country,
-      stats,
-      worldAverages,
-    });
+    res.json({ country, stats, worldAverages });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = { getAllCountries, getCountryByIso3, getMilitaryStats };
+// ─────────────────────────────────────────────
+// getMilitaryStatsRaw(iso3)
+// Internal version of getMilitaryStats — returns the data object directly
+// without req/res. Used by cardRoute.js to generate comparison cards.
+// Queries the DB pool directly — no HTTP round-trip.
+// ─────────────────────────────────────────────
+const getMilitaryStatsRaw = async (iso3) => {
+  const key = iso3.toUpperCase();
+
+  const countryResult = await pool.query(
+    'SELECT id, name, iso2, iso3, rank FROM countries WHERE iso3 = $1',
+    [key]
+  );
+  if (!countryResult.rows.length) return null;
+  const country = countryResult.rows[0];
+
+  const statsResult = await pool.query(
+    'SELECT * FROM military_stats WHERE country_id = $1',
+    [country.id]
+  );
+  const stats = statsResult.rows[0] || null;
+
+  return { country, stats };
+};
+
+module.exports = {
+  getAllCountries,
+  getCountryByIso3,
+  getMilitaryStats,
+  getMilitaryStatsRaw,
+};

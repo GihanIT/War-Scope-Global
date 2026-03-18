@@ -7,6 +7,8 @@ const countriesRouter = require('./routes/countries');
 const conflictsRouter = require('./routes/conflicts');
 const newsRouter      = require('./routes/news');
 const incidentsRouter = require('./routes/incidents');
+const cardRoute = require('./routes/cardRoute');
+
 
 
 const app  = express();
@@ -54,6 +56,7 @@ app.use('/api/countries', countriesRouter);
 app.use('/api/conflicts', conflictsRouter);
 app.use('/api/news',      newsRouter);
 app.use('/api/incidents', incidentsRouter);  
+app.use('/api/card', cardRoute);
 
 
 // ─────────────────────────────────────────────
