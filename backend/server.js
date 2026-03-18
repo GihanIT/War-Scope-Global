@@ -9,6 +9,8 @@ const newsRouter      = require('./routes/news');
 const incidentsRouter = require('./routes/incidents');
 const cardRoute = require('./routes/cardRoute');
 const economicRoute = require('./routes/economicRoute');
+const warImpact = require('./routes/warImpact');
+
 
 
 const app  = express();
@@ -58,6 +60,8 @@ app.use('/api/news',      newsRouter);
 app.use('/api/incidents', incidentsRouter);  
 app.use('/api/card', cardRoute);
 app.use('/api/economic', economicRoute);
+app.use('/api/war-impact', warImpact);
+
 
 // ─────────────────────────────────────────────
 // 404 — unknown route

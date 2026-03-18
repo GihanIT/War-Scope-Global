@@ -24,6 +24,7 @@ import Units from './pages/Units.jsx';
 import UnitsDetails from './pages/UnitsDetail.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Economic from './pages/Economic.jsx';
+import WarImpact from './pages/WarImpact.jsx';
 
 
 const SHOW_ADS = import.meta.env.VITE_SHOW_ADS === 'true';
@@ -85,6 +86,7 @@ export default function App() {
         <Route path="/units"          element={<Units />} />
         <Route path="/units/:id"      element={<UnitsDetails />} />
         <Route path="/economic"       element={<Economic />} />
+        <Route path="/war-impact"     element={<WarImpact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms"          element={<Terms />} />
         <Route path="/disclaimer"     element={<Disclaimer />} />

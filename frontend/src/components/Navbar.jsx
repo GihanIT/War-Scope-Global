@@ -18,6 +18,8 @@ const Icons = {
   Tank: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="12" width="20" height="8" rx="2" ry="2"/><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/><line x1="16" y1="10" x2="22" y2="10"/></svg>,
   Users: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
   Shield: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+  TrendingUp: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
+  Impact: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>,
 };
 
 // ─── Styles injected once ─────────────────────────────────────────────────────
@@ -154,7 +156,9 @@ const PRIMARY_LINKS = [
 const INTEL_LINKS = [
   { label: 'TIMELINE',   to: '/timeline',  Icon: Icons.Timeline },
   { label: 'SANCTIONS',  to: '/sanctions', Icon: Icons.Sanctions },
-  { label: 'ARMS TRADE', to: '/arms-trade', Icon: Icons.Cargo },  
+  { label: 'ARMS TRADE', to: '/arms-trade', Icon: Icons.Cargo },
+  { label: 'ECONOMIC',   to: '/economic',    Icon: Icons.TrendingUp },
+  { label: 'WAR IMPACT', to: '/war-impact',  Icon: Icons.Impact },  
 ];
 
 const DB_LINKS = [

@@ -351,8 +351,9 @@ export default function Economic(){
   return(
     <div className="eco-page">
       <SEO title="Economic Dashboard | WarScope" description="Real-time Economic War Index Dashboard" canonical="/economic"/>
+      <Navbar/>
       <div className="eco-wrap">
-        <Navbar/>
+        
         
         {/* Header & Global Stats */}
         <div className="eco-hdr fup">
