@@ -1,10 +1,7 @@
 // scripts/generate-sitemap.js
-// Run after build: node scripts/generate-sitemap.js
-// Reads your data files and appends dynamic URLs (/vehicles/:id, /units/:id, /blog/:slug)
-// to the sitemap. Merge output into public/sitemap.xml.
-//
-// Usage: node scripts/generate-sitemap.js > dist/sitemap-dynamic.xml
-// Then combine with the static sitemap.xml manually or automate with a concat step.
+// Generates a complete sitemap including all static pages + dynamic URLs
+// Usage: node scripts/generate-sitemap.js
+// Output: frontend/public/sitemap.xml  (replaces the static one — no manual merging needed)
 
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
@@ -14,80 +11,104 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const BASE_URL  = 'https://warscopeglobal.com';
 const today     = new Date().toISOString().split('T')[0];
 
-// ── Load data files ──────────────────────────────────────────────────────────
-// These imports read your actual data arrays to extract IDs/slugs.
-// Adjust paths if your data files move.
+// ── Static pages ─────────────────────────────────────────────────────────────
+// Add / remove entries here whenever you add a new page to src/pages/
+const STATIC_PAGES = [
+  { path: '/',              changefreq: 'daily',   priority: '1.0' },
+  { path: '/blog',          changefreq: 'daily',   priority: '0.9' },
+  { path: '/nuclear',       changefreq: 'weekly',  priority: '0.9' },
+  { path: '/timeline',      changefreq: 'weekly',  priority: '0.8' },
+  { path: '/arms-trade',    changefreq: 'weekly',  priority: '0.8' },
+  { path: '/sanctions',     changefreq: 'weekly',  priority: '0.8' },
+  { path: '/compare',       changefreq: 'weekly',  priority: '0.8' },
+  { path: '/units',         changefreq: 'weekly',  priority: '0.8' },
+  { path: '/vehicles',      changefreq: 'weekly',  priority: '0.8' },
+  { path: '/incidents',     changefreq: 'daily',   priority: '0.8' },
+  { path: '/economic',      changefreq: 'weekly',  priority: '0.7' },
+  { path: '/about',         changefreq: 'monthly', priority: '0.6' },
+  { path: '/contact',       changefreq: 'monthly', priority: '0.5' },
+  { path: '/methodology',   changefreq: 'monthly', priority: '0.5' },
+  { path: '/data-sources',  changefreq: 'monthly', priority: '0.5' },
+  { path: '/disclaimer',    changefreq: 'monthly', priority: '0.4' },
+  { path: '/privacy-policy',changefreq: 'monthly', priority: '0.4' },
+  { path: '/terms',         changefreq: 'monthly', priority: '0.4' },
+  { path: '/cookie-policy', changefreq: 'monthly', priority: '0.4' },
+];
 
+// ── Load dynamic data files ───────────────────────────────────────────────────
 let vehicleIds = [];
 let unitIds    = [];
 let blogSlugs  = [];
 
 try {
-  // Vehicles
   const vehiclesRaw = readFileSync(resolve(__dirname, '../frontend/src/data/vehicles-data.js'), 'utf8');
-  const vehicleMatches = vehiclesRaw.matchAll(/id:\s*['"]([^'"]+)['"]/g);
-  vehicleIds = [...vehicleMatches].map(m => m[1]);
-  console.error(`Found ${vehicleIds.length} vehicles`);
+  vehicleIds = [...vehiclesRaw.matchAll(/id:\s*['"]([^'"]+)['"]/g)].map(m => m[1]);
+  console.log(`✔ Found ${vehicleIds.length} vehicles`);
 } catch (e) {
-  console.error('Could not read vehicles-data.js:', e.message);
+  console.warn('⚠ Could not read vehicles-data.js:', e.message);
 }
 
 try {
-  // Units
   const unitsRaw = readFileSync(resolve(__dirname, '../frontend/src/data/army-units-db.js'), 'utf8');
-  const unitMatches = unitsRaw.matchAll(/id:\s*['"]([^'"]+)['"]/g);
-  unitIds = [...unitMatches].map(m => m[1]);
-  console.error(`Found ${unitIds.length} units`);
+  unitIds = [...unitsRaw.matchAll(/id:\s*['"]([^'"]+)['"]/g)].map(m => m[1]);
+  console.log(`✔ Found ${unitIds.length} units`);
 } catch (e) {
-  console.error('Could not read army-units-db.js:', e.message);
+  console.warn('⚠ Could not read army-units-db.js:', e.message);
 }
 
 try {
-  // Blog posts
   const blogRaw = readFileSync(resolve(__dirname, '../frontend/src/data/blog-data.js'), 'utf8');
-  const slugMatches = blogRaw.matchAll(/slug:\s*['"]([^'"]+)['"]/g);
-  blogSlugs = [...slugMatches].map(m => m[1]);
-  console.error(`Found ${blogSlugs.length} blog posts`);
+  blogSlugs = [...blogRaw.matchAll(/slug:\s*['"]([^'"]+)['"]/g)].map(m => m[1]);
+  console.log(`✔ Found ${blogSlugs.length} blog posts`);
 } catch (e) {
-  console.error('Could not read blog-data.js:', e.message);
+  console.warn('⚠ Could not read blog-data.js:', e.message);
 }
 
-// ── Build XML ────────────────────────────────────────────────────────────────
-const vehicleUrls = vehicleIds.map(id => `
+// ── Build URL entries ─────────────────────────────────────────────────────────
+function urlEntry({ loc, changefreq, priority }) {
+  return `
   <url>
-    <loc>${BASE_URL}/vehicles/${id}</loc>
+    <loc>${loc}</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`).join('');
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+}
 
-const unitUrls = unitIds.map(id => `
-  <url>
-    <loc>${BASE_URL}/units/${id}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`).join('');
+const staticEntries = STATIC_PAGES.map(p =>
+  urlEntry({ loc: `${BASE_URL}${p.path}`, changefreq: p.changefreq, priority: p.priority })
+).join('');
 
-const blogUrls = blogSlugs.map(slug => `
-  <url>
-    <loc>${BASE_URL}/blog/${slug}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join('');
+const vehicleEntries = vehicleIds.map(id =>
+  urlEntry({ loc: `${BASE_URL}/vehicles/${id}`, changefreq: 'monthly', priority: '0.7' })
+).join('');
 
+const unitEntries = unitIds.map(id =>
+  urlEntry({ loc: `${BASE_URL}/units/${id}`, changefreq: 'monthly', priority: '0.7' })
+).join('');
+
+const blogEntries = blogSlugs.map(slug =>
+  urlEntry({ loc: `${BASE_URL}/blog/${slug}`, changefreq: 'monthly', priority: '0.8' })
+).join('');
+
+// ── Assemble XML ──────────────────────────────────────────────────────────────
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <!-- AUTO-GENERATED — do not edit manually. Run: node scripts/generate-sitemap.js -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${vehicleUrls}
-${unitUrls}
-${blogUrls}
+${staticEntries}
+${vehicleEntries}
+${unitEntries}
+${blogEntries}
 </urlset>`;
 
-// Write to dist (Vite build output)
-const outPath = resolve(__dirname, '../frontend/dist/sitemap-dynamic.xml');
+// Write directly to public/ so it's always up to date before & after builds
+const outPath = resolve(__dirname, '../frontend/public/sitemap.xml');
 writeFileSync(outPath, xml);
-console.error(`\nWrote dynamic sitemap to: ${outPath}`);
-console.error(`Total URLs: ${vehicleIds.length + unitIds.length + blogSlugs.length}`);
-console.log(xml); // also stdout for piping
+
+const total = STATIC_PAGES.length + vehicleIds.length + unitIds.length + blogSlugs.length;
+console.log(`\n✅ Sitemap written to: ${outPath}`);
+console.log(`   Static pages : ${STATIC_PAGES.length}`);
+console.log(`   Vehicles     : ${vehicleIds.length}`);
+console.log(`   Units        : ${unitIds.length}`);
+console.log(`   Blog posts   : ${blogSlugs.length}`);
+console.log(`   Total URLs   : ${total}`);
