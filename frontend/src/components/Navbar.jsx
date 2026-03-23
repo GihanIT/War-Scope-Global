@@ -11,7 +11,6 @@ const Icons = {
   Radar: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="12" x2="12" y2="2"/></svg>,
   Sanctions: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>,
   Timeline: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/><circle cx="21" cy="12" r="3"/><circle cx="18" cy="18" r="3"/></svg>,
-  // New icons for dropdowns
   ChevronDown: () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>,
   Lock: () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
   Cargo: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"/><path d="M2 15h20v4H2z"/></svg>,
@@ -20,6 +19,8 @@ const Icons = {
   Shield: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
   TrendingUp: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
   Impact: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>,
+  Contribute: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>,
+  Quiz: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
 };
 
 // ─── Styles injected once ─────────────────────────────────────────────────────
@@ -28,8 +29,8 @@ const NAVBAR_CSS = `
 
   /* ── Links ── */
   .ws-nav-link {
-    position: relative; display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500;
+    position: relative; display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase; color: #8892a4;
     text-decoration: none; transition: color 200ms ease, text-shadow 200ms ease;
     white-space: nowrap; cursor: pointer;
@@ -47,12 +48,30 @@ const NAVBAR_CSS = `
   .ws-nav-link.nuclear-link::after { background: #ff3b3b; box-shadow: 0 0 8px #ff3b3b; }
   .ws-nav-link.nuclear-link.active { color: #ff8080; text-shadow: 0 0 8px rgba(255,59,59,0.4); }
 
+  /* ── Highlighted CTA (Contribute) ── */
+  .ws-nav-cta {
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    border-radius: 6px;
+    padding: 6px 14px;
+    color: #00d4ff !important;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+    transition: all 200ms ease;
+  }
+  .ws-nav-cta:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+    transform: translateY(-1px);
+  }
+  .ws-nav-cta::after { display: none !important; }
+
   /* ── Dropdowns ── */
   .ws-dropdown-wrap {
     position: relative; display: flex; align-items: center; height: 100%;
   }
   .ws-dropdown-trigger {
-    display: flex; align-items: center; gap: 6px; padding: 6px 2px;
+    display: flex; align-items: center; gap: 4px; padding: 6px 2px;
     font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase; color: #8892a4;
     cursor: pointer; transition: color 200ms ease, text-shadow 200ms ease;
@@ -125,14 +144,15 @@ const NAVBAR_CSS = `
   .ws-mobile-link.nuclear-mobile.active { color: #ff8080; background: rgba(255,59,59,0.08); border-left-color: #ff3b3b; }
   .ws-mobile-link.locked { opacity: 0.4; cursor: not-allowed; }
 
-  @media (max-width: 1024px) {
+  /* Breakpoint adjustments for 1366x768 overlap prevention */
+  @media (max-width: 1200px) {
     .ws-nav-center { display: none !important; }
     .ws-hamburger-wrap { display: flex !important; }
   }
   @media (max-width: 600px) {
     .ws-clock { display: none !important; }
   }
-  @media (min-width: 1025px) {
+  @media (min-width: 1201px) {
     .ws-hamburger-wrap { display: none !important; }
   }
 `;
@@ -158,7 +178,7 @@ const INTEL_LINKS = [
   { label: 'SANCTIONS',  to: '/sanctions', Icon: Icons.Sanctions },
   { label: 'ARMS TRADE', to: '/arms-trade', Icon: Icons.Cargo },
   { label: 'ECONOMIC',   to: '/economic',    Icon: Icons.TrendingUp },
-  { label: 'WAR IMPACT', to: '/war-impact',  Icon: Icons.Impact },  
+  { label: 'WAR IMPACT', to: '/war-impact',  Icon: Icons.Impact },
 ];
 
 const DB_LINKS = [
@@ -166,6 +186,13 @@ const DB_LINKS = [
   { label: 'VEHICLE DB', to: '/vehicles',     Icon: Icons.Tank },
   { label: 'UNIT DB',    to: '/units',     Icon: Icons.Users },
 ];
+
+// Added as separate Action Links to follow the DB dropdown
+const ACTION_LINKS = [
+  { label: 'QUIZ',       to: '/quiz',       Icon: Icons.Quiz },
+  { label: 'CONTRIBUTE', to: '/contribute', Icon: Icons.Contribute, isCta: true },
+];
+
 const LEGAL_LINKS = [
   { label: 'PRIVACY', to: '/privacy-policy', Icon: Icons.Shield },
   { label: 'TERMS', to: '/terms', Icon: Icons.Shield },
@@ -174,13 +201,14 @@ const LEGAL_LINKS = [
 ];
 
 // ─── Component blocks ─────────────────────────────────────────────────────────
-function NavLink({ to, label, exact, Icon, red }) {
+function NavLink({ to, label, exact, Icon, red, isCta }) {
   const { pathname } = useLocation();
   const isActive = exact ? pathname === to : pathname.startsWith(to);
   const extraClass = red ? ' nuclear-link' : '';
+  const ctaClass = isCta ? ' ws-nav-cta' : '';
 
   return (
-    <Link to={to} className={`ws-nav-link${extraClass}${isActive ? ' active' : ''}`}>
+    <Link to={to} className={`ws-nav-link${extraClass}${ctaClass}${isActive ? ' active' : ''}`}>
       <span style={{ opacity: isActive ? 1 : 0.7, color: red && isActive ? '#ff8080' : 'inherit', display: 'flex' }}>
         <Icon />
       </span>
@@ -270,7 +298,7 @@ export default function Navbar() {
         position: 'sticky', top: 0, zIndex: 100, width: '100%', height: 60,
         background: 'rgba(5, 5, 8, 0.85)',
         borderBottom: '1px solid rgba(0, 212, 255, 0.15)',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        display: 'flex', alignItems: 'center', gap: 24,
         padding: '0 24px', flexShrink: 0, boxSizing: 'border-box',
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
         boxShadow: '0 4px 24px rgba(0,0,0,0.6)',
@@ -286,10 +314,10 @@ export default function Navbar() {
           }}>WarScope</span>
         </Link>
 
-        {/* Center: desktop links */}
+        {/* Center: Desktop links - Changed to Flex:1 to prevent absolute overlap on 1366x768 */}
         <div className="ws-nav-center" style={{
-          display: 'flex', alignItems: 'center', gap: 32,
-          position: 'absolute', left: '50%', transform: 'translateX(-50%)', height: '100%',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', 
+          flex: 1, gap: 'clamp(8px, 1.2vw, 24px)'
         }}>
           {PRIMARY_LINKS.map(({ label, to, Icon, red }) => (
             <NavLink key={to} to={to} label={label} Icon={Icon} exact={to === '/'} red={red} />
@@ -297,11 +325,15 @@ export default function Navbar() {
           
           <NavDropdown label="INTEL" links={INTEL_LINKS} />
           <NavDropdown label="DATABASE" links={DB_LINKS} />
-          <NavDropdown label="LEGAL" links={LEGAL_LINKS} />
+          
+          {/* Actions following Database dropdown */}
+          {ACTION_LINKS.map(({ label, to, Icon, isCta }) => (
+            <NavLink key={to} to={to} label={label} Icon={Icon} isCta={isCta} />
+          ))}
         </div>
 
-        {/* Right: System Status & Hamburger */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
+        {/* Right: System Status & Hamburger - CRITICAL FIX FOR MOBILE: Added marginLeft: 'auto' */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0, marginLeft: 'auto' }}>
           
           {/* Tactical UTC Clock */}
           <div className="ws-clock" suppressHydrationWarning>
@@ -368,7 +400,7 @@ export default function Navbar() {
             );
           })}
 
-          <div className="ws-mobile-section">INTELLIGENCE</div>
+          <div className="ws-mobile-section">INTELLIGENCE & ACTIONS</div>
           {INTEL_LINKS.map(({ label, to, Icon, locked }) => {
             const isActive = to !== '#' && pathname.startsWith(to);
             return (
@@ -383,9 +415,41 @@ export default function Navbar() {
               </Link>
             );
           })}
+          
+          {/* Append Quiz and Contribute to Mobile Intel Section */}
+          {ACTION_LINKS.map(({ label, to, Icon, isCta }) => {
+            const isActive = pathname.startsWith(to);
+            return (
+              <Link
+                key={to} to={to}
+                className={`ws-mobile-link ${isActive ? ' active' : ''}`}
+                style={isCta ? { color: '#00d4ff', fontWeight: 700 } : {}}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span style={{ opacity: isActive ? 1 : 0.6, display: 'flex' }}><Icon /></span>
+                {label}
+              </Link>
+            );
+          })}
 
           <div className="ws-mobile-section">DATABASES</div>
           {DB_LINKS.map(({ label, to, Icon, locked }) => {
+            const isActive = to !== '#' && pathname.startsWith(to);
+            return (
+              <Link
+                key={label} to={locked ? '#' : to}
+                className={`ws-mobile-link ${locked ? 'locked' : ''} ${isActive ? ' active' : ''}`}
+                onClick={(e) => { if (locked) e.preventDefault(); else setMenuOpen(false); }}
+              >
+                <span style={{ opacity: isActive ? 1 : 0.6, display: 'flex' }}><Icon /></span>
+                {label}
+                {locked && <span style={{ marginLeft: 'auto', opacity: 0.5, display: 'flex' }}><Icons.Lock /></span>}
+              </Link>
+            );
+          })}
+          
+          <div className="ws-mobile-section">SYSTEM & LEGAL</div>
+          {LEGAL_LINKS.map(({ label, to, Icon, locked }) => {
             const isActive = to !== '#' && pathname.startsWith(to);
             return (
               <Link

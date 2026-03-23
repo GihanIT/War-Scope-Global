@@ -65,21 +65,26 @@ export function articleSchema(post) {
 
 // ── Military Vehicle / Equipment ──────────────────────────────────────────────
 // vehicle = { id, name, category, country, description }
+// ── Military Vehicle / Equipment ──────────────────────────────────────────────
 export function vehicleSchema(vehicle) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'ItemPage',
     name: vehicle.name,
     description: vehicle.description || `${vehicle.name} military ${vehicle.category} specifications and data.`,
     url: `${BASE_URL}/vehicles/${vehicle.id}`,
-    category: vehicle.category,
-    manufacturer: {
+    about: {
+      '@type': 'Thing',
+      name: vehicle.name,
+      description: vehicle.description || `${vehicle.name} military ${vehicle.category} specifications and data.`,
+    },
+    creator: {
       '@type': 'Organization',
-      name: vehicle.country || 'Unknown',
+      name: SITE_NAME,
+      url: BASE_URL,
     },
   };
 }
-
 // ── Military Unit ─────────────────────────────────────────────────────────────
 // unit = { id, name, country, description }
 export function unitSchema(unit) {

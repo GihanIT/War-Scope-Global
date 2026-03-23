@@ -1,13 +1,13 @@
 // src/data/nuclear-data.js
-// Sources: FAS Nuclear Notebook, SIPRI Yearbook 2024, Bulletin of Atomic Scientists,
-// Arms Control Association, declassified US/Russian START data, IISS Military Balance 2024
+// Sources: FAS Nuclear Notebook, SIPRI Yearbook 2025, Bulletin of Atomic Scientists,
+// Arms Control Association, declassified US/Russian START data, IISS Military Balance 2025/2026
 
 export const NUCLEAR_SUMMARY = {
-  totalWarheads:    12121,
-  deployedWarheads: 3904,
+  totalWarheads:    12241,
+  deployedWarheads: 3912,
   countries:        9,
-  lastUpdated:      '2024',
-  source:           'FAS Nuclear Notebook / SIPRI 2024',
+  lastUpdated:      '2025/2026',
+  source:           'FAS Nuclear Notebook / SIPRI 2025 / Bulletin 2026',
 };
 
 export const NUCLEAR_COUNTRIES = [
@@ -21,7 +21,7 @@ export const NUCLEAR_COUNTRIES = [
     firstTest: { date: '29 Aug 1949', location: 'Semipalatinsk, Kazakhstan', codename: 'Joe-1', yield: '22 kt' },
     treaties: ['NPT', 'START I', 'New START', 'CTBT (signed)', 'INF (withdrawn 2019)'],
     doctrine: 'Nuclear escalation as strategic deterrent; "escalate to de-escalate" posture. Reserves right to first use if state existence threatened.',
-    warheads: { deployed: 1674, reserve: 2815, retired: 1400, total: 5889 },
+    warheads: { deployed: 1718, reserve: 2591, retired: 1150, total: 5459 },
     deliverySystems: ['ICBM', 'SLBM', 'Strategic Bomber', 'Tactical Nuclear', 'Cruise Missile'],
     notableTests: 'Tsar Bomba (50 MT) — largest ever detonated, 30 Oct 1961',
     weapons: [
@@ -109,7 +109,7 @@ export const NUCLEAR_COUNTRIES = [
     firstTest: { date: '16 Jul 1945', location: 'Trinity Site, New Mexico', codename: 'Trinity', yield: '21 kt' },
     treaties: ['NPT', 'New START', 'CTBT (signed, not ratified)', 'INF (withdrawn 2019)'],
     doctrine: 'Nuclear deterrence; "No First Use" debated but not official policy. Guarantees extended deterrence to NATO and Pacific allies.',
-    warheads: { deployed: 1670, reserve: 1938, retired: 1536, total: 5244 },
+    warheads: { deployed: 1770, reserve: 1930, retired: 1477, total: 5177 },
     deliverySystems: ['ICBM', 'SLBM', 'Strategic Bomber', 'Tactical Nuclear (B61)', 'Cruise Missile'],
     notableTests: 'Castle Bravo — 15 MT, largest US test, 1 Mar 1954. Contaminated Marshall Islands.',
     weapons: [
@@ -196,8 +196,8 @@ export const NUCLEAR_COUNTRIES = [
     color: '#c62828',
     firstTest: { date: '16 Oct 1964', location: 'Lop Nur, Xinjiang', codename: '596 / Chic-1', yield: '22 kt' },
     treaties: ['NPT', 'CTBT (signed)'],
-    doctrine: 'No First Use (NFU) declared policy. Minimum deterrence shifting to "limited deterrence." Rapid expansion underway — estimated 1,500 warheads by 2035.',
-    warheads: { deployed: 500, reserve: 0, retired: 0, total: 500 },
+    doctrine: 'No First Use (NFU) declared policy. Minimum deterrence shifting to "limited deterrence." Rapid expansion underway — estimated 1,000+ warheads by 2030.',
+    warheads: { deployed: 24, reserve: 576, retired: 0, total: 600 },
     deliverySystems: ['ICBM', 'SLBM', 'Bomber', 'Tactical Nuclear', 'Hypersonic Glide Vehicle'],
     notableTests: 'Test No. 6 — first Chinese thermonuclear test, 17 Jun 1967, 3.3 MT',
     weapons: [
@@ -405,7 +405,7 @@ export const NUCLEAR_COUNTRIES = [
     firstTest: { date: '18 May 1974', location: 'Pokhran, Rajasthan', codename: 'Smiling Buddha', yield: '8 kt' },
     treaties: ['None — not NPT signatory. Signed CTBT.'],
     doctrine: 'No First Use (NFU) — firm policy. Massive retaliation if attacked. "Credible minimum deterrence."',
-    warheads: { deployed: 0, reserve: 172, retired: 0, total: 172 },
+    warheads: { deployed: 0, reserve: 180, retired: 0, total: 180 },
     deliverySystems: ['MRBM', 'IRBM', 'SLBM (developing)', 'Fighter aircraft'],
     notableTests: 'Operation Shakti (1998) — 5 tests including thermonuclear device. Yield disputed (India claims 45kt; seismic estimate 12–25kt).',
     weapons: [
