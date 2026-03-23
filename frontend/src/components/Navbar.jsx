@@ -145,13 +145,17 @@ const NAVBAR_CSS = `
   .ws-mobile-link.locked { opacity: 0.4; cursor: not-allowed; }
 
   /* Breakpoint adjustments for 1366x768 overlap prevention */
+ /* Breakpoint adjustments for 1366x768 overlap prevention */
   @media (max-width: 1200px) {
     .ws-nav-center { display: none !important; }
     .ws-hamburger-wrap { display: flex !important; }
   }
-  @media (max-width: 600px) {
+  
+  /* Hide clock on mid-sized laptops (1366px and 1280px) and below to save space */
+  @media (max-width: 1366px) {
     .ws-clock { display: none !important; }
   }
+  
   @media (min-width: 1201px) {
     .ws-hamburger-wrap { display: none !important; }
   }
@@ -187,7 +191,6 @@ const DB_LINKS = [
   { label: 'UNIT DB',    to: '/units',     Icon: Icons.Users },
 ];
 
-// Added as separate Action Links to follow the DB dropdown
 const ACTION_LINKS = [
   { label: 'QUIZ',       to: '/quiz',       Icon: Icons.Quiz },
   { label: 'CONTRIBUTE', to: '/contribute', Icon: Icons.Contribute, isCta: true },
@@ -298,26 +301,28 @@ export default function Navbar() {
         position: 'sticky', top: 0, zIndex: 100, width: '100%', height: 60,
         background: 'rgba(5, 5, 8, 0.85)',
         borderBottom: '1px solid rgba(0, 212, 255, 0.15)',
-        display: 'flex', alignItems: 'center', gap: 24,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 24px', flexShrink: 0, boxSizing: 'border-box',
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
         boxShadow: '0 4px 24px rgba(0,0,0,0.6)',
       }}>
 
-        {/* Left: wordmark */}
-        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-          <Icons.Radar />
-          <span style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700, fontSize: 18,
-            color: '#e8eaf0', letterSpacing: '0.1em', textTransform: 'uppercase',
-            lineHeight: 1, textShadow: '0 0 12px rgba(0,212,255,0.5)',
-          }}>WarScope</span>
-        </Link>
+        {/* Left: Wordmark wrapper (Takes 1 unit of flex space to balance the right side) */}
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
+          <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <Icons.Radar />
+            <span style={{
+              fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700, fontSize: 18,
+              color: '#e8eaf0', letterSpacing: '0.1em', textTransform: 'uppercase',
+              lineHeight: 1, textShadow: '0 0 12px rgba(0,212,255,0.5)',
+            }}>WarScope</span>
+          </Link>
+        </div>
 
-        {/* Center: Desktop links - Changed to Flex:1 to prevent absolute overlap on 1366x768 */}
+        {/* Center: Desktop links (Perfectly centered by the flex:1 sides) */}
         <div className="ws-nav-center" style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', 
-          flex: 1, gap: 'clamp(8px, 1.2vw, 24px)'
+          gap: 'clamp(6px, 1vw, 24px)'
         }}>
           {PRIMARY_LINKS.map(({ label, to, Icon, red }) => (
             <NavLink key={to} to={to} label={label} Icon={Icon} exact={to === '/'} red={red} />
@@ -332,8 +337,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: System Status & Hamburger - CRITICAL FIX FOR MOBILE: Added marginLeft: 'auto' */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0, marginLeft: 'auto' }}>
+        {/* Right: System Status & Hamburger (Takes 1 unit of flex space and anchors to the right) */}
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 16 }}>
           
           {/* Tactical UTC Clock */}
           <div className="ws-clock" suppressHydrationWarning>
