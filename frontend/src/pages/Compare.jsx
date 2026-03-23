@@ -83,7 +83,7 @@ const COMPARE_CSS = `
     min-width: 0;
   }
 
-  .cmp-sidebar-ad {
+  .cmp-side-panel {
     width: 160px;
     flex-shrink: 0;
     display: none;
@@ -92,7 +92,7 @@ const COMPARE_CSS = `
   }
 
   @media (min-width: 1280px) {
-    .cmp-sidebar-ad { display: block; }
+    .cmp-side-panel { display: block; }
   }
 
   /* Selectors */
@@ -541,7 +541,7 @@ export default function Compare() {
         <div className="cmp-layout-container">
           
           {/* Left Ad Sidebar */}
-          <div className="cmp-sidebar-ad left-ad">
+          <div className="cmp-side-panel">
             <AdBanner size="160x600" id="ad-sidebar-left-1" />
             <AdBanner size="160x600" id="ad-sidebar-left-2" />
           </div>
@@ -677,7 +677,7 @@ export default function Compare() {
           </div>
 
           {/* Right Ad Sidebar */}
-          <div className="cmp-sidebar-ad right-ad">
+          <div className="cmp-side-panel">
             <AdBanner size="160x600" id="ad-sidebar-right-1" />
             <AdBanner size="160x600" id="ad-sidebar-right-2" />
           </div>
