@@ -4,6 +4,7 @@ import AdBanner from '../components/AdBanner.jsx';
 import { TIMELINE_CONFLICTS, TIMELINE_STATS } from '../data/timeline-data.js';
 import Footer from '../components/Footer.jsx';
 import SEO from '../seo/SEO.jsx';
+import IntensityChart from '../components/IntensityChart.jsx';
 
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
@@ -598,6 +599,7 @@ function EpisodeTimeline({ conflict }) {
           );
         })}
       </div>
+      <IntensityChart conflictName={conflict.location} />
     </div>
   );
 }

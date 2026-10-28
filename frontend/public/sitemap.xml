@@ -3,1246 +3,1379 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
+    <loc>https://warscopeglobal.com/</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/blog</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/nuclear</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/timeline</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/arms-trade</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/sanctions</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/compare</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/units</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/vehicles</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/incidents</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/war-impact</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/economic</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/about</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/quiz</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/contribute</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/contact</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/methodology</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/data-sources</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/disclaimer</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/privacy-policy</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/terms</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://warscopeglobal.com/cookie-policy</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
     <loc>https://warscopeglobal.com/vehicles/unique-kebab-case-id</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-m1a2-abrams</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-m2a4-bradley</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-stryker</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-f35a</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-f22-raptor</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-b2-spirit</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-b21-raider</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-f18-super-hornet</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-ah64-apache</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-uh60-blackhawk</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-ch47-chinook</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-virginia-ssn</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-arleigh-burke</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-nimitz</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-ford-cvn</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-mq9-reaper</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-rq170-sentinel</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-patriot-pac3</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-thaad</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-javelin</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-m142-himars</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/usa-m777</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-t14-armata</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-t90m</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-t72b3m</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-bmp2</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-su57</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-su35s</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-su34</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-s400</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-iskander</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-ka52</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-lancet</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-orlan10</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-msta-s</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/rus-tos1a</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-j20</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-j16</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-type99a</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-vt4</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-type055</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-type003-fujian</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-df21d</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-df41</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-wingloong2</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-gj11</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-z20</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/chn-plz05</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/uk-challenger3</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/uk-typhoon</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/uk-tempest-gcap</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/uk-astute-ssn</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/uk-type26</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/fra-rafale</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/fra-leclerc</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/fra-caesar</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/deu-leopard2a7</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/deu-puma-ifv</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/deu-pzh2000</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/deu-iris-t</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/isr-merkava4</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/isr-iron-dome</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/isr-iron-beam</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/isr-arrow3</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/isr-spike</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ind-tejas-mk1a</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ind-arjun-mk1a</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ind-brahmos</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ind-ins-vikrant</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/tur-bayraktar-tb2</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/tur-bayraktar-akinci</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/tur-kaan</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/tur-altay</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/kor-k2-black-panther</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/kor-k9-thunder</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/kor-kf21</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/jpn-type10</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/jpn-soryu</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/pak-jf17</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/irn-shahed136</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/irn-fattah</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ukr-neptune</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ukr-fpv-drones</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/swe-gripen-e</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/swe-cv90</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ita-ariete</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/ita-fremm</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/twn-hf2e</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/aus-boxer-crv</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/prk-hwasong17</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/prk-kn23</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/pol-borsuk</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/sau-typhoon</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/bra-guarani</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/zaf-rooivalk</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/egy-mistral</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/nor-nsm</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/fin-patria-amv</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/esp-f110</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/sgp-hunter-afv</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/vehicles/grc-belharra</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://warscopeglobal.com/units/us-dod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-army</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-1st-armored</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-82nd-airborne</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-101st-airborne</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-navy</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-navy-seals</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-usmc</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-usaf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-socom</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-delta</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-75th-rangers</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-green-berets</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-spacecom</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-cybercom</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/us-coastguard</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-ground</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-vdv</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-navy</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-aerospace</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-strategic-missile</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-spetsnaz</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ru-alpha</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/cn-cmc</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/cn-pla-ground</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/cn-plan</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/cn-plaaf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/cn-pla-marines</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/cn-rocket-force</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/cn-ssf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/uk-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/uk-army</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/uk-sas</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/uk-sbs</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/uk-royal-navy</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/uk-raf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/fr-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/fr-army</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/fr-foreign-legion</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/fr-marine-nationale</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/fr-armee-air</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/fr-gign</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/de-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/de-heer</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/de-ksk</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/il-idf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/il-ground</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/il-iaf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/il-sayeret-matkal</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/il-shayetet-13</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/il-unit-8200</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/in-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/in-army</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/in-marcos</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/pk-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/pk-ssg</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/tr-tsk</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/tr-army</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/tr-okg</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/jp-jsdf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/jp-jgsdf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/kr-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/kr-army</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/kp-kpa</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ir-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ir-irgc</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ir-quds-force</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/au-adf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/au-sasr</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ca-caf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ca-jtf2</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/it-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/it-col-moschin</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/eg-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/sa-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/ua-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/pl-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/br-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/tw-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/se-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/fi-fdf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/es-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/sg-saf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/id-tni</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/za-sandf</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/nl-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/units/no-mod</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://warscopeglobal.com/blog/china-vs-russia-military-power-2025</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/most-powerful-militaries-2025</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/nuclear-weapons-by-country-2025</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/usa-vs-china-military-comparison-2025</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/india-vs-pakistan-military-2025</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/nato-military-power-2025</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/drone-superpowers-turkey-iran-usa-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/hypersonic-arms-race-speed-war-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/space-force-militarization-exosphere-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/global-chokepoints-strait-of-malacca-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/defense-industrial-base-global-arms-exports-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/top-10-largest-defense-budgets-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/comparing-deadliest-submarine-fleets-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/top-5-advanced-main-battle-tanks-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/largest-navies-tonnage-vs-hull-count-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/benjamin-netanyahu-alive-disinformation-campaign-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://warscopeglobal.com/blog/iran-vs-israel-military-power-comparison-2026</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

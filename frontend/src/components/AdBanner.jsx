@@ -6,6 +6,9 @@ const ADSTERRA_PLACEMENTS = {
   '728x90':  { key: '7bbe508a1ba0d1eb3d4b62190674990f', width: 728,  height: 90,  domain: 'highperformanceformat.com' },
   '300x250': { key: 'c71539c82a41428c78495be944cc2763', width: 300,  height: 250, domain: 'highperformanceformat.com' },
   '320x50':  { key: 'a8ef5df2df7fc00a6e6c25911e677a18', width: 320,  height: 50,  domain: 'highperformanceformat.com' },
+  '160x600': { key: 'e6b68663e611a43d963707ee464948e0', width: 160,  height: 600, domain: 'highperformanceformat.com' },
+  '160x300': { key: '3d08551d72acb1ec60684be533924953', width: 160,  height: 300, domain: 'highperformanceformat.com' },
+  '468x60':  { key: '461bc67086c9a9a5ba51cac966890d58', width: 468,  height: 60,  domain: 'highperformanceformat.com' },
   'native':  { key: '3b2721d167fee0d41cf64de932d20123', width: null, height: null, domain: 'effectivegatecpm.com', scriptId: 'pl28934550' },
 };
 
@@ -14,6 +17,9 @@ const SIZE_MAP = {
   '728x90':  { width: '728px', height: '90px'  },
   '300x250': { width: '300px', height: '250px' },
   '320x50':  { width: '100%',  height: '50px'  },
+  '160x600': { width: '160px', height: '600px' },
+  '160x300': { width: '160px', height: '300px' },
+  '468x60':  { width: '468px', height: '60px'  },
   'native':  { width: '100%',  height: 'auto'  },
 };
 
@@ -69,7 +75,6 @@ function AdsterraBanner({ size, uid }) {
   useEffect(() => {
     if (!iframeRef.current || !placement?.key) return;
 
-    // Write ad into iframe so atOptions is isolated per ad unit
     const html = `<!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +112,7 @@ function AdsterraBanner({ size, uid }) {
       frameBorder="0"
       style={{
         width:      placement?.width  ? `${placement.width}px`  : '100%',
-        height:     placement?.height ? `${placement.height}px` : '50px',
+        height:     placement?.height ? `${placement.height}px` : '60px',
         border:     'none',
         display:    'block',
         background: 'transparent',

@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound.jsx';
 import Sanctions from './pages/Sanctions.jsx';
 import Timeline from './pages/Timeline.jsx';
 import IncidentFeed from './pages/IncidentFeed.jsx';
+import Quiz from './pages/Quiz.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import Terms from './pages/Terms.jsx';
 import Disclaimer from './pages/Disclaimer.jsx';
@@ -23,6 +24,11 @@ import VehicleDetail from './pages/VehicleDetail.jsx';
 import Units from './pages/Units.jsx';
 import UnitsDetails from './pages/UnitsDetail.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import Economic from './pages/Economic.jsx';
+import WarImpact from './pages/WarImpact.jsx';
+import Contribute from './pages/Contribute.jsx';
+
+
 
 const SHOW_ADS = import.meta.env.VITE_SHOW_ADS === 'true';
 
@@ -82,6 +88,9 @@ export default function App() {
         <Route path="/vehicles/:id"   element={<VehicleDetail />} />
         <Route path="/units"          element={<Units />} />
         <Route path="/units/:id"      element={<UnitsDetails />} />
+        <Route path="/economic"       element={<Economic />} />
+        <Route path="/quiz"           element={<Quiz />} />
+        <Route path="/war-impact"     element={<WarImpact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms"          element={<Terms />} />
         <Route path="/disclaimer"     element={<Disclaimer />} />
@@ -92,6 +101,8 @@ export default function App() {
         <Route path="/contact"        element={<Contact />} />
         <Route path="/arms-trade"     element={<ArmsTrade />} />
         <Route path="*"               element={<NotFound />} />
+        <Route path="/contribute"     element={<Contribute />} />
+
       </Routes>
     </BrowserRouter>
   );
