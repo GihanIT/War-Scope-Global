@@ -1,6 +1,6 @@
 {
-  "installCommand": "npm install --prefix backend && npm install --prefix frontend",
-  "buildCommand": "npm run build --prefix frontend",
+  "installCommand": "npm install --prefix backend && PUPPETEER_SKIP_DOWNLOAD=true npm install --prefix frontend",
+  "buildCommand": "cd frontend && npx vite build",
   "outputDirectory": "frontend/dist",
   "functions": {
     "api/index.js": {
