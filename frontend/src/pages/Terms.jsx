@@ -138,7 +138,7 @@ export default function Terms() {
           <p className="lg-p">These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts in the applicable jurisdiction.</p>
         </div>
 
-        <div className="lg-box"><p><strong>Questions?</strong> If you have questions about these Terms, contact us at <a href="mailto:contact@warscopeglobal.com" style={{color:'#00d4ff'}}>contact@warscopeglobal.com</a></p></div>
+        <div className="lg-box"><p><strong>Questions?</strong> If you have questions about these Terms, contact us at <a href="mailto:info.warscope@gmail.com" style={{color:'#00d4ff'}}>info.warscope@gmail.com</a></p></div>
       </div>
 
       <AdBanner />

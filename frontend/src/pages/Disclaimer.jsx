@@ -109,7 +109,7 @@ export default function Disclaimer() {
         </div>
 
         <div className="lg-box">
-          <p><strong>Questions about this disclaimer or reporting content?</strong> Contact us at <a href="mailto:contact@warscopeglobal.com" style={{color:'#00d4ff'}}>contact@warscopeglobal.com</a></p>
+          <p><strong>Questions about this disclaimer or reporting content?</strong> Contact us at <a href="mailto:info.warscope@gmail.com" style={{color:'#00d4ff'}}>info.warscope@gmail.com</a></p>
         </div>
       </div>
 

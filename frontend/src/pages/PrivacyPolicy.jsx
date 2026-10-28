@@ -130,7 +130,7 @@ export default function PrivacyPolicy() {
             <li>Right to data portability</li>
             <li>Right to opt out of personalised advertising (via Google Ad Settings)</li>
           </ul>
-          <p className="lg-p">To exercise any of these rights, contact us at <a href="mailto:contact@warscopeglobal.com">contact@warscopeglobal.com</a>.</p>
+          <p className="lg-p">To exercise any of these rights, contact us at <a href="mailto:info.warscope@gmail.com">info.warscope@gmail.com</a>.</p>
         </div>
 
         <div className="lg-section">
