@@ -31,10 +31,10 @@ app.use((req, res, next) => {
     const ms     = Date.now() - start;
     const ts     = new Date().toISOString();
     const status = res.statusCode;
-    const color  = status >= 500 ? '\x1b[31m'    // red
-                 : status >= 400 ? '\x1b[33m'    // yellow
-                 : status >= 300 ? '\x1b[36m'    // cyan
-                 :                 '\x1b[32m';   // green
+    const color  = status >= 500 ? '\x1b[31m'
+                 : status >= 400 ? '\x1b[33m'
+                 : status >= 300 ? '\x1b[36m'
+                 :                 '\x1b[32m';
     const reset  = '\x1b[0m';
     console.log(`[${ts}] ${req.method} ${req.originalUrl} ${color}${status}${reset} ${ms}ms`);
   });
@@ -58,7 +58,7 @@ app.get('/health', (_req, res) => {
 app.use('/api/countries', countriesRouter);
 app.use('/api/conflicts', conflictsRouter);
 app.use('/api/news',      newsRouter);
-app.use('/api/incidents', incidentsRouter);  
+app.use('/api/incidents', incidentsRouter);
 app.use('/api/card', cardRoute);
 app.use('/api/economic', economicRoute);
 app.use('/api/war-impact', warImpact);
@@ -91,40 +91,38 @@ app.use((err, _req, res, _next) => {
 });
 
 // ─────────────────────────────────────────────
-// Start
+// Start (only when run directly, not on Vercel)
 // ─────────────────────────────────────────────
-const server = app.listen(PORT, () => {
-  console.log(`\n🌍  WarScope API running on http://localhost:${PORT}`);
-  console.log(`     Health : http://localhost:${PORT}/health`);
-  console.log(`     Routes : /api/countries  /api/conflicts  /api/news\n`);
-});
-
-// ─────────────────────────────────────────────
-// Graceful shutdown (SIGTERM / SIGINT)
-// ─────────────────────────────────────────────
-const pool = require('./db/connection');
-
-function shutdown(signal) {
-  console.log(`\n[shutdown] ${signal} received — closing server…`);
-  server.close(async () => {
-    console.log('[shutdown] HTTP server closed');
-    try {
-      await pool.end();
-      console.log('[shutdown] DB pool closed');
-    } catch (err) {
-      console.error('[shutdown] DB pool close error:', err.message);
-    }
-    process.exit(0);
+if (require.main === module) {
+  const server = app.listen(PORT, () => {
+    console.log(`\n🌍  WarScope API running on http://localhost:${PORT}`);
+    console.log(`     Health : http://localhost:${PORT}/health`);
+    console.log(`     Routes : /api/countries  /api/conflicts  /api/news\n`);
   });
 
-  // Force-exit if graceful close takes too long
-  setTimeout(() => {
-    console.error('[shutdown] Forced exit after timeout');
-    process.exit(1);
-  }, 10_000).unref();
-}
+  const pool = require('./db/connection');
 
-process.on('SIGTERM', () => shutdown('SIGTERM'));
-process.on('SIGINT',  () => shutdown('SIGINT'));
+  function shutdown(signal) {
+    console.log(`\n[shutdown] ${signal} received — closing server…`);
+    server.close(async () => {
+      console.log('[shutdown] HTTP server closed');
+      try {
+        await pool.end();
+        console.log('[shutdown] DB pool closed');
+      } catch (err) {
+        console.error('[shutdown] DB pool close error:', err.message);
+      }
+      process.exit(0);
+    });
+
+    setTimeout(() => {
+      console.error('[shutdown] Forced exit after timeout');
+      process.exit(1);
+    }, 10_000).unref();
+  }
+
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT',  () => shutdown('SIGINT'));
+}
 
 module.exports = app;
