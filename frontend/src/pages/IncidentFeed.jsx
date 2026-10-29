@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Navbar   from '../components/Navbar.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import SEO from '../seo/SEO.jsx';
+import { CARTO_DARK, CARTO_OPTIONS } from '../utils/mapTiles.js';
 
 
 const API = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
@@ -319,11 +320,7 @@ function IncidentMap({ incidents, selected, onSelect, typeFilters }) {
         zoomControl: false,
       });
 
-      Lf.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '© OpenStreetMap © CARTO',
-        subdomains: 'abcd',
-        maxZoom: 20,
-      }).addTo(map);
+      Lf.tileLayer(CARTO_DARK, CARTO_OPTIONS).addTo(map);
 
       Lf.control.zoom({ position: 'bottomright' }).addTo(map);
 

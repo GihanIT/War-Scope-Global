@@ -6,9 +6,10 @@ const KEY = import.meta.env.VITE_CARTO_KEY || '';
 const QUERY = KEY ? `?key=${KEY}` : '';
 const BASE = 'https://basemaps.cartocdn.com/rastertiles';
 
-export const CARTO_DARK    = `${BASE}/dark_all/{z}/{x}/{y}{r}.png${QUERY}`;
-export const CARTO_LIGHT   = `${BASE}/light_all/{z}/{x}/{y}{r}.png${QUERY}`;
-export const CARTO_VOYAGER = `${BASE}/voyager/{z}/{x}/{y}{r}.png${QUERY}`;
+export const CARTO_DARK            = `${BASE}/dark_all/{z}/{x}/{y}{r}.png${QUERY}`;
+export const CARTO_DARK_NOLABELS   = `${BASE}/dark_nolabels/{z}/{x}/{y}{r}.png${QUERY}`;
+export const CARTO_LIGHT           = `${BASE}/light_all/{z}/{x}/{y}{r}.png${QUERY}`;
+export const CARTO_VOYAGER         = `${BASE}/voyager/{z}/{x}/{y}{r}.png${QUERY}`;
 
 export const CARTO_OPTIONS = {
   attribution:

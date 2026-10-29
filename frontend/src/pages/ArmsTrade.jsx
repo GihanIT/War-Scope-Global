@@ -5,6 +5,7 @@ import AdBanner from '../components/AdBanner.jsx';
 import { ARMS_TRANSFERS, ARMS_ERAS, ARMS_CATEGORIES } from '../data/arms-trade-data.js';
 import SEO from '../seo/SEO.jsx';
 import { datasetSchema } from '../seo/structuredData.js';
+import { CARTO_DARK, CARTO_OPTIONS } from '../utils/mapTiles.js';
 
 // ─── Inline Tactical SVGs ─────────────────────────────────────────────────────
 const Icons = {
@@ -383,9 +384,7 @@ function MapTab({ transfers }) {
     loadLeaflet().then(Lf => {
       if (!mounted || !mapRef.current || lfMap.current) return;
       const map = Lf.map(mapRef.current, { center:[20,10], zoom:2, minZoom:2, zoomControl:false });
-      Lf.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution:'© OpenStreetMap © CARTO', subdomains:'abcd', maxZoom:20,
-      }).addTo(map);
+      Lf.tileLayer(CARTO_DARK, CARTO_OPTIONS).addTo(map);
       Lf.control.zoom({ position:'bottomright' }).addTo(map);
       lfMap.current = map;
     });

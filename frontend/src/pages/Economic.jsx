@@ -4,6 +4,7 @@ import Navbar   from '../components/Navbar.jsx';
 import Footer   from '../components/Footer.jsx';
 import AdBanner from '../components/AdBanner.jsx';
 import SEO      from '../seo/SEO.jsx';
+import { CARTO_DARK_NOLABELS, CARTO_OPTIONS } from '../utils/mapTiles.js';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer,
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Cell,
@@ -159,7 +160,7 @@ function WorldMapView({countries,onSelect}){
     Promise.all([loadLeaflet(),loadWorldGeo()]).then(([L,geo])=>{
       if(!live||!ref.current||inst.current)return;
       const map=L.map(ref.current,{center:[20,15],zoom:2,minZoom:1,maxZoom:6,scrollWheelZoom:false,worldCopyJump:true});
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',{attribution:'',subdomains:'abcd',maxZoom:6}).addTo(map);
+      L.tileLayer(CARTO_DARK_NOLABELS,{...CARTO_OPTIONS,maxZoom:6}).addTo(map);
       L.geoJSON(geo,{
         style:(f)=>{
           const iso3=N2I[parseInt(f.id,10)]; const c=iso3?sm[iso3]:null;
